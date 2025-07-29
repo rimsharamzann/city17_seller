@@ -1,0 +1,31 @@
+name: city17_seller
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  fluro: ^2.0.5
+  google_fonts: ^6.2.1
+  url_strategy: ^0.3.0
+  flutter_svg: ^2.2.0
+  fl_chart: ^1.0.0
+  dotted_border: ^2.1.0
+  image_picker: ^1.1.2
+  responsive_grid_list: ^1.4.0
+  intl_phone_number_input_v2: ^0.0.9
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/svg/
+    - assets/icons/  

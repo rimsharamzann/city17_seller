@@ -1,0 +1,279 @@
+import 'package:city17_seller/config/route_names.dart';
+import 'package:city17_seller/source/constants/my_colors.dart';
+import 'package:city17_seller/source/core/components/buttons.dart';
+import 'package:city17_seller/source/core/components/custom_container.dart';
+import 'package:city17_seller/source/core/components/information_text.dart';
+import 'package:city17_seller/source/core/extensions/context_extension.dart';
+import 'package:city17_seller/source/features/home/components/customize_screen_widget.dart';
+import 'package:city17_seller/source/features/home/components/display_intallation_components.dart';
+import 'package:city17_seller/source/features/home/components/disply_data_tab.dart';
+import 'package:city17_seller/source/features/home/components/scan_qr_code.dart';
+import 'package:flutter/material.dart';
+
+class ConnectDisplayScreen extends StatefulWidget {
+  const ConnectDisplayScreen({super.key});
+
+  @override
+  State<ConnectDisplayScreen> createState() => _ConnectDisplayScreenState();
+}
+
+class _ConnectDisplayScreenState extends State<ConnectDisplayScreen>
+    with TickerProviderStateMixin {
+  late TabController controller;
+
+  @override
+  void initState() {
+    controller = TabController(length: 3, vsync: this);
+    controller.addListener(() {
+      if (mounted) setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Connect a Display')),
+      body: Column(
+        children: [
+          SizedBox(
+            width: context.width,
+            height: 35,
+
+            // decoration: BoxDecoration(
+            //   borderRadius: BorderRadius.circular(8),
+            //   color: Colors.white10.withValues(alpha: 0.05),
+            // ),
+            child: TabBar(
+              indicator: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.transparent,
+              ),
+              unselectedLabelColor: Colors.white70,
+              controller: controller,
+              splashBorderRadius: BorderRadius.circular(8),
+              indicatorColor: MyColors.primaryColor,
+              dividerColor: MyColors.containerBg,
+              indicatorAnimation: TabIndicatorAnimation.linear,
+              // unselectedLabelColor: Colors.grey.shade400,
+              labelColor: Colors.white,
+              tabs: [
+                Tab(text: 'Step 1'),
+                Tab(text: 'Step 2'),
+                Tab(text: 'Step 3'),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 10),
+
+          Expanded(
+            child: TabBarView(
+              controller: controller,
+              children: [Step1Data(), DisplayDataTab(), ScanQrCode()],
+            ),
+          ),
+          _saveData(),
+        ],
+      ),
+    );
+  }
+
+  Widget _saveData() {
+    final isLastStep = controller.index == 2;
+
+    return Container(
+      color: MyColors.backgroundColor,
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      child: Row(
+        children: [
+          Expanded(
+            child: GestureDetector(
+              onTap: () {},
+              child: Text(
+                'Save As Draft',
+                style: context.textTheme.bodyMedium?.copyWith(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: CustomElevatedButtonWidget(
+              onPressed: () {
+                if (!isLastStep) {
+                  controller.animateTo(controller.index + 1);
+                } else {
+                  Navigator.pushNamed(context, RouteNames.displaySetting);
+                }
+              },
+              buttonText: isLastStep ? 'Complete Display Setup' : 'Next',
+              prefix: null,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  //  Future<void> saveAsDraft(Map<String, dynamic> displayData) async {
+  //   try {
+  //     await FirebaseFirestore.instance.collection('display_drafts').add(displayData);
+
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text('Display saved as draft')),
+  //     );
+  //   } catch (e) {
+  //     debugPrint('Error saving draft: $e');
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text('Failed to save draft')),
+  //     );
+  //   }
+  // }
+
+  // Future<void> saveCurrentStepData(Map<String, dynamic> stepData) async {
+  //   // Example: Save step data locally or in-memory (you could use Provider, Riverpod, or a class)
+  //   try {
+  //     // Cache it, or add to state model
+  //     debugPrint('Step saved: $stepData');
+
+  //     // Optionally go to next tab
+  //     controller.animateTo(controller.index + 1);
+  //   } catch (e) {
+  //     debugPrint('Error saving step data: $e');
+  //   }
+  // }
+  //  CustomElevatedButtonWidget(
+  //   onPressed: () {
+  // final stepData = {
+  //   'orientation': selectedOrientation,
+  //   'type': selectedType,
+  //   // add other form values
+  // };
+
+  //     if (isLastStep) {
+  //       completeDisplaySetup(stepData);
+  //     } else {
+  //       saveCurrentStepData(stepData);
+  //     }
+  //   },
+  //   buttonText: isLastStep ? 'Complete Display Setup' : 'Next',
+  // ),
+
+  //  Future<void> completeDisplaySetup(Map<String, dynamic> fullDisplayData) async {
+  //   try {
+  //     // Optional: validate required fields
+  //     if (!fullDisplayData.containsKey('name') || fullDisplayData['name'].isEmpty) {
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         const SnackBar(content: Text('Please provide all required display information')),
+  //       );
+  //       return;
+  //     }
+
+  //     // Save the complete setup
+  //     await FirebaseFirestore.instance.collection('displays').add(fullDisplayData);
+
+  //     // Optionally delete any existing draft if you saved one
+  //     // await FirebaseFirestore.instance.collection('display_drafts').doc(draftId).delete();
+
+  //     // Notify user
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text('Display setup completed successfully')),
+  //     );
+
+  //     // Navigate away or reset
+  //     Navigator.pop(context);
+  //   } catch (e) {
+  //     debugPrint('Error completing setup: $e');
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text('Failed to complete display setup')),
+  //     );
+  //   }
+  // }
+}
+
+class Step1Data extends StatefulWidget {
+  const Step1Data({super.key});
+
+  @override
+  State<Step1Data> createState() => _Step1DataState();
+}
+
+class _Step1DataState extends State<Step1Data> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: ListView(
+        children: [
+          _title('Display Installation Details'),
+          const SizedBox(height: 8),
+          const DisplayInstallationComponents(),
+          const SizedBox(height: 12),
+          _title('Customize Screen'),
+          const CustomizeScreenWidget(),
+          const SizedBox(height: 12),
+          _tileData('Name', 'Restaurant Family Hall', ''),
+          _tileData('Size', '66 ', 'Inches'),
+          _tileData(
+            'Add Description',
+            'LED facing the family hall in the restaurant at the side of VIP Lounge.',
+            '',
+          ),
+          const SizedBox(height: 12),
+          InformationText(
+            icon: Icons.info_outline,
+            text: 'Shared with potential buyers',
+          ),
+
+          const SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+
+  Widget _tileData(String title, String description, String type) {
+    return CustomContainer(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title),
+          SizedBox(height: 6),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Text(
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  description,
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Text(type),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _title(String title) {
+    return Text(
+      title,
+      style: context.textTheme.titleMedium?.copyWith(
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+      ),
+    );
+  }
+}

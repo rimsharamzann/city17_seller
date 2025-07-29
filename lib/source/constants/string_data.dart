@@ -1,0 +1,74 @@
+mixin StringData {
+  static const home = 'Home';
+  static const finance = 'Finance';
+  static const offers = 'Offers';
+  static const settings = 'Settings';
+  static const hiEllie = 'Hi Ellie';
+  static const aud = 'AUD';
+  static const incomeForcast = 'Income Forcast';
+  static const pendingActions = 'Pending actions';
+  static const pendingAdvert = 'Pending Advert';
+  static const duePayments = 'Due Payments';
+  static const displayManager = 'Display Manager';
+  static const days = 'Days';
+  static const add = 'Add';
+  static const weeks = 'Weeks';
+  static const cash = 'Cash';
+  static const bank = 'Bank';
+  static const name = 'Name';
+  static const email = 'Email';
+  static const phoneNumber = 'Phone Number';
+  static const paymentApproval = 'Payment approval';
+  static const months = 'Months';
+  static const manageBusiness = 'Manage Business';
+  static const addDisplayLocation = 'Add a display location';
+  static const addBusinessLocation = 'Add a Business Location';
+  static const addBusinessName = 'Add business name';
+  static const selectBusinessCategory = 'Select business category';
+  static const addBusinessAddress = 'Add business address';
+  static const allDisplays = 'All Displays';
+  static const online = 'online';
+  static const offline = 'offline';
+  static const draft = 'draft';
+  static const playMyOwnAds = 'Play my own ads';
+  static const rotateTheDisplay = 'Rotate the Display 90 degrees';
+  static const whatToShowWhenNoAds =
+      'What to show when no buyer ads are scheduled?';
+  static const addImageOrVedio = 'Add image or vedio';
+  static const deleteDisplay = 'Delete Display';
+  static const updateDisplay = 'Update Display';
+  static const options = 'Options';
+  static const displaySetup = 'Display Setup';
+  static const displaySetting = 'Display Setting';
+  static const uploadClearImageOfDisplay =
+      'Upload a clear image of your display to help buyers better understand its visibility and real-world placement.';
+  static const addDisplayImage = 'Add Display Image';
+  static const biddingOffers = 'Bidding Offer';
+  static const fixedOfferPrices = 'Fixed Price offers';
+  static const addPricingPrefreneces = 'Ad Pricing Prefreneces';
+  static const letMultipleBuyersCompete =
+      'Let multiple buyers compete, and the highest offer wins the hour slot.';
+  static const allowTheBuyerToPayFixedAmount =
+      'Allow the buyer to pay you a fixed amount for their campaign.';
+
+  static const paymentHistory = 'Payment History';
+  static const iHaveRecievedFullPayment = 'I have Received full Payment';
+  static const pendingPayments = 'Pending Payments';
+  static const lastTwoMonth = 'Last 2 Months';
+  static const lastThirtyDays = 'Last 30 Days';
+  static const lastSevenDays = 'Last 7 Days';
+
+  // enum values
+  static const mobile = 'mobile';
+  static const fixed = 'fixed';
+  static const horizontal = 'horizontal';
+  static const vertical = 'vertical';
+  static const restaurant = 'restaurant';
+  static const facingOutside = 'facingOutside';
+  static const insideTheProperty = 'insideTheProperty';
+  static const shop = 'shop';
+  static const vehicle = 'vehicle';
+  static const other = 'other';
+  // static const draft = 'draft';
+  // static const draft = 'draft';
+}
