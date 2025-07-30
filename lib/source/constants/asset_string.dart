@@ -19,4 +19,10 @@ mixin AssetString {
   static const bank = 'assets/svg/bank.svg';
   static const cash = 'assets/svg/cash-02.svg';
    static const paymentOption = 'assets/svg/payment.svg';
+       static const paymentRounded = 'assets/svg/payment-rounded.svg';
+   static const displayScreen = 'assets/svg/display-screen.svg';
+
+      static const adOutined = 'assets/svg/ad-outlined.svg';
+
+
 }

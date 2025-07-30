@@ -54,8 +54,13 @@ class _CustomLayoutScreenState extends State<CustomLayoutScreen> {
             ),
           ],
         ),
-        actions: const [
-          Icon(Icons.notifications, color: Colors.white),
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, RouteNames.notifications);
+            },
+            child: Icon(Icons.notifications, color: Colors.white),
+          ),
           SizedBox(width: 16),
         ],
       ),

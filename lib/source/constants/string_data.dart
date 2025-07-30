@@ -16,6 +16,12 @@ mixin StringData {
   static const cash = 'Cash';
   static const bank = 'Bank';
   static const name = 'Name';
+  static const notifications = 'Notifications';
+  static const advert = 'Advert';
+  static const all = 'All';
+  static const screens = 'Screens';
+  static const earnings = 'earnings';
+  static const payment = 'Payments';
   static const email = 'Email';
   static const phoneNumber = 'Phone Number';
   static const paymentApproval = 'Payment approval';
@@ -30,10 +36,12 @@ mixin StringData {
   static const online = 'online';
   static const offline = 'offline';
   static const draft = 'draft';
+  static const customPaymentOption = 'Custom Payment Options';
   static const playMyOwnAds = 'Play my own ads';
   static const rotateTheDisplay = 'Rotate the Display 90 degrees';
   static const whatToShowWhenNoAds =
       'What to show when no buyer ads are scheduled?';
+  static const buyerDetails = 'Buyer Details';
   static const addImageOrVedio = 'Add image or vedio';
   static const deleteDisplay = 'Delete Display';
   static const updateDisplay = 'Update Display';

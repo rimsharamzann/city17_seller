@@ -10,6 +10,8 @@ import 'package:city17_seller/source/features/home/screen/display_location_scree
 import 'package:city17_seller/source/features/home/screen/display_setting.dart';
 import 'package:city17_seller/source/features/home/screen/home_screen.dart';
 import 'package:city17_seller/source/features/offers/screens/offer_screen.dart';
+import 'package:city17_seller/source/features/settings/screens/buyer_details.dart';
+import 'package:city17_seller/source/features/settings/screens/notifications.dart';
 import 'package:city17_seller/source/features/settings/screens/settings_screen.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
@@ -75,12 +77,29 @@ mixin RouterFluro {
       handler: financeHandler,
       transitionType: TransitionType.none,
     );
+    // setting screen
+    fluroRouter.define(
+      RouteNames.buyerDetails,
+      handler: buyerDetailsHandler,
+      transitionType: TransitionType.none,
+    );
+    fluroRouter.define(
+      RouteNames.notifications,
+      handler: notificationHandler,
+      transitionType: TransitionType.none,
+    );
     fluroRouter.define(
       RouteNames.settings,
       handler: settingsHandler,
       transitionType: TransitionType.none,
     );
   }
+
+  static var notificationHandler = Handler(
+    handlerFunc: (BuildContext? context, Map<String, dynamic> params) {
+      return const NotificationsScreen();
+    },
+  );
 
   //................. auth Handler
   static var signInHandler = Handler(
@@ -138,6 +157,11 @@ mixin RouterFluro {
   static var financeHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, dynamic> params) {
       return const FinanceScreen();
+    },
+  );
+  static var buyerDetailsHandler = Handler(
+    handlerFunc: (BuildContext? context, Map<String, dynamic> params) {
+      return const BuyerDetailScreen();
     },
   );
   static var settingsHandler = Handler(

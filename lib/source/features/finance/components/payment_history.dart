@@ -28,9 +28,11 @@ class _PaymentHistoryState extends State<PaymentHistory>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return 
+    
+    Column(
       children: [
-        TabsData(controller: _controller),
+        PaymentTabs(controller: _controller),
         SizedBox(height: 10),
         Expanded(
           child: TabBarView(
@@ -48,9 +50,9 @@ class _PaymentHistoryState extends State<PaymentHistory>
   }
 }
 
-class TabsData extends StatelessWidget {
+class PaymentTabs extends StatelessWidget {
   final TabController controller;
-  const TabsData({super.key, required this.controller});
+  const PaymentTabs({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,7 @@
 import 'package:city17_seller/source/constants/asset_string.dart';
 import 'package:city17_seller/source/constants/my_colors.dart';
 import 'package:city17_seller/source/constants/string_data.dart';
+import 'package:city17_seller/source/core/components/buttons.dart';
 import 'package:city17_seller/source/core/components/custom_container.dart';
 import 'package:city17_seller/source/core/components/custom_text_feild.dart';
 import 'package:city17_seller/source/core/components/information_text.dart';
@@ -14,7 +15,7 @@ class PaymentMethods extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: ListView(
         children: [
           // cash
@@ -31,7 +32,6 @@ class PaymentMethods extends StatelessWidget {
 
           // paymnet options
           PaymentOptions(),
-          SizedBox(height: 10),
         ],
       ),
     );
@@ -69,13 +69,16 @@ class _PaymentOptionsState extends State<PaymentOptions> {
   @override
   Widget build(BuildContext context) {
     return PaymentCard(
-      image: AssetString.bank,
-      title: StringData.bank,
+      image: AssetString.paymentOption,
+      title: StringData.customPaymentOption,
       child2: Column(
         children: [
           InformationText(
             maxLines: 3,
             fontSize: 12,
+            iconColor: Colors.white.withValues(alpha: 0.85),
+
+            textColor: Colors.white.withValues(alpha: 0.85),
             text:
                 'Add a custom payment option to your profile.This will allow your clients to pay using this custom payment option.',
             icon: Icons.info_outline,
@@ -85,39 +88,55 @@ class _PaymentOptionsState extends State<PaymentOptions> {
           CustomContainer(
             padding: EdgeInsets.all(0),
             margin: EdgeInsets.all(0),
-            child: ExpansionTile(
-              backgroundColor: Colors.transparent,
-              iconColor: Colors.white,
-              textColor: Colors.white, 
-              title: Text(
-                'Add Custom Payment Option',
-                style: context.textTheme.bodyMedium?.copyWith(
-                  color: Colors.white,
-                ),
-              ),
-              onExpansionChanged: (value) {
-                setState(() {
-                  isExpanded = value;
-                });
-              },
-              children: [
-                CustomTextFeild(
-                  controller: _accountTitleController,
-                  hintText: 'Bank Name',
-                ),
-                SizedBox(height: 12),
-                CustomTextFeild(
-                  controller: _linkCOntroller,
-                  hintText: 'Account Name',
-                ),
+            child: Theme(
+              data: Theme.of(
+                context,
+              ).copyWith(dividerColor: Colors.transparent),
 
-                SizedBox(height: 12),
-                CustomTextFeild(
-                  controller: _instructionCOntroller,
-                  hintText: 'Account Number',
+              child: ExpansionTile(
+                tilePadding: EdgeInsets.zero,
+                collapsedIconColor: Colors.white,
+                backgroundColor: Colors.transparent,
+                iconColor: Colors.white,
+                textColor: Colors.white,
+                title: Text(
+                  'Add Custom Payment Option',
+                  style: context.textTheme.bodySmall?.copyWith(
+                    color: Colors.white,
+                  ),
                 ),
-                SizedBox(height: 12),
-              ],
+                onExpansionChanged: (value) {
+                  setState(() {
+                    isExpanded = value;
+                  });
+                },
+                children: [
+                  CustomTextFeild(
+                    controller: _accountTitleController,
+                    hintText: 'Enter your title here',
+                  ),
+
+                  SizedBox(height: 12),
+                  CustomTextFeild(
+                    controller: _instructionCOntroller,
+                    hintText: 'Enter your instructions here',
+                  ),
+                  SizedBox(height: 12),
+                  CustomTextFeild(
+                    controller: _linkCOntroller,
+                    hintText: 'Enter the link here',
+                  ),
+                  SizedBox(height: 20),
+                  CustomElevatedButtonWidget(
+                    width: context.width,
+                    onPressed: () {},
+                    buttonText: 'Save',
+                    color: MyColors.primaryColor,
+                    textColor: Colors.white,
+                    prefix: null,
+                  ),
+                ],
+              ),
             ),
           ),
         ],

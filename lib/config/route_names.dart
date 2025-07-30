@@ -12,5 +12,8 @@ mixin RouteNames {
   static const login = '/login';
   static const offers = '/offers';
   static const finance = '/finance';
+  // ----------setting screen
   static const settings = '/settings';
+  static const notifications = '/notifications';
+  static const buyerDetails = '/buyer-details';
 }

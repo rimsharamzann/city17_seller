@@ -156,13 +156,14 @@ class UserNameAndContact extends StatelessWidget {
     this.profilePic,
     this.child,
     this.iconColor,
-    this.contactColor,
+    this.contactColor, this.widget,
   });
   final String name;
   final String contactNo;
   final String? profilePic;
   final Widget? child;
   final Color? iconColor;
+  final Widget? widget;
   final Color? contactColor;
 
   @override
@@ -197,21 +198,22 @@ class UserNameAndContact extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  Icon(Icons.phone, color: iconColor ?? Colors.white),
-                  SizedBox(width: 6),
-                  Text(
-                    contactNo,
-                    style: context.textTheme.bodyMedium?.copyWith(
-                      color: contactColor ?? MyColors.textColor,
-                      decoration: TextDecoration.underline,
-                      decorationThickness: 2,
-                      decorationColor: contactColor ?? MyColors.textColor,
-                    ),
+              widget ??
+                  Row(
+                    children: [
+                      Icon(Icons.phone, color: iconColor ?? Colors.white),
+                      SizedBox(width: 6),
+                      Text(
+                        contactNo,
+                        style: context.textTheme.bodyMedium?.copyWith(
+                          color: contactColor ?? MyColors.textColor,
+                          decoration: TextDecoration.underline,
+                          decorationThickness: 2,
+                          decorationColor: contactColor ?? MyColors.textColor,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
             ],
           ),
         ],
