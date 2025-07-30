@@ -15,6 +15,8 @@ mixin StringData {
   static const weeks = 'Weeks';
   static const cash = 'Cash';
   static const bank = 'Bank';
+  static const searchBusinessCategory = 'Search Business Category';
+  static const bidding = 'bidding';
   static const name = 'Name';
   static const notifications = 'Notifications';
   static const advert = 'Advert';
@@ -65,6 +67,10 @@ mixin StringData {
   static const lastTwoMonth = 'Last 2 Months';
   static const lastThirtyDays = 'Last 30 Days';
   static const lastSevenDays = 'Last 7 Days';
+  static const pending = 'pending';
+  static const active = 'Active';
+  static const completed = 'Completed';
+  // static const draft = 'draft';
 
   // enum values
   static const mobile = 'mobile';

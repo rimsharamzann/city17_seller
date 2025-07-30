@@ -2,6 +2,7 @@ import 'package:city17_seller/config/route_names.dart';
 import 'package:city17_seller/source/constants/my_colors.dart';
 import 'package:city17_seller/source/core/components/buttons.dart';
 import 'package:city17_seller/source/core/components/custom_container.dart';
+import 'package:city17_seller/source/core/components/custom_tab_widget.dart';
 import 'package:city17_seller/source/core/components/information_text.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:city17_seller/source/features/home/components/customize_screen_widget.dart';
@@ -19,12 +20,12 @@ class ConnectDisplayScreen extends StatefulWidget {
 
 class _ConnectDisplayScreenState extends State<ConnectDisplayScreen>
     with TickerProviderStateMixin {
-  late TabController controller;
+  late TabController _controller;
 
   @override
   void initState() {
-    controller = TabController(length: 3, vsync: this);
-    controller.addListener(() {
+    _controller = TabController(length: 3, vsync: this);
+    _controller.addListener(() {
       if (mounted) setState(() {});
     });
     super.initState();
@@ -32,7 +33,7 @@ class _ConnectDisplayScreenState extends State<ConnectDisplayScreen>
 
   @override
   void dispose() {
-    controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -44,38 +45,24 @@ class _ConnectDisplayScreenState extends State<ConnectDisplayScreen>
         children: [
           SizedBox(
             width: context.width,
-            height: 35,
-
-            // decoration: BoxDecoration(
-            //   borderRadius: BorderRadius.circular(8),
-            //   color: Colors.white10.withValues(alpha: 0.05),
-            // ),
-            child: TabBar(
-              indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.transparent,
-              ),
-              unselectedLabelColor: Colors.white70,
-              controller: controller,
-              splashBorderRadius: BorderRadius.circular(8),
-              indicatorColor: MyColors.primaryColor,
-              dividerColor: MyColors.containerBg,
-              indicatorAnimation: TabIndicatorAnimation.linear,
-              // unselectedLabelColor: Colors.grey.shade400,
-              labelColor: Colors.white,
-              tabs: [
-                Tab(text: 'Step 1'),
+            height: 35, child:
+              CustomTabWidget(
+          controller: _controller
+,          tabs: [
+          Tab(text: 'Step 1'),
                 Tab(text: 'Step 2'),
                 Tab(text: 'Step 3'),
-              ],
-            ),
+          ],
+          indicatorColor: Colors.transparent,
+        ),
+           
           ),
 
           const SizedBox(height: 10),
 
           Expanded(
             child: TabBarView(
-              controller: controller,
+              controller: _controller,
               children: [Step1Data(), DisplayDataTab(), ScanQrCode()],
             ),
           ),
@@ -86,7 +73,7 @@ class _ConnectDisplayScreenState extends State<ConnectDisplayScreen>
   }
 
   Widget _saveData() {
-    final isLastStep = controller.index == 2;
+    final isLastStep = _controller.index == 2;
 
     return Container(
       color: MyColors.backgroundColor,
@@ -109,7 +96,7 @@ class _ConnectDisplayScreenState extends State<ConnectDisplayScreen>
             child: CustomElevatedButtonWidget(
               onPressed: () {
                 if (!isLastStep) {
-                  controller.animateTo(controller.index + 1);
+                  _controller.animateTo(_controller.index + 1);
                 } else {
                   Navigator.pushNamed(context, RouteNames.displaySetting);
                 }

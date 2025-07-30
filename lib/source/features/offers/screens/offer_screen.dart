@@ -1,61 +1,62 @@
 import 'package:city17_seller/source/constants/my_colors.dart';
+import 'package:city17_seller/source/constants/string_data.dart';
 import 'package:city17_seller/source/core/components/custom_layout.dart';
-import 'package:city17_seller/source/core/extensions/context_extension.dart';
-import 'package:city17_seller/source/features/home/components/income_forcast_widget.dart';
+import 'package:city17_seller/source/core/components/custom_tab_widget.dart';
+import 'package:city17_seller/source/features/offers/components/active_offers.dart';
+import 'package:city17_seller/source/features/offers/components/completed_offers.dart';
+import 'package:city17_seller/source/features/offers/components/pending_offers.dart';
 import 'package:flutter/material.dart';
 
-class OfferScreen extends StatelessWidget {
+class OfferScreen extends StatefulWidget {
   const OfferScreen({super.key});
+
+  @override
+  State<OfferScreen> createState() => _OfferScreenState();
+}
+
+class _OfferScreenState extends State<OfferScreen>
+    with TickerProviderStateMixin {
+  late TabController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return CustomLayoutScreen(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 10,
         children: [
-          IncomeForcastList(),
-          IncomeForecastWidget(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '-----',
-                          style: context.textTheme.bodyLarge?.copyWith(
-                            color: MyColors.lightGradient,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24,
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: MyColors.lightGradient.withValues(
-                              alpha: 0.2,
-                            ),
-                          ),
+          SizedBox(height: 10),
 
-                         
-                     
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+          CustomTabWidget(
+            indicatorColor: MyColors.darkThemeBottomAppBarColor,
+            controller: _controller,
+
+            tabs: const [
+              Tab(text: StringData.pending),
+              Tab(text: StringData.active),
+              Tab(text: StringData.completed),
+            ],
+          ),
+          SizedBox(height: 10),
+          Expanded(
+            child: TabBarView(
+              controller: _controller,
+
+              children: [PendingOffers(), ActiveOffers(), CompletedOffers()],
             ),
           ),
+          SizedBox(height: 10),
         ],
       ),
     );

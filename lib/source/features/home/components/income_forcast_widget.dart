@@ -1,9 +1,10 @@
 import 'package:city17_seller/source/constants/my_colors.dart';
 import 'package:city17_seller/source/constants/string_data.dart';
+import 'package:city17_seller/source/core/components/custom_tab_widget.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
-class IncomeForecastWidget extends StatelessWidget {
+class IncomeForecastWidget extends StatefulWidget {
   const IncomeForecastWidget({
     super.key,
     this.title,
@@ -19,74 +20,11 @@ class IncomeForecastWidget extends StatelessWidget {
   final Widget? child1;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.topLeft,
-      height: height ?? MediaQuery.of(context).size.height / 3,
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: MyColors.containerBg,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(child: child1 ?? SizedBox()), // Text(
-              //   title ?? 'Income Forecast',
-              //   style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              //     color: Colors.white,
-              //     fontWeight: FontWeight.w300,
-              //     fontSize: 14,
-              //   ),
-              // ),
-              // const SizedBox(width: 6),
-              // Container(
-              //   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-              //   decoration: BoxDecoration(
-              //     borderRadius: BorderRadius.circular(8),
-              //     color: Colors.green.withValues(alpha: 0.2),
-              //   ),
-              //   child: Row(
-              //     children: [
-              //       Text(
-              //         value ?? '7.01%',
-              //         style: Theme.of(context).textTheme.headlineSmall
-              //             ?.copyWith(
-              //               color: MyColors.successColor,
-              //               fontSize: 10,
-              //             ),
-              //       ),
-              //       const SizedBox(width: 4),
-              //       Icon(
-              //         Icons.download,
-              //         color: MyColors.successColor,
-              //         size: 12,
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              const TabsData(),
-            ],
-          ),
-          SizedBox(child: child),
-        ],
-      ),
-    );
-  }
+  State<IncomeForecastWidget> createState() => _IncomeForecastWidgetState();
 }
 
-class TabsData extends StatefulWidget {
-  const TabsData({super.key});
-
-  @override
-  State<TabsData> createState() => _TabsDataState();
-}
-
-class _TabsDataState extends State<TabsData> with TickerProviderStateMixin {
+class _IncomeForecastWidgetState extends State<IncomeForecastWidget>
+    with TickerProviderStateMixin {
   late TabController _controller;
 
   @override
@@ -103,32 +41,40 @@ class _TabsDataState extends State<TabsData> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return
-     Container(
-      width: context.width / 2.1,
-      height: 35,
+    return Container(
+      alignment: Alignment.topLeft,
+      height: widget.height ?? MediaQuery.of(context).size.height / 3,
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+      width: double.infinity,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Colors.white10.withValues(alpha: 0.05),
+        borderRadius: BorderRadius.circular(10),
+        color: MyColors.containerBg,
       ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(child: widget.child1 ?? SizedBox()),
 
-      child: TabBar(
-        indicator: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: Colors.white10,
-        ),
-        unselectedLabelColor: Colors.white70,
-        controller: _controller,
-        splashBorderRadius: BorderRadius.circular(8),
-        indicatorColor: MyColors.primaryColor,
-        dividerColor: MyColors.containerBg,
-        indicatorAnimation: TabIndicatorAnimation.linear,
-        // unselectedLabelColor: Colors.grey.shade400,
-        labelColor: Colors.white,
-        tabs: [
-          Tab(text: 'Days'),
-          Tab(text: 'Weeks'),
-          Tab(text: 'Months'),
+              SizedBox(
+                width: context.width / 2.1,
+                height: 35,
+
+                child: CustomTabWidget(
+                  controller: _controller,
+                  tabs: [
+                    Tab(text: StringData.days),
+                    Tab(text: StringData.weeks),
+                    Tab(text: StringData.months),
+                  ],
+                  indicatorColor: Colors.white10,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(child: widget.child),
         ],
       ),
     );

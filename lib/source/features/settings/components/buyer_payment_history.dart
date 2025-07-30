@@ -1,7 +1,8 @@
 import 'package:city17_seller/source/constants/my_colors.dart';
+import 'package:city17_seller/source/constants/string_data.dart';
 import 'package:city17_seller/source/core/components/custom_container.dart';
+import 'package:city17_seller/source/core/components/custom_tab_widget.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
-import 'package:city17_seller/source/features/finance/components/payment_history.dart';
 import 'package:flutter/material.dart';
 
 class BuyerPaymentHistory extends StatefulWidget {
@@ -30,7 +31,15 @@ class _BuyerPaymentHistoryState extends State<BuyerPaymentHistory>
   Widget build(BuildContext context) {
     return Column(
       children: [
-        PaymentTabs(controller: _controller),
+        CustomTabWidget(
+          controller: _controller,
+          tabs: [
+            Tab(text: StringData.lastSevenDays),
+            Tab(text: StringData.lastThirtyDays),
+            Tab(text: StringData.lastThirtyDays),
+          ],
+          indicatorColor: Colors.transparent,
+        ),
         SizedBox(height: 10),
         TabBarView(
           controller: _controller,

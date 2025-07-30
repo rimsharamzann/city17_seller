@@ -2,6 +2,7 @@ import 'package:city17_seller/config/route_names.dart';
 import 'package:city17_seller/source/constants/my_colors.dart';
 import 'package:city17_seller/source/constants/string_data.dart';
 import 'package:city17_seller/source/core/components/buttons.dart';
+import 'package:city17_seller/source/core/components/custom_tab_widget.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:city17_seller/source/features/home/components/diaplay_options_tab.dart';
 import 'package:city17_seller/source/features/home/components/update_display_setup.dart';
@@ -43,18 +44,9 @@ class _DisplaySettingScreenState extends State<DisplaySettingScreen>
             width: context.width,
             height: 35,
 
-            child: TabBar(
-              indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.transparent,
-              ),
-              unselectedLabelColor: Colors.white70,
+            child: CustomTabWidget(
               controller: controller,
-              splashBorderRadius: BorderRadius.circular(8),
-              indicatorColor: MyColors.primaryColor,
-              dividerColor: MyColors.containerBg,
-              indicatorAnimation: TabIndicatorAnimation.linear,
-              labelColor: Colors.white,
+              indicatorColor: Colors.transparent,
               tabs: [
                 Tab(text: StringData.displaySetup),
                 Tab(text: StringData.options),

@@ -1,6 +1,5 @@
-import 'package:city17_seller/source/constants/my_colors.dart';
 import 'package:city17_seller/source/constants/string_data.dart';
-import 'package:city17_seller/source/core/extensions/context_extension.dart';
+import 'package:city17_seller/source/core/components/custom_tab_widget.dart';
 import 'package:city17_seller/source/features/finance/components/payment_history_components.dart';
 import 'package:flutter/material.dart';
 
@@ -28,11 +27,17 @@ class _PaymentHistoryState extends State<PaymentHistory>
 
   @override
   Widget build(BuildContext context) {
-    return 
-    
-    Column(
+    return Column(
       children: [
-        PaymentTabs(controller: _controller),
+        CustomTabWidget(
+          controller: _controller,
+          tabs: [
+            Tab(text: StringData.lastSevenDays),
+            Tab(text: StringData.lastThirtyDays),
+            Tab(text: StringData.lastThirtyDays),
+          ],
+          indicatorColor: Colors.transparent,
+        ),
         SizedBox(height: 10),
         Expanded(
           child: TabBarView(
@@ -46,40 +51,6 @@ class _PaymentHistoryState extends State<PaymentHistory>
         ),
         SizedBox(height: 10),
       ],
-    );
-  }
-}
-
-class PaymentTabs extends StatelessWidget {
-  final TabController controller;
-  const PaymentTabs({super.key, required this.controller});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: context.width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Colors.transparent,
-      ),
-      child: TabBar(
-        controller: controller,
-        indicator: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: Colors.transparent,
-        ),
-        unselectedLabelColor: Colors.white70,
-        splashBorderRadius: BorderRadius.circular(8),
-        indicatorColor: MyColors.primaryColor,
-        dividerColor: MyColors.containerBg,
-        indicatorAnimation: TabIndicatorAnimation.linear,
-        labelColor: Colors.white,
-        tabs: const [
-          Tab(text: StringData.lastSevenDays),
-          Tab(text: StringData.lastThirtyDays),
-          Tab(text: StringData.lastThirtyDays),
-        ],
-      ),
     );
   }
 }

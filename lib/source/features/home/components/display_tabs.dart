@@ -1,3 +1,4 @@
+import 'package:city17_seller/source/core/components/custom_tab_widget.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:city17_seller/source/features/home/models/display_loaction_model.dart';
 import 'package:flutter/material.dart';
@@ -30,18 +31,13 @@ class _DisplayTabsState extends State<DisplayTabs>
   Widget build(BuildContext context) {
     return SizedBox(
       width: context.width,
-      child: TabBar(
+      child: CustomTabWidget(
         unselectedLabelColor: Colors.grey,
         controller: _controller,
-        splashBorderRadius: BorderRadius.circular(8),
-        // indicatorColor: MyColors.primaryColor,
-        dividerColor: Colors.transparent,
-        // indicator: BoxDecoration(color: Colors.white),
         indicatorAnimation: TabIndicatorAnimation.linear,
-        // unselectedLabelColor: Colors.grey.shade400,
         labelColor: Colors.white,
 
-        indicator: UnderlineTabIndicator(
+        indicatorDecoration: UnderlineTabIndicator(
           borderSide: BorderSide(width: 1.5, color: Colors.white),
         ),
         tabs: [

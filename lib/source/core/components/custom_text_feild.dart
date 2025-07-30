@@ -7,10 +7,16 @@ class CustomTextFeild extends StatelessWidget {
     required this.controller,
     this.maxLines,
     this.hintText,
+    this.suffixIcon,
+    this.prefixIcon,
+    this.iconColor,
   });
   final TextEditingController controller;
   final int? maxLines;
   final String? hintText;
+  final IconData? suffixIcon;
+  final IconData? prefixIcon;
+  final Color? iconColor;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +25,11 @@ class CustomTextFeild extends StatelessWidget {
       maxLines: maxLines,
       decoration: Constants.textFieldInputDecoration(
         hintText: hintText ?? '',
+
         color: Colors.white60,
         context: context,
+        // prefixIcon: Icon(prefixIcon, color: iconColor),
+        suffixIcon: Icon(suffixIcon, color: iconColor),
       ),
     );
   }

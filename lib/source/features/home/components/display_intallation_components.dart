@@ -1,4 +1,5 @@
 import 'package:city17_seller/source/constants/my_colors.dart';
+import 'package:city17_seller/source/constants/string_data.dart';
 import 'package:city17_seller/source/core/components/custom_container.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +44,7 @@ class _DisplayInstallationComponentsState
                 _isSelected = !_isSelected;
               });
             },
-            options: ['Facing Outside', 'Inside The Property'],
+            options: [StringData.facingOutside, StringData.insideTheProperty],
           ),
         ],
       ),
@@ -158,8 +159,8 @@ class _RadioButtonsWithTitleState extends State<RadioButtonsWithTitle> {
         const SizedBox(height: 4),
         SizedBox(child: widget.child),
         Container(
-          margin: const EdgeInsets.symmetric(vertical: 10),
-          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 4),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: MyColors.backgroundColor,
