@@ -99,3 +99,78 @@ class CustomElevatedButtonWidget extends StatelessWidget {
     );
   }
 }
+
+class AcceptRejectButtons extends StatefulWidget {
+  const AcceptRejectButtons({super.key, required this.isBidding});
+  final bool isBidding;
+
+  @override
+  State<AcceptRejectButtons> createState() => _AcceptRejectButtonsState();
+}
+
+class _AcceptRejectButtonsState extends State<AcceptRejectButtons> {
+  bool? isAccepted;
+
+  void handleAccept() {
+    setState(() {
+      isAccepted = true;
+    });
+  }
+
+  void handleReject() {
+    setState(() {
+      isAccepted = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        // Reject Button
+        GestureDetector(
+          onTap: handleReject,
+          child: Container(
+            height: widget.isBidding ? 30 : 40,
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+            decoration: BoxDecoration(
+              color: isAccepted == false
+                  ? (widget.isBidding
+                        ? MyColors.containerBg
+                        : Colors.transparent)
+                  : (widget.isBidding
+                        ? Colors.transparent
+                        : MyColors.containerBg),
+              borderRadius: BorderRadius.circular(6),
+            ),
+            child: Row(
+              children: const [
+                Text(
+                  'Reject',
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(width: 8),
+                Icon(Icons.cancel_outlined, color: Colors.red, size: 20),
+              ],
+            ),
+          ),
+        ),
+
+        CustomElevatedButtonWidget(
+          onPressed: handleAccept,
+          buttonText: widget.isBidding ? 'Approve' : 'Accept',
+          prefix: null,
+          suffix: Icons.check_circle_outline,
+          iconColor: MyColors.successColor2,
+          textColor: MyColors.successColor2,
+
+          height: widget.isBidding ? 30 : 40,
+        ),
+      ],
+    );
+  }
+}

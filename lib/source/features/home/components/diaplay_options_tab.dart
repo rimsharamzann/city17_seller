@@ -5,10 +5,10 @@ import 'package:city17_seller/source/core/components/buttons.dart';
 import 'package:city17_seller/source/core/components/custom_container.dart';
 import 'package:city17_seller/source/core/components/custom_tile_widget.dart';
 import 'package:city17_seller/source/core/components/information_text.dart';
+import 'package:city17_seller/source/core/components/time_slot_grid.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:responsive_grid_list/responsive_grid_list.dart';
 
 class DisplayOptionsTab extends StatefulWidget {
   const DisplayOptionsTab({super.key});
@@ -195,7 +195,8 @@ class _SpecificHoursDataState extends State<SpecificHoursData> {
               _selectedHours(false, 'Unselected'),
             ],
           ),
-          _hoursGrid(),
+          TimeSlotGrid(),
+          // _hoursGrid(),
         ],
       ),
     );
@@ -214,39 +215,39 @@ class _SpecificHoursDataState extends State<SpecificHoursData> {
     );
   }
 
-  Widget _hoursGrid() {
-    return ResponsiveGridList(
-      horizontalGridSpacing: 5,
-      verticalGridSpacing: 4,
-      rowMainAxisAlignment: MainAxisAlignment.start,
-      minItemWidth: 75,
-      minItemsPerRow: 4,
-      maxItemsPerRow: 6,
-      listViewBuilderOptions: ListViewBuilderOptions(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.zero,
-      ),
-      children: hoursList.map((time) => _timer(time)).toList(),
-    );
-  }
+  // Widget _hoursGrid() {
+  //   return ResponsiveGridList(
+  //     horizontalGridSpacing: 5,
+  //     verticalGridSpacing: 4,
+  //     rowMainAxisAlignment: MainAxisAlignment.start,
+  //     minItemWidth: 75,
+  //     minItemsPerRow: 4,
+  //     maxItemsPerRow: 6,
+  //     listViewBuilderOptions: ListViewBuilderOptions(
+  //       shrinkWrap: true,
+  //       physics: NeverScrollableScrollPhysics(),
+  //       padding: EdgeInsets.zero,
+  //     ),
+  //     children: hoursList.map((time) => _timer(time)).toList(),
+  //   );
+  // }
 
-  Widget _timer(String time) {
-    final bool isSelected = selectedHours.contains(time);
-    return GestureDetector(
-      onTap: () => toggleSelection(time),
-      child: CustomContainer(
-        padding: const EdgeInsets.all(4),
-        borderRadius: BorderRadius.circular(4),
-        margin: const EdgeInsets.symmetric(horizontal: 3, vertical: 14),
-        color: isSelected ? MyColors.successColor2 : MyColors.darkThemeBG,
-        child: Text(
-          time,
-          style: context.textTheme.bodySmall?.copyWith(
-            color: isSelected ? Colors.black : Colors.white,
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget _timer(String time) {
+  //   final bool isSelected = selectedHours.contains(time);
+  //   return GestureDetector(
+  //     onTap: () => toggleSelection(time),
+  //     child: CustomContainer(
+  //       padding: const EdgeInsets.all(4),
+  //       borderRadius: BorderRadius.circular(4),
+  //       margin: const EdgeInsets.symmetric(horizontal: 3, vertical: 14),
+  //       color: isSelected ? MyColors.successColor2 : MyColors.darkThemeBG,
+  //       child: Text(
+  //         time,
+  //         style: context.textTheme.bodySmall?.copyWith(
+  //           color: isSelected ? Colors.black : Colors.white,
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 }

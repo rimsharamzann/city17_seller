@@ -4,31 +4,19 @@ import 'package:city17_seller/source/core/components/custom_container.dart';
 import 'package:city17_seller/source/core/components/custom_tab_widget.dart';
 import 'package:city17_seller/source/core/components/custom_text_feild.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
+import 'package:city17_seller/source/features/offers/screens/pending_tab_screens/pending_fixed_screen.dart';
+import 'package:city17_seller/source/features/offers/screens/pending_tab_screens/pending_bidding_screen.dart';
 import 'package:flutter/material.dart';
 
-class ActiveOffers extends StatefulWidget {
-  const ActiveOffers({super.key});
+class PendingOffers extends StatefulWidget {
+  const PendingOffers({super.key});
 
   @override
-  State<ActiveOffers> createState() => _ActiveOffersState();
+  State<PendingOffers> createState() => _PendingOffersState();
 }
 
-class _ActiveOffersState extends State<ActiveOffers>
-    with TickerProviderStateMixin {
-  late TabController _controller;
+class _PendingOffersState extends State<PendingOffers> {
   final TextEditingController controller = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TabController(length: 2, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,61 +64,55 @@ class _ActiveOffersState extends State<ActiveOffers>
             ],
           ),
         ),
-        SizedBox(height: 10),
 
-        CustomTabWidget(
-          controller: _controller,
-          tabs: const [
-            Tab(text: StringData.bidding),
-            Tab(text: StringData.fixed),
-          ],
-        ),
-        SizedBox(height: 10),
-        Expanded(
-          child: TabBarView(
-            controller: _controller,
-            children: [BidingTabData(), FixedTab()],
-          ),
-        ),
-        SizedBox(height: 10),
+        Expanded(child: PendingFixedTab()),
       ],
     );
   }
 }
 
-class BidingTabData extends StatelessWidget {
-  const BidingTabData({super.key});
+class PendingFixedTab extends StatefulWidget {
+  const PendingFixedTab({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return CustomContainer(child: Column(children: []));
-  }
+  State<PendingFixedTab> createState() => _PendingFixedTabState();
 }
 
-class FixedTab extends StatelessWidget {
-  const FixedTab({super.key});
+class _PendingFixedTabState extends State<PendingFixedTab>
+    with TickerProviderStateMixin {
+  late TabController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return CustomContainer(
-      child: Column(
-        children: [
-          CustomContainer(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Advertizer'),
-                Text(
-                  'jamesWilson',
-                  style: context.textTheme.bodyMedium?.copyWith(
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
+    return Column(
+      children: [
+        CustomTabWidget(
+          controller: _controller,
+          tabs: const [
+            Tab(text: 'Bidding'),
+            Tab(text: 'Fixed'),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Expanded(
+          child: TabBarView(
+            controller: _controller,
+            children: const [PendingBiddingScreen(), PendingFixedScreen()],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

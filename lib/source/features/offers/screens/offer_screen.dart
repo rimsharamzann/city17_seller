@@ -2,9 +2,9 @@ import 'package:city17_seller/source/constants/my_colors.dart';
 import 'package:city17_seller/source/constants/string_data.dart';
 import 'package:city17_seller/source/core/components/custom_layout.dart';
 import 'package:city17_seller/source/core/components/custom_tab_widget.dart';
-import 'package:city17_seller/source/features/offers/components/active_offers.dart';
-import 'package:city17_seller/source/features/offers/components/completed_offers.dart';
-import 'package:city17_seller/source/features/offers/components/pending_offers.dart';
+import 'package:city17_seller/source/features/offers/screens/active_tab_screens/active_offers.dart';
+import 'package:city17_seller/source/features/offers/screens/completed_offers/completed_offers.dart';
+import 'package:city17_seller/source/features/offers/screens/pending_tab_screens/pending_offers.dart';
 import 'package:flutter/material.dart';
 
 class OfferScreen extends StatefulWidget {
