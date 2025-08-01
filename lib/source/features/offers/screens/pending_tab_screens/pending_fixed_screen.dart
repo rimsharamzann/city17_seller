@@ -21,6 +21,8 @@ class PendingFixedScreen extends StatelessWidget {
             icon: Icons.warning_rounded,
             iconColor: MyColors.primaryColor,
             textColor: MyColors.textColor,
+            fontSize: 9,
+            maxLines: 3,
           ),
           SizedBox(height: 10),
           ...List.generate(2, (index) => FixedCard()),

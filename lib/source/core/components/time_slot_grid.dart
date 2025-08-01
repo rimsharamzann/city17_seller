@@ -47,7 +47,7 @@ class _TimeSlotGridState extends State<TimeSlotGrid> {
     // final Color unselectedBackground = MyColors.containerBg;
 
     return GridView.count(
-      crossAxisCount: 6,
+      crossAxisCount: 5,
       mainAxisSpacing: 10,
       crossAxisSpacing: 5,
       shrinkWrap: true,
@@ -66,7 +66,7 @@ class _TimeSlotGridState extends State<TimeSlotGrid> {
             });
           },
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+            padding: EdgeInsets.symmetric(horizontal: 4, vertical: 0),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: isSelected ? MyColors.successColor : MyColors.darkThemeBG,
@@ -80,7 +80,7 @@ class _TimeSlotGridState extends State<TimeSlotGrid> {
                   timeSlots[index].split(' ')[0],
                   style: context.textTheme.bodySmall?.copyWith(
                     color: Colors.white,
-                    fontSize: 9,
+                    fontSize: 8,
                   ),
                 ),
                 SizedBox(width: 2),
@@ -88,7 +88,7 @@ class _TimeSlotGridState extends State<TimeSlotGrid> {
                   timeSlots[index].split(' ')[1],
                   style: context.textTheme.bodySmall?.copyWith(
                     color: Colors.white,
-                    fontSize: 9,
+                    fontSize: 8,
                   ),
                 ),
               ],

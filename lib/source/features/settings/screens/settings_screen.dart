@@ -2,6 +2,7 @@ import 'package:city17_seller/source/constants/my_colors.dart';
 import 'package:city17_seller/source/constants/string_data.dart';
 import 'package:city17_seller/source/core/components/custom_layout.dart';
 import 'package:city17_seller/source/core/components/custom_tab_widget.dart';
+import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:city17_seller/source/features/settings/components/advertizer_tab.dart';
 import 'package:city17_seller/source/features/settings/components/payment_methods.dart';
 import 'package:city17_seller/source/features/settings/components/profile_options.dart';
@@ -36,9 +37,10 @@ class _SettingsScreenState extends State<SettingsScreen>
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 10),
-
           CustomTabWidget(
+            labelStyle: context.textTheme.bodySmall?.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
             controller: _controller,
             tabs: const [
               Tab(text: StringData.pendingPayments),
@@ -47,14 +49,12 @@ class _SettingsScreenState extends State<SettingsScreen>
             ],
             indicatorColor: MyColors.darkThemeBottomAppBarColor,
           ),
-          SizedBox(height: 10),
           Expanded(
             child: TabBarView(
               controller: _controller,
               children: [ProfileOptions(), PaymentMethods(), AdvertizerTab()],
             ),
           ),
-          SizedBox(height: 10),
         ],
       ),
     );

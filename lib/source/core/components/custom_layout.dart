@@ -2,6 +2,7 @@ import 'package:city17_seller/config/route_names.dart';
 import 'package:city17_seller/source/constants/asset_string.dart';
 import 'package:city17_seller/source/constants/my_colors.dart';
 import 'package:city17_seller/source/constants/string_data.dart';
+import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
 class CustomLayoutScreen extends StatefulWidget {
@@ -45,15 +46,19 @@ class _CustomLayoutScreenState extends State<CustomLayoutScreen> {
           children: [
             CircleAvatar(
               backgroundImage: AssetImage(AssetString.profile),
-              radius: 20,
+              radius: 18,
             ),
             const SizedBox(width: 8),
             Text(
               StringData.hiEllie,
-              style: const TextStyle(color: Colors.white, fontSize: 18),
+              style: context.textTheme.bodyMedium?.copyWith(
+                color: Colors.white,
+                fontSize: 14,
+              ),
             ),
           ],
         ),
+
         actions: [
           GestureDetector(
             onTap: () {
@@ -65,7 +70,7 @@ class _CustomLayoutScreenState extends State<CustomLayoutScreen> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 14),
         child: widget.body,
       ),
       bottomNavigationBar: Container(
@@ -103,7 +108,7 @@ class _CustomLayoutScreenState extends State<CustomLayoutScreen> {
                 child: Container(
                   margin: EdgeInsets.only(top: 10),
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
+                    horizontal: 10,
                     vertical: 10,
                   ),
                   decoration: BoxDecoration(
@@ -116,7 +121,7 @@ class _CustomLayoutScreenState extends State<CustomLayoutScreen> {
                     label,
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      fontSize: 14,
+                      fontSize: 12,
                       color: isSelected ? Colors.white : Colors.white70,
                     ),
                   ),

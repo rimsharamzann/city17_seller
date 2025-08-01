@@ -53,7 +53,7 @@ class _HistoryCardsState extends State<HistoryCards> {
             Row(
               children: [
                 CircleAvatar(
-                  radius: 16,
+                  radius: 14,
                   backgroundImage: AssetImage(AssetString.profile),
                 ),
                 SizedBox(width: 6),
@@ -61,6 +61,7 @@ class _HistoryCardsState extends State<HistoryCards> {
                   'JimmieWilson',
                   style: context.textTheme.bodyMedium?.copyWith(
                     color: Colors.white,
+                    fontSize: 11,
                   ),
                 ),
               ],
@@ -85,7 +86,7 @@ class _HistoryCardsState extends State<HistoryCards> {
                         '16 hours',
                         style: context.textTheme.bodySmall?.copyWith(
                           color: Colors.white,
-                          fontSize: 10,
+                          fontSize: 9,
                         ),
                       ),
                     ),
@@ -94,8 +95,8 @@ class _HistoryCardsState extends State<HistoryCards> {
                       '\$150.00',
                       style: context.textTheme.bodyMedium?.copyWith(
                         color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w200,
+                        fontSize: 11,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ],
@@ -119,14 +120,14 @@ class _HistoryCardsState extends State<HistoryCards> {
   Widget _historyTile(String title, String data, Color? dataCOlor) {
     return Column(
       children: [
-        Text(title, style: context.textTheme.bodySmall?.copyWith(fontSize: 12)),
+        Text(title, style: context.textTheme.bodySmall?.copyWith(fontSize: 9)),
         SizedBox(height: 8),
         Text(
           data,
           style: context.textTheme.bodyMedium?.copyWith(
             color: dataCOlor ?? Colors.white,
-            fontSize: 14,
-            fontWeight: FontWeight.w200,
+            fontSize: 11,
+            fontWeight: FontWeight.w700,
           ),
         ),
       ],

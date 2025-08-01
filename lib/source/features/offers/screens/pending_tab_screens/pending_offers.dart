@@ -32,7 +32,7 @@ class _PendingOffersState extends State<PendingOffers> {
                     CustomTextFeild(
                       controller: controller,
                       hintText: StringData.searchBusinessCategory,
-                      suffixIcon: Icons.search,
+                      suffixIcon: Icons.search, 
                       iconColor: Colors.white,
                     ),
                     SizedBox(height: 6),

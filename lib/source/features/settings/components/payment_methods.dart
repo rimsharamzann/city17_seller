@@ -9,9 +9,15 @@ import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class PaymentMethods extends StatelessWidget {
+class PaymentMethods extends StatefulWidget {
   const PaymentMethods({super.key});
 
+  @override
+  State<PaymentMethods> createState() => _PaymentMethodsState();
+}
+
+class _PaymentMethodsState extends State<PaymentMethods> {
+  bool value = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,7 +28,14 @@ class PaymentMethods extends StatelessWidget {
           PaymentCard(
             image: AssetString.cash,
             title: StringData.cash,
-            child: SwitchWidget(value: true, onChanged: (value) {}),
+            child: SwitchWidget(
+              value: value,
+              onChanged: (value) {
+                setState(() {
+                  value = true;
+                });
+              },
+            ),
           ),
           SizedBox(height: 12),
 
@@ -66,6 +79,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
   }
 
   bool isExpanded = false;
+  bool value = false;
   @override
   Widget build(BuildContext context) {
     return PaymentCard(
@@ -75,7 +89,8 @@ class _PaymentOptionsState extends State<PaymentOptions> {
         children: [
           InformationText(
             maxLines: 3,
-            fontSize: 12,
+            fontSize: 9,
+
             iconColor: Colors.white.withValues(alpha: 0.85),
 
             textColor: Colors.white.withValues(alpha: 0.85),
@@ -83,7 +98,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                 'Add a custom payment option to your profile.This will allow your clients to pay using this custom payment option.',
             icon: Icons.info_outline,
           ),
-          // todo decoration of expension tile
+          // TODO : decoration of expension tile
           SizedBox(height: 10),
           CustomContainer(
             padding: EdgeInsets.all(0),
@@ -141,7 +156,14 @@ class _PaymentOptionsState extends State<PaymentOptions> {
           ),
         ],
       ),
-      child: SwitchWidget(value: true, onChanged: (value) {}),
+      child: SwitchWidget(
+        value: value,
+        onChanged: (value) {
+          setState(() {
+            value = true;
+          });
+        },
+      ),
     );
   }
 }
@@ -176,6 +198,8 @@ class _BankDataState extends State<BankData> {
     super.dispose();
   }
 
+  bool value = false;
+
   @override
   Widget build(BuildContext context) {
     return PaymentCard(
@@ -205,7 +229,14 @@ class _BankDataState extends State<BankData> {
           SizedBox(height: 12),
         ],
       ),
-      child: SwitchWidget(value: true, onChanged: (value) {}),
+      child: SwitchWidget(
+        value: value,
+        onChanged: (value) {
+          setState(() {
+            value = true;
+          });
+        },
+      ),
     );
   }
 }
@@ -228,7 +259,7 @@ class PaymentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
       width: context.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),

@@ -44,19 +44,24 @@ class _ApprovePaymentModalState extends State<ApprovePaymentModal> {
             child: Align(
               alignment: Alignment.topRight,
               // ignore: deprecated_member_use
-              child: SvgPicture.asset(AssetString.cancel, color: Colors.white),
+              child: SvgPicture.asset(
+                AssetString.cancel,
+                // ignore: deprecated_member_use
+                color: Colors.white,
+                height: 16,
+              ),
             ),
           ),
-          SizedBox(height: 6),
+          SizedBox(height: 4),
           Text(
             textAlign: TextAlign.center,
             widget.title ?? 'Confirm Payment from Buyer',
             style: context.textTheme.bodyMedium?.copyWith(
               color: Colors.white,
-              fontSize: 22,
+              fontSize: 14,
             ),
           ),
-          SizedBox(height: 14),
+          SizedBox(height: 8),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -88,9 +93,9 @@ class _ApprovePaymentModalState extends State<ApprovePaymentModal> {
                   _data('Bank Account'),
                 ],
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 6),
               CampaignImage(),
-              SizedBox(height: 10),
+              SizedBox(height: 6),
 
               Align(
                 alignment: Alignment.bottomRight,
@@ -100,14 +105,15 @@ class _ApprovePaymentModalState extends State<ApprovePaymentModal> {
                       TextSpan(
                         text: widget.paymentDate ?? 'Paid on: ',
                         style: context.textTheme.bodySmall?.copyWith(
-                          fontSize: 12,
+                          fontSize: 9,
                         ),
                       ),
                       TextSpan(text: ' '),
                       TextSpan(
                         text: 'Apr 02, 2025 - 01:15 PM',
-                        style: context.textTheme.bodyMedium?.copyWith(
+                        style: context.textTheme.bodySmall?.copyWith(
                           color: Colors.white,
+                          fontSize: 11,
                         ),
                       ),
                     ],
@@ -115,7 +121,6 @@ class _ApprovePaymentModalState extends State<ApprovePaymentModal> {
                 ),
               ),
 
-              SizedBox(height: 10),
               Align(
                 alignment: Alignment.center,
                 child:
@@ -149,14 +154,16 @@ class _ApprovePaymentModalState extends State<ApprovePaymentModal> {
                               StringData.iHaveRecievedFullPayment,
                               style: context.textTheme.bodyMedium?.copyWith(
                                 color: Colors.white,
+                                fontSize: 10,
                               ),
                             ),
                           ],
                         ),
 
-                        SizedBox(height: 10),
+                        SizedBox(height: 6),
 
                         InformationText(
+                          fontSize: 8,
                           text:
                               'Approval is final and cannot be undone. Please ensure you have received the payment from the buyer before Approving.',
                           icon: Icons.warning_rounded,
@@ -165,31 +172,35 @@ class _ApprovePaymentModalState extends State<ApprovePaymentModal> {
                           iconSize: 22,
                         ),
                         SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: CustomElevatedButtonWidget(
-                                onPressed: () {},
-                                buttonText: 'Reject',
-                                prefix: null,
-                                suffix: Icons.cancel_outlined,
-                                iconColor: Colors.red,
-                                textColor: Colors.red,
+                        SizedBox(
+                          height: 35,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: CustomElevatedButtonWidget(
+                                  onPressed: () {},
+                                  buttonText: 'Reject',
+                                  prefix: null,
+                                  suffix: Icons.cancel_outlined,
+                                  iconColor: Colors.red,
+                                  textColor: Colors.red,
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: CustomElevatedButtonWidget(
-                                onPressed: () {},
-                                buttonText: 'Confirm',
-                                suffix: Icons.check_circle_outline_outlined,
-                                prefix: null,
-                                color: Colors.transparent,
+                              SizedBox(width: 10),
+                              Expanded(
+                                child: CustomElevatedButtonWidget(
+                                  onPressed: () {},
+                                  buttonText: 'Confirm',
+                                  suffix: Icons.check_circle_outline_outlined,
+                                  prefix: null,
+                                  color: Colors.transparent,
 
-                                iconColor: Colors.green,
-                                textColor: Colors.green,
+                                  iconColor: Colors.green,
+                                  textColor: Colors.green,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -234,12 +245,13 @@ class CampaignImage extends StatelessWidget {
           children: [
             Text(
               'Note added by the buyer about the payment will be shown here.',
+              style: context.textTheme.bodySmall,
             ),
             SizedBox(height: 16),
             Container(
-              height: MediaQuery.of(context).size.height / 3.6,
+              height: context.height / 3.3,
               width: double.infinity,
-              decoration: BoxDecoration(color: Colors.white60),
+              decoration: BoxDecoration(color: Colors.white70),
               child: ClipRRect(borderRadius: BorderRadius.circular(10)),
             ),
           ],

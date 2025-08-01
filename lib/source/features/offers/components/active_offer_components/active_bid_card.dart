@@ -12,6 +12,7 @@ class ActiveBidCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: 10,
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,6 +22,7 @@ class ActiveBidCard extends StatelessWidget {
           ],
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ActiveTimeSlots(
@@ -102,14 +104,14 @@ class EmptyDataContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
-      margin: EdgeInsets.all(6),
+      margin: EdgeInsets.symmetric(horizontal: 6),
       height: 130,
       child: Center(
         child: Text(
           messsage,
 
           style: context.textTheme.bodyMedium?.copyWith(
-            fontSize: 16,
+            fontSize: 12,
             color: color,
 
             decorationColor: color,
@@ -129,7 +131,8 @@ class SellerAddInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
-      margin: EdgeInsets.zero,
+      padding: EdgeInsets.all(4),
+      margin: EdgeInsets.symmetric(horizontal: 4),
       color: MyColors.containerBg,
       borderRadius: BorderRadius.circular(4),
       child: Row(
@@ -141,7 +144,7 @@ class SellerAddInfo extends StatelessWidget {
                 Row(
                   children: [
                     CircleAvatar(
-                      radius: 16,
+                      radius: 14,
                       child: Image.asset(AssetString.profile),
                     ),
                     SizedBox(width: 6),
@@ -160,13 +163,16 @@ class SellerAddInfo extends StatelessWidget {
                 DataDetail(title: 'Hours per day : ', value: '04'),
 
                 SizedBox(height: 6),
-                CustomElevatedButtonWidget(
-                  width: context.width,
-                  onPressed: () {},
-                  buttonText: 'View Advert',
-                  prefix: null,
-                  textColor: Colors.white,
-                  color: MyColors.darkThemeBG,
+                SizedBox(
+                  height: 38,
+                  child: CustomElevatedButtonWidget(
+                    width: context.width,
+                    onPressed: () {},
+                    buttonText: 'View Advert',
+                    prefix: null,
+                    textColor: Colors.white,
+                    color: MyColors.darkThemeBG,
+                  ),
                 ),
               ],
             ),
@@ -199,12 +205,12 @@ class DataDetail extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title, style: context.textTheme.bodySmall?.copyWith(fontSize: 10)),
+        Text(title, style: context.textTheme.bodySmall?.copyWith(fontSize: 9)),
         Text(
           value,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 12,
+            fontSize: 11,
             color: Colors.white,
           ),
         ),

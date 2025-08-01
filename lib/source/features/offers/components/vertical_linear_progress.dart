@@ -27,15 +27,16 @@ class _VerticalLinearProgressState extends State<VerticalLinearProgress> {
     ];
 
     return Padding(
-      padding: EdgeInsets.all(4.0),
+      padding: EdgeInsets.only(right: 6),
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             // Top text
             Container(
+              margin: EdgeInsets.symmetric(horizontal: 3),
               padding: EdgeInsets.only(top: 2),
-              width: 85,
+              width: 80,
               height: 30,
               decoration: BoxDecoration(
                 color: MyColors.successColor.withValues(alpha: 0.25),
@@ -47,9 +48,9 @@ class _VerticalLinearProgressState extends State<VerticalLinearProgress> {
               alignment: Alignment.center,
               child: Text(
                 '\$14-\$10 /hr',
-                style: context.textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 13,
+                style: context.textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 10,
                   color: MyColors.successColor,
                 ),
                 textAlign: TextAlign.center,
@@ -64,19 +65,11 @@ class _VerticalLinearProgressState extends State<VerticalLinearProgress> {
                   bottomRight: Radius.circular(8),
                 ),
               ),
-              margin: EdgeInsets.fromLTRB(3.5, 0, 3.5, 0),
               child: Padding(
-                padding: EdgeInsets.all(8),
+                padding: EdgeInsets.zero,
                 child: Column(
                   children: [
-                    Text(
-                      '12:00am',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey.shade400,
-                        fontSize: 13,
-                      ),
-                    ),
+                    Text('12:00 am', style: _style(MyColors.textColor)),
                     // SizedBox(height: 2),
                     SizedBox(
                       height: widget.height ?? barHeight,
@@ -144,7 +137,6 @@ class _VerticalLinearProgressState extends State<VerticalLinearProgress> {
     return context.textTheme.bodySmall?.copyWith(
       fontWeight: FontWeight.bold,
       color: txetColor ?? Colors.white,
-      fontSize: 13,
     );
   }
 }

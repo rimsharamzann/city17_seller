@@ -32,8 +32,9 @@ class CustomTileWidget extends StatelessWidget {
         children: [
           SvgPicture.asset(
             image,
-            colorFilter: const ColorFilter.mode(
-              Colors.white70,
+            height: 20,
+            colorFilter: ColorFilter.mode(
+              Colors.white.withValues(alpha: 0.9),
               BlendMode.srcIn,
             ),
           ),
@@ -67,11 +68,13 @@ class DisplayTile extends StatelessWidget {
     this.child1,
     this.text,
     this.tileColor,
+    this.height,
   });
   final Widget? child;
   final Widget? child1;
   final String? text;
   final Color? tileColor;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +95,7 @@ class DisplayTile extends StatelessWidget {
             children: [
               Text(
                 text ?? 'Restaurent Family Hall',
-                style: context.textTheme.bodyLarge?.copyWith(
+                style: context.textTheme.bodySmall?.copyWith(
                   color: Colors.white,
                 ),
               ),
@@ -107,7 +110,10 @@ class DisplayTile extends StatelessWidget {
                   spacing: 6,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('This week'),
+                    Text(
+                      'This week',
+                      style: context.textTheme.bodySmall?.copyWith(),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -124,19 +130,21 @@ class DisplayTile extends StatelessWidget {
                           '99.9%',
                           style: context.textTheme.bodySmall?.copyWith(
                             color: Colors.white,
+                            fontSize: 9,
                           ),
                         ),
-                        SizedBox(width: 6),
+                        SizedBox(width: 8),
 
                         Text(
                           '\$35',
                           style: context.textTheme.bodySmall?.copyWith(
                             color: Colors.white,
+                            fontSize: 9,
                           ),
                         ),
-                        SizedBox(width: 6),
+                        SizedBox(width: 8),
 
-                        BadgeWidget(),
+                        BadgeWidget(fontSize: 8, iconSize: 12),
                       ],
                     ),
                   ],
@@ -156,7 +164,8 @@ class UserNameAndContact extends StatelessWidget {
     this.profilePic,
     this.child,
     this.iconColor,
-    this.contactColor, this.widget,
+    this.contactColor,
+    this.widget,
   });
   final String name;
   final String contactNo;
@@ -186,7 +195,7 @@ class UserNameAndContact extends StatelessWidget {
               Row(
                 children: [
                   CircleAvatar(
-                    radius: 16,
+                    radius: 12.5,
                     child: Image.asset(AssetString.profile),
                   ),
                   SizedBox(width: 6),
@@ -201,7 +210,11 @@ class UserNameAndContact extends StatelessWidget {
               widget ??
                   Row(
                     children: [
-                      Icon(Icons.phone, color: iconColor ?? Colors.white),
+                      Icon(
+                        Icons.phone,
+                        color: iconColor ?? Colors.white,
+                        size: 16,
+                      ),
                       SizedBox(width: 6),
                       Text(
                         contactNo,
@@ -209,6 +222,7 @@ class UserNameAndContact extends StatelessWidget {
                           color: contactColor ?? MyColors.textColor,
                           decoration: TextDecoration.underline,
                           decorationThickness: 2,
+                          fontSize: 10,
                           decorationColor: contactColor ?? MyColors.textColor,
                         ),
                       ),

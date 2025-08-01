@@ -17,7 +17,7 @@ class _AutoApproveAdsState extends State<AutoApproveAds> {
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
-      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: EdgeInsets.symmetric(horizontal: 4, vertical: 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -25,10 +25,10 @@ class _AutoApproveAdsState extends State<AutoApproveAds> {
             child: Text(
               'Automatically approve all adverts from this advertiser?',
               style: context.textTheme.bodySmall?.copyWith(
-                fontSize: widget.isBidding ? 10 : 11,
+                fontSize: widget.isBidding ? 9 : 10,
                 color: Colors.white,
                 fontWeight: widget.isBidding
-                    ? FontWeight.w300
+                    ? FontWeight.w100
                     : FontWeight.w200,
               ),
             ),

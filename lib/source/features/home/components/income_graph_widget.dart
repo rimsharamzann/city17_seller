@@ -4,8 +4,8 @@ import 'package:city17_seller/source/features/home/components/income_forcast_wid
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class IncomeGraphScreen extends StatelessWidget {
-  const IncomeGraphScreen({super.key});
+class IncomeGraphWidget extends StatelessWidget {
+  const IncomeGraphWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,11 @@ class IncomeGraphScreen extends StatelessWidget {
                 getTitlesWidget: (value, meta) {
                   return Text(
                     value.toInt().toString(),
-                    style: const TextStyle(color: Colors.white54, fontSize: 11),
+                    style: const TextStyle(
+                      color: Colors.white70,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w200,
+                    ),
                   );
                 },
               ),
@@ -83,8 +87,9 @@ class IncomeGraphScreen extends StatelessWidget {
                     child: Text(
                       titles[index],
                       style: const TextStyle(
-                        color: Colors.white54,
-                        fontSize: 12,
+                        color: Colors.white70,
+                        fontSize: 10,
+                        fontWeight: FontWeight.w200,
                       ),
                     ),
                   );
@@ -142,14 +147,18 @@ class IncomeForcastValue extends StatelessWidget {
               const Text(
                 '\$400',
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 13,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const Text(
                 'AUD',
-                style: TextStyle(color: Colors.grey, fontSize: 10),
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 9,
+                  fontWeight: FontWeight.w200,
+                ),
               ),
             ],
           ),
@@ -162,23 +171,26 @@ class IncomeForcastValue extends StatelessWidget {
 }
 
 class BadgeWidget extends StatelessWidget {
-  const BadgeWidget({super.key});
+  const BadgeWidget({super.key, this.fontSize, this.iconSize, this.height});
+  final double? fontSize;
+  final double? iconSize;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+    return Container( height:  height,
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
       decoration: BoxDecoration(
         color: MyColors.successColor2.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(6),
       ),
-      child: const Row(
+      child:  Row(
         children: [
           Text(
             '7.01%',
-            style: TextStyle(color: MyColors.successColor2, fontSize: 10),
+            style: TextStyle(color: MyColors.successColor2, fontSize: fontSize?? 9),
           ),
-          Icon(Icons.upload_sharp, color: MyColors.successColor2, size: 14),
+          Icon(Icons.upload_sharp, color: MyColors.successColor2, size: iconSize?? 13),
         ],
       ),
     );

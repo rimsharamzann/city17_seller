@@ -38,12 +38,12 @@ mixin Constants {
     hintText: !showLabel ? hintText : null,
     counterText: '',
     hintStyle: TextStyle(
-      fontSize: smallText ? 14 : 16,
+      fontSize: smallText ? 10 : 14,
       fontWeight: FontWeight.normal,
       color: color,
     ),
     labelStyle: TextStyle(
-      fontSize: smallText ? 14 : 16,
+      fontSize: smallText ? 10 : 14,
       fontWeight: FontWeight.normal,
       color: color,
     ),

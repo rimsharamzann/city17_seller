@@ -23,6 +23,7 @@ class CustomElevatedButtonWidget extends StatelessWidget {
     this.iconColor,
     this.tooltip,
     this.prefixIcon,
+    this.fontSize, this.fontWeight,
   });
 
   final Function()? onPressed;
@@ -36,7 +37,8 @@ class CustomElevatedButtonWidget extends StatelessWidget {
   final Color? iconColor;
   final IconData? prefixIcon;
   final double borderRadius;
-
+  final double? fontSize;
+  final FontWeight? fontWeight;
   final IconData? suffix;
   final dynamic prefix;
   final String? tooltip;
@@ -92,9 +94,9 @@ class CustomElevatedButtonWidget extends StatelessWidget {
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
       style: textTheme.titleSmall?.copyWith(
-        fontWeight: FontWeight.w500,
+        fontWeight: fontWeight?? FontWeight.w500,
         color: active ? textColor : Colors.grey,
-        fontSize: textTheme.bodyMedium?.fontSize,
+        fontSize: fontSize ?? textTheme.bodyMedium?.fontSize,
       ),
     );
   }
@@ -164,6 +166,7 @@ class _AcceptRejectButtonsState extends State<AcceptRejectButtons> {
           onPressed: handleAccept,
           buttonText: widget.isBidding ? 'Approve' : 'Accept',
           prefix: null,
+          color: MyColors.containerColor.withValues(alpha: 0.2),
           suffix: Icons.check_circle_outline,
           iconColor: MyColors.successColor2,
           textColor: MyColors.successColor2,

@@ -1,6 +1,7 @@
 import 'package:city17_seller/source/constants/my_colors.dart';
 import 'package:city17_seller/source/constants/string_data.dart';
 import 'package:city17_seller/source/core/components/custom_container.dart';
+import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
 class DisplayInstallationComponents extends StatefulWidget {
@@ -59,12 +60,14 @@ class RadioButtonsWithTitle extends StatefulWidget {
     required this.options,
     required this.onChanged,
     this.child,
+    this.icon,
   });
 
   final String title;
   final List<String> options;
   final Function(String) onChanged;
   final Widget? child;
+  final IconData? icon;
 
   @override
   State<RadioButtonsWithTitle> createState() => _RadioButtonsWithTitleState();
@@ -105,14 +108,14 @@ class _RadioButtonsWithTitleState extends State<RadioButtonsWithTitle> {
                           color: isSelected
                               ? Colors.white
                               : Colors.grey.shade600,
-                          fontSize: 14,
+                          fontSize: 10,
                         ),
                       ),
                       const SizedBox(width: 6),
 
                       Container(
-                        width: 20,
-                        height: 20,
+                        width: 16,
+                        height: 16,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
@@ -126,7 +129,7 @@ class _RadioButtonsWithTitleState extends State<RadioButtonsWithTitle> {
                             ? const Center(
                                 child: Icon(
                                   Icons.check,
-                                  size: 14,
+                                  size: 12,
                                   color: Colors.white,
                                 ),
                               )
@@ -147,20 +150,26 @@ class _RadioButtonsWithTitleState extends State<RadioButtonsWithTitle> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 8),
-        Text(
-          widget.title,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.white.withValues(alpha: 0.95),
-          ),
+        SizedBox(height: 6),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Text(
+                widget.title,
+                style: context.textTheme.bodyMedium?.copyWith(
+                  color: Colors.white.withValues(alpha: 0.95),
+                ),
+              ),
+            ),
+            SizedBox(child: Icon(widget.icon, color: Colors.white, size: 18)),
+          ],
         ),
         const SizedBox(height: 4),
         SizedBox(child: widget.child),
         Container(
           margin: const EdgeInsets.symmetric(vertical: 8),
-          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 4),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: MyColors.backgroundColor,

@@ -110,7 +110,7 @@ class _BuyerHistoryDetailsState extends State<BuyerHistoryDetails> {
               children: [
                 Text(
                   'Total Amount',
-                  style: context.textTheme.bodySmall?.copyWith(fontSize: 12),
+                  style: context.textTheme.bodySmall?.copyWith(fontSize: 10),
                 ),
                 Spacer(),
                 Text(
@@ -131,13 +131,13 @@ class _BuyerHistoryDetailsState extends State<BuyerHistoryDetails> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: context.textTheme.bodySmall?.copyWith(fontSize: 10)),
+        Text(title, style: context.textTheme.bodySmall?.copyWith(fontSize: 8)),
         SizedBox(height: 8),
         Text(
           data,
           style: context.textTheme.bodyMedium?.copyWith(
             color: Colors.white,
-            fontSize: 14,
+            fontSize: 10,
             fontWeight: FontWeight.w200,
           ),
         ),

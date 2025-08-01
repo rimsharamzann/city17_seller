@@ -25,7 +25,7 @@ class FixedAdInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-         AdvertizerName(),
+        AdvertizerName(),
         SizedBox(height: 6),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -41,8 +41,8 @@ class FixedAdInfoCard extends StatelessWidget {
           ),
         ),
         SizedBox(height: 6),
-           PaymentPerDay(),
-      
+        PaymentPerDay(),
+
         SizedBox(height: 10),
         TimeSlotSelector(),
         SizedBox(height: 12),
@@ -83,7 +83,7 @@ class AdvertizerName extends StatelessWidget {
             'James Wilson',
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 14,
+              fontSize: 13,
               color: Colors.white,
             ),
           ),
@@ -103,21 +103,24 @@ class HourDateInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: CustomContainer(
-        color: MyColors.darkThemeBG,
+        padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+        color: MyColors.lightBackground,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               title,
               style: context.textTheme.bodySmall?.copyWith(
-                fontSize: 12,
+                fontSize: 8,
                 color: MyColors.textColor,
               ),
             ),
+            SizedBox(height: 4),
             Text(
               value,
               style: context.textTheme.bodyMedium?.copyWith(
                 color: Colors.white,
+                fontSize: 10,
               ),
             ),
           ],

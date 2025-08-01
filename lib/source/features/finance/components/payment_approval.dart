@@ -6,6 +6,7 @@ import 'package:city17_seller/source/core/components/information_text.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:city17_seller/source/features/finance/components/approve_payment_modal.dart';
 import 'package:city17_seller/source/features/finance/components/payment_date.dart';
+import 'package:city17_seller/source/features/offers/components/weekly_calendar.dart';
 import 'package:flutter/material.dart';
 
 class PaymentApproval extends StatefulWidget {
@@ -21,20 +22,22 @@ class _PaymentApprovalState extends State<PaymentApproval> {
     return ListView(
       children: [
         InformationText(
-          iconSize: 24,
+          iconSize: 18,
+          fontSize: 10,
           text:
               'These payments are still pending. The buyer has not yet completed or Confirmed the payment.',
           icon: Icons.warning_rounded,
           iconColor: MyColors.primaryColor,
           textColor: MyColors.textColor,
         ),
-        SizedBox(height: 14),
+        SizedBox(height: 10),
+         WeeklyCalendar(),
 
-        Row(
-          spacing: 6,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: List.generate(7, (index) => PaymentDates(index: index)),
-        ),
+        // Row(
+        //   spacing: 6,
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: List.generate(7, (index) => PaymentDates(index: index)),
+        // ),
         SizedBox(height: 10),
 
         Column(
@@ -52,21 +55,22 @@ class _PaymentApprovalState extends State<PaymentApproval> {
                         Text(
                           'Total Amount',
                           style: context.textTheme.bodySmall?.copyWith(
-                            fontSize: 12,
+                            fontSize: 9,
                           ),
                         ),
                         Text(
                           '\$1575',
                           style: context.textTheme.bodyMedium?.copyWith(
                             color: Colors.white,
-                            fontSize: 17,
+                            fontSize: 14,
                           ),
                         ),
                       ],
                     ),
                     Spacer(),
                     CustomElevatedButtonWidget(
-                      width: context.width / 2,
+                      height: 35,
+                      width: context.width / 2.1,
                       textColor: Colors.white70,
                       onPressed: () {
                         showModalBottomSheet(
@@ -79,6 +83,8 @@ class _PaymentApprovalState extends State<PaymentApproval> {
                           ),
                         );
                       },
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
 
                       buttonText: 'Approve all PAyments',
                       color: MyColors.primaryColor,

@@ -40,8 +40,8 @@ class _ScanQrCodeState extends State<ScanQrCode> {
             borderType: BorderType.RRect,
             color: Colors.grey.shade400,
             strokeWidth: 1.5,
-            dashPattern: const [9, 3],
-            radius: const Radius.circular(16),
+            dashPattern: const [6, 2],
+            radius: const Radius.circular(4),
             child: Container(
               height: MediaQuery.of(context).size.height / 3.6,
               width: double.infinity,
@@ -76,7 +76,7 @@ class _ScanQrCodeState extends State<ScanQrCode> {
 
           InformationText(
             iconSize: 24,
-            fontSize: 12,
+            fontSize: 10,
             icon: Icons.warning_rounded,
             iconColor: MyColors.primaryColor,
             textColor: MyColors.textColor,

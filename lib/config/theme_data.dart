@@ -14,38 +14,35 @@ mixin MainThemeData {
     textTheme: TextTheme(
       titleLarge: GoogleFonts.varelaRound(
         fontWeight: FontWeight.w900,
-        fontSize:
-            ResponsiveWidget.isSmallScreen(context)
-                ? 19
-                : ResponsiveWidget.isMediumScreen(context)
-                ? 24
-                : 28,
+        fontSize: ResponsiveWidget.isSmallScreen(context)
+            ? 19
+            : ResponsiveWidget.isMediumScreen(context)
+            ? 24
+            : 28,
         color: Colors.black87,
       ),
       titleMedium: GoogleFonts.varelaRound(
         fontWeight: FontWeight.w600,
-        fontSize:
-            ResponsiveWidget.isSmallScreen(context)
-                ? 16
-                : ResponsiveWidget.isMediumScreen(context)
-                ? 20
-                : 24,
+        fontSize: ResponsiveWidget.isSmallScreen(context)
+            ? 16
+            : ResponsiveWidget.isMediumScreen(context)
+            ? 20
+            : 24,
         color: Colors.black87,
       ),
       titleSmall: GoogleFonts.varelaRound(
         fontWeight: FontWeight.w600,
-        fontSize:
-            ResponsiveWidget.isSmallScreen(context)
-                ? 14
-                : ResponsiveWidget.isMediumScreen(context)
-                ? 16
-                : 18,
+        fontSize: ResponsiveWidget.isSmallScreen(context)
+            ? 14
+            : ResponsiveWidget.isMediumScreen(context)
+            ? 16
+            : 18,
         color: Colors.black87,
       ),
       bodyLarge: GoogleFonts.varelaRound(
         color: Colors.black87,
         fontWeight: FontWeight.w500,
-        fontSize: ResponsiveWidget.isSmallScreen(context) ? 16 : 18,
+        fontSize: ResponsiveWidget.isSmallScreen(context) ? 15 : 18,
       ),
       displaySmall: GoogleFonts.varelaRound(
         fontWeight: FontWeight.w700,
@@ -64,7 +61,7 @@ mixin MainThemeData {
       ),
       bodyMedium: GoogleFonts.varelaRound(
         fontWeight: FontWeight.w600,
-        color: Colors.black87,
+        color: Colors.white.withValues(alpha: 0.8),
         fontSize: ResponsiveWidget.isSmallScreen(context) ? 14.5 : 16,
       ),
       bodySmall: GoogleFonts.varelaRound(
@@ -113,12 +110,11 @@ mixin MainThemeData {
         textStyle: WidgetStateProperty.all(
           GoogleFonts.varelaRound(
             fontWeight: FontWeight.w600,
-            fontSize:
-                ResponsiveWidget.isSmallScreen(context)
-                    ? 14
-                    : ResponsiveWidget.isMediumScreen(context)
-                    ? 16
-                    : 18,
+            fontSize: ResponsiveWidget.isSmallScreen(context)
+                ? 14
+                : ResponsiveWidget.isMediumScreen(context)
+                ? 16
+                : 18,
             color: MyColors.primaryColor,
           ),
         ),
@@ -166,36 +162,33 @@ mixin MainThemeData {
       mainAxisMargin: 8,
       minThumbLength: 48,
     ),
-    
+
     textTheme: TextTheme(
       titleLarge: GoogleFonts.varelaRound(
         fontWeight: FontWeight.w900,
-        fontSize:
-            ResponsiveWidget.isSmallScreen(context)
-                ? 19
-                : ResponsiveWidget.isMediumScreen(context)
-                ? 24
-                : 28,
+        fontSize: ResponsiveWidget.isSmallScreen(context)
+            ? 19
+            : ResponsiveWidget.isMediumScreen(context)
+            ? 24
+            : 28,
         color: Colors.white,
       ),
       titleMedium: GoogleFonts.varelaRound(
         fontWeight: FontWeight.w600,
-        fontSize:
-            ResponsiveWidget.isSmallScreen(context)
-                ? 16
-                : ResponsiveWidget.isMediumScreen(context)
-                ? 20
-                : 24,
+        fontSize: ResponsiveWidget.isSmallScreen(context)
+            ? 16
+            : ResponsiveWidget.isMediumScreen(context)
+            ? 20
+            : 24,
         color: Colors.white,
       ),
       titleSmall: GoogleFonts.varelaRound(
         fontWeight: FontWeight.w600,
-        fontSize:
-            ResponsiveWidget.isSmallScreen(context)
-                ? 14
-                : ResponsiveWidget.isMediumScreen(context)
-                ? 16
-                : 18,
+        fontSize: ResponsiveWidget.isSmallScreen(context)
+            ? 14
+            : ResponsiveWidget.isMediumScreen(context)
+            ? 16
+            : 18,
         color: Colors.white,
       ),
       bodyLarge: GoogleFonts.varelaRound(
@@ -221,18 +214,17 @@ mixin MainThemeData {
       bodyMedium: GoogleFonts.varelaRound(
         fontWeight: FontWeight.w600,
         color: MyColors.textColor,
-        fontSize: ResponsiveWidget.isSmallScreen(context) ? 14.5 : 16,
+        fontSize: ResponsiveWidget.isSmallScreen(context) ? 12 : 14,
       ),
       bodySmall: GoogleFonts.varelaRound(
         fontWeight: FontWeight.w500,
         color: MyColors.textColor,
-        fontSize: 14,
+        fontSize: 10,
       ),
       headlineSmall: GoogleFonts.varelaRound(
         fontWeight: FontWeight.w700,
         fontSize: 20,
       ),
-      
     ),
     primaryColor: MyColors.primaryColor,
     useMaterial3: true,
@@ -276,12 +268,11 @@ mixin MainThemeData {
         textStyle: WidgetStateProperty.all(
           GoogleFonts.varelaRound(
             fontWeight: FontWeight.w600,
-            fontSize:
-                ResponsiveWidget.isSmallScreen(context)
-                    ? 14
-                    : ResponsiveWidget.isMediumScreen(context)
-                    ? 16
-                    : 18,
+            fontSize: ResponsiveWidget.isSmallScreen(context)
+                ? 14
+                : ResponsiveWidget.isMediumScreen(context)
+                ? 16
+                : 18,
             color: Colors.white,
           ),
         ),

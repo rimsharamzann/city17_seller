@@ -34,7 +34,7 @@ class _WeeklyCalendarState extends State<WeeklyCalendar> {
           return GestureDetector(
             onTap: () => setState(() => selectedIndex = index),
             child: Container(
-              width: index == 0 ? 73 : 45,
+              width: index == 0 ? 65 : 38,
               margin: EdgeInsets.only(
                 left: index == 0 ? 0 : 3,
                 right: index == tabs.length - 1 ? 0 : 3,
@@ -55,14 +55,14 @@ class _WeeklyCalendarState extends State<WeeklyCalendar> {
                     style: TextStyle(
                       color: isSelected ? Colors.white : MyColors.textColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: 13,
+                      fontSize: 10,
                     ),
                   ),
                   Text(
                     tabs[index]['subtitle']!,
                     style: TextStyle(
                       color: isSelected ? Colors.white : MyColors.textColor,
-                      fontSize: 11,
+                      fontSize: 9,
                     ),
                   ),
                 ],

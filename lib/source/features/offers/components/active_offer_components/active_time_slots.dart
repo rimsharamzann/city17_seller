@@ -23,7 +23,7 @@ class _ActiveTimeSlotsState extends State<ActiveTimeSlots> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 85,
+      width: 70,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         color: MyColors.lightBackground,
@@ -37,13 +37,14 @@ class _ActiveTimeSlotsState extends State<ActiveTimeSlots> {
               widget.time,
               style: context.textTheme.bodyMedium?.copyWith(
                 color: Colors.white,
+                fontSize: 10,
               ),
             ),
           ),
           Container(
-            width: 85,
+            width: 70,
             alignment: Alignment.center,
-            height: 100,
+            height: 95,
             padding: EdgeInsets.all(10),
 
             color: widget.color ?? MyColors.successColor.withValues(alpha: 0.8),
@@ -53,7 +54,7 @@ class _ActiveTimeSlotsState extends State<ActiveTimeSlots> {
                     widget.title ?? '',
                     style: context.textTheme.bodyMedium?.copyWith(
                       color: Colors.white,
-                      fontSize: 12,
+                      fontSize: 9,
                     ),
                   )
                 : _highestAmount(),
@@ -77,7 +78,7 @@ class _ActiveTimeSlotsState extends State<ActiveTimeSlots> {
     return context.textTheme.bodySmall?.copyWith(
       fontWeight: FontWeight.bold,
       color: txetColor ?? Colors.white,
-      fontSize: 13,
+      fontSize: 11,
     );
   }
 }

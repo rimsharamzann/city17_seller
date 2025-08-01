@@ -13,19 +13,19 @@ class BiddingAdInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
-      margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+      margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
       color: MyColors.darkThemeBG,
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(4.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   'Advertiser',
                   style: TextStyle(
-                    fontSize: 11,
+                    fontSize: 10,
                     color: Colors.grey.shade400,
                     fontWeight: FontWeight.bold,
                   ),
@@ -34,7 +34,7 @@ class BiddingAdInfoCard extends StatelessWidget {
                   'James Wilson',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 13,
+                    fontSize: 12,
                     color: Colors.white,
                   ),
                 ),
@@ -52,7 +52,7 @@ class BiddingAdInfoCard extends StatelessWidget {
 
           SizedBox(height: 6),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 4),
             child: ViewAdvert(isBiddingScreen: true),
           ),
           SizedBox(height: 6),
@@ -89,13 +89,16 @@ class HourDateInfoCardItem extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: context.textTheme.bodySmall?.copyWith(fontSize: 10),
+                style: context.textTheme.bodySmall?.copyWith(
+                  fontSize: 7,
+                  fontWeight: FontWeight.w100,
+                ),
               ),
               Text(
                 value,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 12,
+                  fontSize: 10,
                   color: Colors.white,
                 ),
               ),

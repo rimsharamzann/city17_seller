@@ -3,6 +3,7 @@ import 'package:city17_seller/source/constants/my_colors.dart';
 import 'package:city17_seller/source/core/components/buttons.dart';
 import 'package:city17_seller/source/core/components/custom_container.dart';
 import 'package:city17_seller/source/core/components/custom_tab_widget.dart';
+import 'package:city17_seller/source/core/components/custom_text_feild.dart';
 import 'package:city17_seller/source/core/components/information_text.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:city17_seller/source/features/home/components/customize_screen_widget.dart';
@@ -40,22 +41,26 @@ class _ConnectDisplayScreenState extends State<ConnectDisplayScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Connect a Display')),
+      appBar: AppBar(
+        title: Text(
+          'Connect a Display',
+          style: context.textTheme.bodyLarge?.copyWith(color: Colors.white),
+        ),
+      ),
       body: Column(
         children: [
           SizedBox(
             width: context.width,
-            height: 35, child:
-              CustomTabWidget(
-          controller: _controller
-,          tabs: [
-          Tab(text: 'Step 1'),
+            height: 35,
+            child: CustomTabWidget(
+              controller: _controller,
+              tabs: [
+                Tab(text: 'Step 1'),
                 Tab(text: 'Step 2'),
                 Tab(text: 'Step 3'),
-          ],
-          indicatorColor: Colors.transparent,
-        ),
-           
+              ],
+              indicatorColor: Colors.transparent,
+            ),
           ),
 
           const SizedBox(height: 10),
@@ -194,6 +199,25 @@ class Step1Data extends StatefulWidget {
 }
 
 class _Step1DataState extends State<Step1Data> {
+  late TextEditingController _nameController;
+  late TextEditingController _sizeCOntroller;
+  late TextEditingController _descriptionCOntroller;
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController();
+    _sizeCOntroller = TextEditingController();
+    _descriptionCOntroller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _descriptionCOntroller.dispose();
+    _sizeCOntroller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -201,23 +225,26 @@ class _Step1DataState extends State<Step1Data> {
       child: ListView(
         children: [
           _title('Display Installation Details'),
-          const SizedBox(height: 8),
+          const SizedBox(height: 6),
           const DisplayInstallationComponents(),
           const SizedBox(height: 12),
           _title('Customize Screen'),
           const CustomizeScreenWidget(),
           const SizedBox(height: 12),
-          _tileData('Name', 'Restaurant Family Hall', ''),
-          _tileData('Size', '66 ', 'Inches'),
+          _tileData('Name', 'Enter Name ', '', _nameController),
+          _tileData('Size', 'In Inches', 'Inches', _sizeCOntroller),
           _tileData(
             'Add Description',
-            'LED facing the family hall in the restaurant at the side of VIP Lounge.',
+            'Description',
             '',
+            _descriptionCOntroller,
           ),
           const SizedBox(height: 12),
           InformationText(
+            fontWeight: FontWeight.bold,
             icon: Icons.info_outline,
             text: 'Shared with potential buyers',
+            textColor: Colors.white,
           ),
 
           const SizedBox(height: 20),
@@ -226,29 +253,20 @@ class _Step1DataState extends State<Step1Data> {
     );
   }
 
-  Widget _tileData(String title, String description, String type) {
+  Widget _tileData(
+    String title,
+    String description,
+    String type,
+    TextEditingController controller,
+  ) {
     return CustomContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title),
+          Text(title, style: context.textTheme.bodySmall),
           SizedBox(height: 6),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  description,
-                  style: context.textTheme.bodyMedium?.copyWith(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              Text(type),
-            ],
-          ),
+
+          CustomTextFeild(controller: controller, hintText: description),
         ],
       ),
     );
@@ -257,9 +275,10 @@ class _Step1DataState extends State<Step1Data> {
   Widget _title(String title) {
     return Text(
       title,
-      style: context.textTheme.titleMedium?.copyWith(
+      style: context.textTheme.bodyMedium?.copyWith(
         fontWeight: FontWeight.w600,
         color: Colors.white,
+        fontSize: 15,
       ),
     );
   }

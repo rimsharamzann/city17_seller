@@ -15,10 +15,16 @@ class BuyerDetailScreen extends StatefulWidget {
 }
 
 class _BuyerDetailScreenState extends State<BuyerDetailScreen> {
+  bool isSwitched = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(StringData.buyerDetails)),
+      appBar: AppBar(
+        title: Text(
+          StringData.buyerDetails,
+          style: context.textTheme.bodyLarge?.copyWith(color: Colors.white),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: SingleChildScrollView(
@@ -34,6 +40,7 @@ class _BuyerDetailScreenState extends State<BuyerDetailScreen> {
                 text:
                     'System Will Automatically approve the Ads from this Buyer.',
                 icon: Icons.info_outline,
+                fontSize: 8,
                 iconColor: MyColors.textColor,
                 textColor: MyColors.textColor,
               ),
@@ -64,9 +71,9 @@ class _BuyerDetailScreenState extends State<BuyerDetailScreen> {
                   color: Colors.white,
                 ),
               ),
-               // TODO : yahan p tabs any hny ...  
+              // TODO : yahan p tabs any hny ...
 
-                // SizedBox(
+              // SizedBox(
               //   height: context.height / 2,
               //   child: BuyerPaymentHistory(),
               // ),
@@ -74,8 +81,6 @@ class _BuyerDetailScreenState extends State<BuyerDetailScreen> {
               BuyerHistoryDetails(title: 'Pending', color: Colors.redAccent),
               SizedBox(height: 10),
               BuyerHistoryDetails(title: 'Paid', color: Colors.green.shade700),
-
-             
             ],
           ),
         ),
@@ -95,17 +100,26 @@ class _BuyerDetailScreenState extends State<BuyerDetailScreen> {
                 'Trusted Buyer',
                 style: context.textTheme.bodyMedium?.copyWith(
                   color: Colors.white,
+                  fontSize: 11,
                 ),
               ),
               Text(
                 'Since 19-01-2025',
                 style: context.textTheme.bodySmall?.copyWith(
                   color: Colors.white,
+                  fontSize: 8,
                 ),
               ),
             ],
           ),
-          SwitchWidget(value: true, onChanged: (value) {}),
+          SwitchWidget(
+            value: isSwitched,
+            onChanged: (value) {
+              setState(() {
+                isSwitched = true;
+              });
+            },
+          ),
         ],
       ),
     );

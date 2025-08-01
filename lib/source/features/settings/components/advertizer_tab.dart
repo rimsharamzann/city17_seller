@@ -16,7 +16,7 @@ class AdvertizerTab extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
 
         children: [
-          Text('Trusted buyers'),
+          Text('Trusted buyers', style: context.textTheme.bodyMedium),
           ...List.generate(4, (index) => AdvertizerDataCards()),
         ],
       ),
@@ -45,12 +45,13 @@ class _AdvertizerDataCardsState extends State<AdvertizerDataCards> {
               children: [
                 Text(
                   'Business till date ',
-                  style: context.textTheme.bodySmall?.copyWith(fontSize: 10),
+                  style: context.textTheme.bodySmall?.copyWith(fontSize: 8),
                 ),
                 Text(
                   '\$10000',
-                  style: context.textTheme.bodyLarge?.copyWith(
+                  style: context.textTheme.bodyMedium?.copyWith(
                     color: Colors.white,
+                    fontSize: 11,
                   ),
                 ),
               ],
@@ -106,13 +107,13 @@ class _AdvertizerDataCardsState extends State<AdvertizerDataCards> {
   Widget _advertTile(String title, String data) {
     return Column(
       children: [
-        Text(title, style: context.textTheme.bodySmall?.copyWith(fontSize: 10)),
+        Text(title, style: context.textTheme.bodySmall?.copyWith(fontSize: 7)),
         SizedBox(height: 8),
         Text(
           data,
           style: context.textTheme.bodyMedium?.copyWith(
             color: Colors.white,
-            fontSize: 14,
+            fontSize: 12,
             fontWeight: FontWeight.w200,
           ),
         ),

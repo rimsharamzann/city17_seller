@@ -2,6 +2,7 @@ import 'package:city17_seller/config/route_names.dart';
 import 'package:city17_seller/source/constants/asset_string.dart';
 import 'package:city17_seller/source/constants/my_colors.dart';
 import 'package:city17_seller/source/constants/string_data.dart';
+import 'package:city17_seller/source/core/components/custom_container.dart';
 import 'package:city17_seller/source/core/components/custom_text_feild.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,7 @@ class _AddDisplayWidgetState extends State<AddDisplayWidget> {
             Text(
               StringData.addDisplayLocation,
               style: context.textTheme.bodyMedium?.copyWith(
-                color: Colors.white.withValues(alpha: 0.8),
+                color: Colors.white.withValues(alpha: 0.9),
               ),
             ),
             const SizedBox(width: 10),
@@ -94,74 +95,75 @@ Future<void> _addBusinessLocation(
     backgroundColor: Colors.transparent,
     builder: (BuildContext context) {
       return SizedBox(
-        height: context.height / 1.8,
-        child: DraggableScrollableSheet(
-          expand: false,
+        height: context.height / 2.8,
+        child: CustomContainer(
+          color: Color(0xFF1E1E2C),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
 
-          initialChildSize: 0.6,
-          maxChildSize: 0.9,
-          minChildSize: 0.4,
-          builder: (_, controller) => Container(
-            decoration: const BoxDecoration(
-              color: Color(0xFF1E1E2C),
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-            ),
-            child: SingleChildScrollView(
-              controller: controller,
-              padding: EdgeInsets.all(16),
-              child: Column(
-                spacing: 10,
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(),
+          //   expand: false,
 
-                  Text(
-                    StringData.addBusinessLocation,
-                    style: context.textTheme.bodyLarge?.copyWith(
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(),
-                  CustomTextFeild(
-                    controller: businessNameController,
-                    hintText: StringData.addBusinessName,
-                  ),
+          //   initialChildSize: 0.5,
+          //   maxChildSize: 0.8,
+          //   minChildSize: 0.3,
+          //   builder: (_, controller) => Container(
+          //     decoration: const BoxDecoration(
+          //       color: Color(0xFF1E1E2C),
+          //       borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+          //     ),
+          padding: EdgeInsets.all(16),
+          child: Column(
+            spacing: 8,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(),
 
-                  CustomTextFeild(
-                    controller: businessAddressController,
-                    hintText: StringData.addBusinessAddress,
-                  ),
-
-                  CustomTextFeild(
-                    controller: categoryController,
-                    hintText: StringData.selectBusinessCategory,
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
-                          RouteNames.displayLocation,
-                        );
-                        // Navigator.pop(context);
-                      },
-                      child: Text(
-                        StringData.add,
-                        style: TextStyle(
-                          color: MyColors.primaryColor,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              Text(
+                StringData.addBusinessLocation,
+                style: context.textTheme.bodyMedium?.copyWith(
+                  color: Colors.white,
+                  fontSize: 14,
+                ),
               ),
-            ),
+              const SizedBox(),
+              CustomTextFeild(
+                fillColor: MyColors.containerBg,
+                controller: businessNameController,
+                hintText: StringData.addBusinessName,
+              ),
+
+              CustomTextFeild(
+                fillColor: MyColors.containerBg,
+                controller: businessAddressController,
+                hintText: StringData.addBusinessAddress,
+              ),
+
+              CustomTextFeild(
+                fillColor: MyColors.containerBg,
+                controller: categoryController,
+                hintText: StringData.selectBusinessCategory,
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, RouteNames.displayLocation);
+                    // Navigator.pop(context);
+                  },
+                  child: Text(
+                    StringData.add,
+                    style: TextStyle(
+                      color: MyColors.primaryColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
+        // ),
       );
     },
   );

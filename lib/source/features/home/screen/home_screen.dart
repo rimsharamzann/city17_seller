@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 alpha: 0.2,
                               ),
                             ),
-        
+
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -71,7 +71,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                 ),
-                                Icon(Icons.upload, color: MyColors.lightGradient),
+                                Icon(
+                                  Icons.upload,
+                                  color: MyColors.lightGradient,
+                                ),
                               ],
                             ),
                           ),
@@ -112,6 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
       title,
       style: context.textTheme.bodyLarge?.copyWith(
         color: Colors.white.withValues(alpha: 0.95),
+        fontSize: 15, 
       ),
     );
   }

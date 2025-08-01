@@ -1,4 +1,3 @@
-import 'package:city17_seller/source/constants/my_colors.dart';
 import 'package:city17_seller/source/constants/string_data.dart';
 import 'package:city17_seller/source/core/components/custom_container.dart';
 import 'package:city17_seller/source/core/components/custom_tile_widget.dart';
@@ -30,7 +29,7 @@ class BuyerContactInfo extends StatelessWidget {
           ContactTile(
             title: 'Business till Date',
             icon: Icons.attach_money_sharp,
-            text: '\$10000',
+            text: '10000',
           ),
         ],
       ),
@@ -56,20 +55,21 @@ class ContactTile extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title),
+        Text(title, style: context.textTheme.bodySmall),
         SizedBox(height: 6),
 
         CustomContainer(
           padding: EdgeInsets.all(8),
-          color: MyColors.darkThemeBG.withValues(alpha: 0.7),
+          // color: MyColors.darkThemeBG.withValues(alpha: 0.3),
           child: Row(
             children: [
-              child ?? Icon(icon, size: 24, color: Colors.white),
+              child ?? Icon(icon, size: 20, color: Colors.white),
               SizedBox(width: 10),
               Text(
                 text,
-                style: context.textTheme.bodyLarge?.copyWith(
+                style: context.textTheme.bodyMedium?.copyWith(
                   color: Colors.white,
+                  fontSize: 11,
                 ),
               ),
             ],

@@ -3,8 +3,10 @@ import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
 class FixedTimeSlots extends StatefulWidget {
-  const FixedTimeSlots({super.key, this.height});
+  const FixedTimeSlots({super.key, this.height, this.bgColor, this.width});
   final double? height;
+  final Color? bgColor;
+  final double? width;
 
   @override
   State<FixedTimeSlots> createState() => _FixedTimeSlotsState();
@@ -28,7 +30,7 @@ class _FixedTimeSlotsState extends State<FixedTimeSlots> {
       padding: EdgeInsets.all(4.0),
 
       child: Card(
-        color: MyColors.darkThemeBG,
+        color: widget.bgColor?? MyColors.darkThemeBG,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(8),
@@ -46,13 +48,13 @@ class _FixedTimeSlotsState extends State<FixedTimeSlots> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.grey.shade400,
-                  fontSize: 13,
+                  fontSize: 10,
                 ),
               ),
               // SizedBox(height: 2),
               SizedBox(
                 height: 150,
-                width: 85,
+                width: widget.width?? 85,
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
@@ -105,7 +107,7 @@ class _FixedTimeSlotsState extends State<FixedTimeSlots> {
     return context.textTheme.bodySmall?.copyWith(
       fontWeight: FontWeight.bold,
       color: txetColor ?? Colors.white,
-      fontSize: 13,
+      fontSize: 10,
     );
   }
 }

@@ -28,7 +28,7 @@ class _DisplayLocationScreenState extends State<DisplayLocationScreen> {
           spacing: 16,
           children: [
             IncomeForcastList(),
-            IncomeGraphScreen(),
+            IncomeGraphWidget(),
             _title(StringData.pendingActions),
             CustomTileWidget(
               image: AssetString.advertisement,
@@ -82,6 +82,7 @@ class _DisplayLocationScreenState extends State<DisplayLocationScreen> {
       title,
       style: context.textTheme.bodyLarge?.copyWith(
         color: Colors.white.withValues(alpha: 0.95),
+        fontSize: 15,
       ),
     );
   }

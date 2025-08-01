@@ -14,6 +14,7 @@ class TextfeildWithTitle extends StatelessWidget {
     this.suffixIcon,
     this.fillColor,
     this.titleColor,
+    this.iconSize,
   });
 
   final TextEditingController controller;
@@ -22,6 +23,7 @@ class TextfeildWithTitle extends StatelessWidget {
   final Color? fillColor;
   final int? maxLines;
   final Color? color;
+  final double? iconSize;
   final Color? titleColor;
 
   final IconData? suffixIcon;
@@ -33,8 +35,8 @@ class TextfeildWithTitle extends StatelessWidget {
       children: [
         Text(
           title,
-          style: context.textTheme.titleMedium?.copyWith(
-            color: titleColor ?? context.textTheme.titleMedium?.color,
+          style: context.textTheme.bodyMedium?.copyWith(
+            // color: titleColor ?? context.textTheme.titleMedium?.color,
           ),
         ),
         const SizedBox(height: 10),
@@ -44,10 +46,15 @@ class TextfeildWithTitle extends StatelessWidget {
           decoration: Constants.textFieldInputDecoration(
             fillColor: fillColor ?? MyColors.containerBg,
             hintText: hintText,
-            color: color ?? Colors.white60,
+            color: color ?? Colors.white,
             context: context,
-             
-            suffixIcon: Icon(suffixIcon, color: Colors.white, size: 28),
+            smallText: true ,
+
+            suffixIcon: Icon(
+              suffixIcon,
+              color: Colors.white,
+              size: iconSize ?? 20,
+            ),
           ),
         ),
       ],

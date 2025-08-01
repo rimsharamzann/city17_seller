@@ -1,5 +1,6 @@
 import 'package:city17_seller/source/constants/string_data.dart';
 import 'package:city17_seller/source/core/components/custom_container.dart';
+import 'package:city17_seller/source/core/components/custom_text_feild.dart';
 import 'package:city17_seller/source/core/components/custom_tile_widget.dart';
 import 'package:city17_seller/source/core/components/information_text.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
@@ -16,6 +17,25 @@ class DispaySetupTab extends StatefulWidget {
 }
 
 class _DispaySetupTabState extends State<DispaySetupTab> {
+  late TextEditingController _nameController;
+  late TextEditingController _sizeCOntroller;
+  late TextEditingController _descriptionCOntroller;
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController();
+    _sizeCOntroller = TextEditingController();
+    _descriptionCOntroller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _descriptionCOntroller.dispose();
+    _sizeCOntroller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,7 +47,13 @@ class _DispaySetupTabState extends State<DispaySetupTab> {
             style: context.textTheme.bodyMedium?.copyWith(color: Colors.white),
           ),
           const SizedBox(height: 8),
-          Text('Hilton 488 George St, Sydney NSW 2000'),
+          Text(
+            'Hilton 488 George St, Sydney NSW 2000',
+            style: context.textTheme.bodySmall?.copyWith(
+              color: Colors.white70,
+              fontSize: 11,
+            ),
+          ),
           const SizedBox(height: 8),
 
           DisplayTile(child1: OnlineOfflineStatus()),
@@ -42,17 +68,19 @@ class _DispaySetupTabState extends State<DispaySetupTab> {
 
           const CustomizeScreenWidget(),
           const SizedBox(height: 12),
-          _tileData('Name', 'Restaurant Family Hall', ''),
-          _tileData('Size', '66 ', 'Inches'),
+          _tileData('Name', 'Restaurant Family Hall', '', _nameController),
+          _tileData('Size', '66 ', 'Inches', _sizeCOntroller),
           _tileData(
             'Add Description',
             'LED facing the family hall in the restaurant at the side of VIP Lounge.',
             '',
+            _descriptionCOntroller,
           ),
           const SizedBox(height: 12),
           InformationText(
             icon: Icons.info_outline,
             text: 'Shared with potential buyers',
+            textColor: Colors.white,
           ),
 
           const SizedBox(height: 20),
@@ -61,25 +89,25 @@ class _DispaySetupTabState extends State<DispaySetupTab> {
     );
   }
 
-  Widget _tileData(String title, String description, String type) {
+  Widget _tileData(
+    String title,
+    String description,
+    String type,
+    TextEditingController controller,
+  ) {
     return CustomContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title),
+          Text(title, style: context.textTheme.bodySmall),
           SizedBox(height: 6),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                child: Text(
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  description,
-                  style: context.textTheme.bodyMedium?.copyWith(
-                    color: Colors.white,
-                  ),
-                ),
+              CustomTextFeild(
+                controller: controller,
+                hintText: description,
+                fillColor: Colors.transparent,
               ),
               Text(type),
             ],
@@ -95,6 +123,7 @@ class _DispaySetupTabState extends State<DispaySetupTab> {
       style: context.textTheme.titleMedium?.copyWith(
         fontWeight: FontWeight.w600,
         color: Colors.white,
+        fontSize: 14,
       ),
     );
   }
@@ -122,7 +151,6 @@ class _OnlineOfflineStatusState extends State<OnlineOfflineStatus> {
             fontWeight: FontWeight.w200,
           ),
         ),
-        // const SizedBox(width: 4),
         SwitchWidget(
           value: _isOnline,
           onChanged: (value) {
@@ -131,7 +159,6 @@ class _OnlineOfflineStatusState extends State<OnlineOfflineStatus> {
             });
           },
         ),
-        // const SizedBox(width: 4),
         Text(
           StringData.online,
           style: TextStyle(

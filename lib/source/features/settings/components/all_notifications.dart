@@ -1,6 +1,5 @@
 import 'package:city17_seller/source/constants/asset_string.dart';
 import 'package:city17_seller/source/constants/my_colors.dart';
-import 'package:city17_seller/source/core/components/buttons.dart';
 import 'package:city17_seller/source/core/components/custom_container.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
@@ -136,12 +135,12 @@ class NotificationCard extends StatelessWidget {
                     ),
                     Container(
                       padding: EdgeInsets.all(4),
-                      height: 28,
-                      width: 80,
+                      height: 25,
+                      width: 75,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         color: MyColors.lightBackground,
-                        borderRadius: BorderRadius.circular(6),
+                        borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
                         time,
@@ -154,19 +153,38 @@ class NotificationCard extends StatelessWidget {
                 ),
                 SizedBox(height: 6),
                 // detail
-                Text(description, style: context.textTheme.bodySmall),
+                Text(
+                  description,
+                  style: context.textTheme.bodySmall?.copyWith(fontSize: 9.5),
+                ),
                 SizedBox(height: 10),
 
                 // button
                 Align(
                   alignment: Alignment.bottomRight,
-                  child: CustomElevatedButtonWidget(
-                    onPressed: () {},
-                    buttonText: buttonText,
-                    prefix: null,
-                    color: MyColors.darkThemeBG,
-                    textColor: Colors.white,
+
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: MyColors.darkThemeBG,
+                    ),
+                    child: Text(
+                      buttonText,
+                      style: context.textTheme.bodyMedium?.copyWith(
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
+
+                  // CustomElevatedButtonWidget(
+                  //   height: 30,
+                  //   onPressed: () {},
+                  //   buttonText: buttonText,
+                  //   prefix: null,
+                  //
+                  //   textColor: Colors.white,
+                  // ),
                 ),
               ],
             ),

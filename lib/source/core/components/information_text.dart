@@ -10,7 +10,7 @@ class InformationText extends StatelessWidget {
     this.textColor,
     this.maxLines,
     this.iconSize,
-    this.fontSize,
+    this.fontSize, this.fontWeight,
   });
   final String text;
   final IconData icon;
@@ -19,6 +19,7 @@ class InformationText extends StatelessWidget {
   final int? maxLines;
   final double? iconSize;
   final double? fontSize;
+   final FontWeight? fontWeight;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class InformationText extends StatelessWidget {
             maxLines: maxLines ?? 2,
             overflow: TextOverflow.ellipsis,
             style: context.textTheme.bodySmall?.copyWith(
-              color: textColor ?? Colors.white,
+              color: textColor ?? Colors.white, fontWeight:  fontWeight,
               fontSize: fontSize ?? context.textTheme.bodySmall?.fontSize,
             ),
           ),

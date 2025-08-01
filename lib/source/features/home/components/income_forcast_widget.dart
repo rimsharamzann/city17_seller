@@ -43,11 +43,11 @@ class _IncomeForecastWidgetState extends State<IncomeForecastWidget>
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.topLeft,
-      height: widget.height ?? MediaQuery.of(context).size.height / 3,
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-      width: double.infinity,
+      height: widget.height ?? MediaQuery.of(context).size.height / 3.5,
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      width: context.width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(8),
         color: MyColors.containerBg,
       ),
       child: Column(
@@ -60,9 +60,10 @@ class _IncomeForecastWidgetState extends State<IncomeForecastWidget>
 
               SizedBox(
                 width: context.width / 2.1,
-                height: 35,
+                height: 30,
 
                 child: CustomTabWidget(
+                  backgroundCOlor: Colors.white10.withValues(alpha: 0.05),
                   controller: _controller,
                   tabs: [
                     Tab(text: StringData.days),
@@ -93,13 +94,13 @@ class IncomeForcastList extends StatelessWidget {
           StringData.incomeForcast,
           style: context.textTheme.bodyLarge?.copyWith(
             color: Colors.white.withValues(alpha: 0.95),
+            fontSize: 15,
           ),
         ),
         Spacer(),
         Text(
           'Textual',
           style: context.textTheme.bodySmall?.copyWith(
-            fontSize: 14,
             color: Colors.white,
             height: 2,
             decorationColor: Colors.white,

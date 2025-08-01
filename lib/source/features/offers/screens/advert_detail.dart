@@ -5,7 +5,7 @@ import 'package:city17_seller/source/core/components/custom_container.dart';
 import 'package:city17_seller/source/core/components/information_text.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:city17_seller/source/features/home/components/display_intallation_components.dart';
-import 'package:city17_seller/source/features/offers/components/active_offer_components/active_fixed_components.dart';
+import 'package:city17_seller/source/features/offers/components/active_offer_components/fixed_time_slots.dart';
 import 'package:city17_seller/source/features/offers/components/hotel_address.dart';
 import 'package:city17_seller/source/features/offers/components/pending_offer_components/fixed_card.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,12 @@ class _AdvertDetailScreenState extends State<AdvertDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Advert Details')),
+      appBar: AppBar(
+        title: Text(
+          'Advert Details',
+          style: context.textTheme.bodyLarge?.copyWith(color: Colors.white),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: SingleChildScrollView(
@@ -64,7 +69,18 @@ class _AdvertDetailScreenState extends State<AdvertDetailScreen> {
               SizedBox(height: 10),
               HotelAddress(),
               SizedBox(height: 10),
-              ActiveFixedComponents(),
+              SizedBox(
+                height: 230,
+                child: Row(
+                  children: [
+                    FixedTimeSlots(
+                      width: 65,
+                      bgColor: MyColors.lightBackground,
+                    ),
+                    Expanded(flex: 2, child: _viewAd()),
+                  ],
+                ),
+              ),
               SizedBox(height: 10),
 
               InformationText(
@@ -73,10 +89,13 @@ class _AdvertDetailScreenState extends State<AdvertDetailScreen> {
                 icon: Icons.warning_rounded,
                 iconColor: MyColors.primaryColor,
                 textColor: MyColors.textColor,
+                fontSize: 10,
+                fontWeight: FontWeight.w200,
               ),
               SizedBox(height: 10),
               CustomContainer(
                 child: RadioButtonsWithTitle(
+                  icon: Icons.edit_square,
                   title:
                       'Select how often you want to receive payments from the buyer.',
                   onChanged: (value) {
@@ -100,7 +119,7 @@ class _AdvertDetailScreenState extends State<AdvertDetailScreen> {
                       ),
                     );
                   },
-                  color: MyColors.darkThemeBG,
+                  color: MyColors.containerBg,
                   buttonText: 'View payment',
                   prefix: null,
                   textColor: Colors.white,
@@ -114,18 +133,36 @@ class _AdvertDetailScreenState extends State<AdvertDetailScreen> {
     );
   }
 
+  Widget _viewAd() {
+    return Container(
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(6)),
+      margin: const EdgeInsets.only(left: 6),
+      height: 190,
+      width: context.width,
+      child: Image.asset(
+        AssetString.street,
+        fit: BoxFit.cover,
+        height: 150,
+        width: context.width,
+      ),
+    );
+  }
+
   Widget _advertizerData() {
     return CustomContainer(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Advertizer'),
+          SizedBox(height: 4),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
                   CircleAvatar(
-                    radius: 14,
+                    radius: 12,
                     child: Image.asset(AssetString.profile),
                   ),
                   SizedBox(width: 6),

@@ -10,8 +10,10 @@ class BiddingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: 
-      List.generate(2, (index)=>  CustomContainer(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: List.generate(
+        2,
+        (index) => CustomContainer(
           padding: EdgeInsets.all(4),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,18 +24,19 @@ class BiddingCard extends StatelessWidget {
                   bottomLeft: Radius.circular(8),
                 ),
                 child: SizedBox(
-                  height: 460,
-                  width: 100,
-                  child: VerticalLinearProgress(),
+                  // height: 460,
+                  width: 80,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: VerticalLinearProgress(),
+                  ),
                 ),
               ),
               Expanded(child: BiddingAdInfoCard()),
             ],
           ),
         ),
-       
-        ),
-      
+      ),
     );
   }
 }

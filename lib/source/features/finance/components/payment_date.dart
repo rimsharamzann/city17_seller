@@ -28,7 +28,7 @@ class _PaymentDatesState extends State<PaymentDates> {
         children: [
           Text(
             '19/04',
-            style: context.textTheme.bodySmall?.copyWith(fontSize: 10),
+            style: context.textTheme.bodySmall?.copyWith(fontSize: 8),
           ),
           Text(
             'Mon',
@@ -76,7 +76,7 @@ class _PaymentCardsState extends State<PaymentCards> {
                     Text(
                       'Total Amount',
                       style: context.textTheme.bodySmall?.copyWith(
-                        fontSize: 12,
+                        fontSize: 10 ,
                       ),
                     ),
                     Spacer(),
@@ -125,13 +125,13 @@ class _CampaignDataState extends State<CampaignData> {
   Widget _campaignTile(String title, String data, Color? dataCOlor) {
     return Column(
       children: [
-        Text(title, style: context.textTheme.bodySmall?.copyWith(fontSize: 12)),
-        SizedBox(height: 8),
+        Text(title, style: context.textTheme.bodySmall?.copyWith(fontSize: 7)),
+        SizedBox(height: 4),
         Text(
           data,
           style: context.textTheme.bodyMedium?.copyWith(
             color: dataCOlor ?? Colors.white,
-            fontSize: 14,
+            fontSize: 9,
             fontWeight: FontWeight.w200,
           ),
         ),

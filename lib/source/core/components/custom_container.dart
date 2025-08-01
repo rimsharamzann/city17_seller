@@ -29,7 +29,7 @@ class CustomContainer extends StatelessWidget {
       padding: padding ?? EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       width: width ?? context.width,
       decoration: BoxDecoration(
-        borderRadius: borderRadius ?? BorderRadius.circular(10),
+        borderRadius: borderRadius ?? BorderRadius.circular(8),
         color: color ?? MyColors.containerBg,
       ),
       child: child,
@@ -47,7 +47,7 @@ class SwitchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Transform(
       alignment: Alignment.center,
-      transform: Matrix4.diagonal3Values(0.7, 0.7, 1),
+      transform: Matrix4.diagonal3Values(0.5, 0.5, 1),
       child: Switch(
         value: value,
         onChanged: onChanged,
@@ -60,6 +60,7 @@ class SwitchWidget extends StatelessWidget {
     );
   }
 }
+
 class CustomCheckBox extends StatefulWidget {
   const CustomCheckBox({super.key, required this.isChecked, this.onChange});
   final bool isChecked;
@@ -77,14 +78,16 @@ class _CustomCheckBoxState extends State<CustomCheckBox> {
       onChanged: widget.onChange,
       side: const BorderSide(color: MyColors.darkThemeBG, width: 1),
 
-      fillColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
+      fillColor: WidgetStateProperty.resolveWith<Color>((
+        Set<WidgetState> states,
+      ) {
         if (states.contains(WidgetState.selected)) {
           return MyColors.successColor2;
         }
         return MyColors.darkThemeBG;
       }),
 
-      checkColor: MyColors.successColor2, 
+      checkColor: MyColors.successColor2,
     );
   }
 }

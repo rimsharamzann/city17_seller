@@ -9,6 +9,7 @@ class HotelAddress extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 6),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text('Display', style: context.textTheme.bodySmall),
@@ -17,7 +18,7 @@ class HotelAddress extends StatelessWidget {
             children: [
               Text(
                 'Hilton Hotel',
-                style: context.textTheme.bodyMedium?.copyWith(
+                style: context.textTheme.bodySmall?.copyWith(
                   color: Colors.white,
                 ),
               ),
@@ -25,7 +26,7 @@ class HotelAddress extends StatelessWidget {
                 'Hilton 488 George St, Sydney,',
                 style: context.textTheme.bodySmall?.copyWith(
                   color: Colors.white,
-                  fontSize: 10,
+                  fontSize: 8,
                 ),
               ),
             ],

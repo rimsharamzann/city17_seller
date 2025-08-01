@@ -1,4 +1,5 @@
 import 'package:city17_seller/source/constants/my_colors.dart';
+import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
 class CustomTabWidget extends StatelessWidget {
@@ -11,6 +12,8 @@ class CustomTabWidget extends StatelessWidget {
     this.labelColor,
     this.indicatorColor,
     this.indicatorAnimation,
+    this.backgroundCOlor,
+    this.labelStyle,
   });
   final TabController controller;
   final List<Widget> tabs;
@@ -18,19 +21,23 @@ class CustomTabWidget extends StatelessWidget {
   final Color? unselectedLabelColor;
   final Color? labelColor;
   final Color? indicatorColor;
+  final Color? backgroundCOlor;
   final TabIndicatorAnimation? indicatorAnimation;
+  final TextStyle? labelStyle;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 35,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Colors.transparent,
+        color: backgroundCOlor ?? Colors.transparent,
       ),
       child: TabBar(
         controller: controller,
         tabs: tabs,
+        labelStyle: labelStyle ?? context.textTheme.bodyMedium,
         indicator:
             indicatorDecoration ??
             BoxDecoration(

@@ -20,7 +20,12 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Location Setting')),
+      appBar: AppBar(
+        title: Text(
+          'Location Setting',
+          style: context.textTheme.bodyLarge?.copyWith(color: Colors.white),
+        ),
+      ),
       body: ListView(
         padding: EdgeInsets.all(16),
         children: [
@@ -29,7 +34,11 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
           SizedBox(height: 4),
           Text(
             'Displays',
-            style: context.textTheme.bodyLarge?.copyWith(color: Colors.white),
+            style: context.textTheme.bodyLarge?.copyWith(
+              color: Colors.white,
+              fontSize: 13,
+              fontWeight: FontWeight.w400,
+            ),
           ),
           SizedBox(height: 8),
           DisplayStatus(),
@@ -89,7 +98,7 @@ class _LocationDataContainerState extends State<LocationDataContainer> {
       child: Column(
         children: [
           TextfeildWithTitle(
-            fillColor: MyColors.containerColor.withValues(alpha: 0.3),
+            fillColor: MyColors.containerColor.withValues(alpha: 0.25),
             controller: _nameCOntroller,
             title: 'Name',
             hintText: 'Enter name',
@@ -97,7 +106,7 @@ class _LocationDataContainerState extends State<LocationDataContainer> {
           ),
           SizedBox(height: 8),
           TextfeildWithTitle(
-            fillColor: MyColors.containerColor.withValues(alpha: 0.3),
+            fillColor: MyColors.containerColor.withValues(alpha: 0.25),
 
             controller: _addressController,
             title: 'Address',
@@ -106,12 +115,13 @@ class _LocationDataContainerState extends State<LocationDataContainer> {
           ),
           SizedBox(height: 8),
           TextfeildWithTitle(
-            fillColor: MyColors.containerColor.withValues(alpha: 0.3),
+            fillColor: MyColors.containerColor.withValues(alpha: 0.25),
 
             controller: _nameCOntroller,
             title: 'Category',
             hintText: 'Restaurent',
-            suffixIcon: Icons.arrow_drop_down_rounded,
+            iconSize: 28,
+            suffixIcon: Icons.arrow_drop_down_outlined,
           ),
           SizedBox(height: 8),
         ],

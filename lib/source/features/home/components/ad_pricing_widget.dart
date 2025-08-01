@@ -9,25 +9,25 @@ class AdPricingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool value = false;
     return CustomContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 4),
           Text(
-StringData.addPricingPrefreneces,            style: context.textTheme.headlineMedium?.copyWith(
+            StringData.addPricingPrefreneces,
+            style: context.textTheme.bodyLarge?.copyWith(
               color: Colors.white,
-              fontSize: 18,
+              fontWeight: FontWeight.w400,
+              fontSize: 13,
             ),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 6),
+          BidOffer(text: StringData.letMultipleBuyersCompete),
+          SizedBox(height: 6),
           BidOffer(
-            text: StringData.letMultipleBuyersCompete,
-          ),
-          SizedBox(height: 10),
-          BidOffer(
-            text:
-             StringData.allowTheBuyerToPayFixedAmount,
+            text: StringData.allowTheBuyerToPayFixedAmount,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -35,12 +35,12 @@ StringData.addPricingPrefreneces,            style: context.textTheme.headlineMe
                   padding: const EdgeInsets.only(left: 4),
                   child: Text(
                     StringData.fixedOfferPrices,
-                    style: context.textTheme.bodyLarge?.copyWith(
+                    style: context.textTheme.bodyMedium?.copyWith(
                       color: Colors.white,
                     ),
                   ),
                 ),
-                SwitchWidget(value: false, onChanged: (value) {}),
+                SwitchWidget(value: value, onChanged: (value) {}),
               ],
             ),
           ),
@@ -73,20 +73,26 @@ class BidOffer extends StatelessWidget {
                 child ??
                 Text(
                   StringData.biddingOffers,
-                  style: context.textTheme.bodyLarge?.copyWith(
+                  style: context.textTheme.bodySmall?.copyWith(
                     color: Colors.white,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 6),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Icon(Icons.info_outline, color: Colors.white),
+              Icon(Icons.info_outline, color: Colors.white, size: 16),
               SizedBox(width: 6),
               Expanded(
-                child: Text(text, maxLines: 2, overflow: TextOverflow.ellipsis),
+                child: Text(
+                  text,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: context.textTheme.bodySmall,
+                ),
               ),
             ],
           ),

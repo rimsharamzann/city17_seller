@@ -96,15 +96,12 @@ class PaymentPerDay extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            'Payment per day',
-            style: TextStyle(fontSize: 13, color: Colors.grey.shade400),
-          ),
+          Text('Payment per day', style: context.textTheme.bodyMedium),
           Text(
             '\$150',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
+            style: context.textTheme.bodyLarge?.copyWith(
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
               color: Colors.white,
             ),
           ),

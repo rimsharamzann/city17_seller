@@ -9,6 +9,7 @@ import 'package:intl_phone_number_input_v2/intl_phone_number_input.dart';
 class ProfileOptions extends StatefulWidget {
   const ProfileOptions({super.key});
 
+
   @override
   State<ProfileOptions> createState() => _ProfileOptionsState();
 }
@@ -43,40 +44,11 @@ class _ProfileOptionsState extends State<ProfileOptions> {
       padding: const EdgeInsets.all(10),
       child: Column(
         children: [
-          SizedBox(height: 20),
-          SizedBox(
-            height: 180,
-            width: 180,
-            child: Stack(
-              children: [
-                Container(
-                  height: 180,
-                  width: 180,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    border: Border.all(
-                      width: 4,
-                      color: MyColors.lightBackground,
-                    ),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(AssetString.userIcon),
-                    ),
-                  ),
-                  // child: Image.asset(AssetString.profile, fit: BoxFit.cover),
-                ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: CircleAvatar(
-                    backgroundColor: MyColors.containerBg,
-                    radius: 26,
-                    child: Icon(Icons.add_a_photo_rounded, color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 20),
+             // TODO : fix profile screen layout issues
+          SizedBox(height: 10),
+          // profile Image
+          ProfileImageWidget(),
+          SizedBox(height: 14),
           TextfeildWithTitle(
             titleColor: MyColors.textColor,
             controller: _nameController,
@@ -86,7 +58,7 @@ class _ProfileOptionsState extends State<ProfileOptions> {
           ),
           SizedBox(height: 20),
 
-          //  Todo:  set the phone number feild here
+          //  TODO ::  set the phone number feild here
           TextfeildWithTitle(
             color: Colors.white,
             titleColor: MyColors.textColor,
@@ -149,6 +121,43 @@ class _ProfileOptionsState extends State<ProfileOptions> {
                   color: Colors.red,
                 ),
               ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ProfileImageWidget extends StatelessWidget {
+  const ProfileImageWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 180,
+      width: 180,
+      child: Stack(
+        children: [
+          Container(
+            height: 180,
+            width: 180,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              border: Border.all(width: 4, color: MyColors.lightBackground),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage(AssetString.userIcon),
+              ),
+            ),
+            // child: Image.asset(AssetString.profile, fit: BoxFit.cover),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: CircleAvatar(
+              backgroundColor: MyColors.containerBg,
+              radius: 26,
+              child: Icon(Icons.add_a_photo_rounded, color: Colors.white),
             ),
           ),
         ],

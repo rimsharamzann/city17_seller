@@ -4,48 +4,40 @@ import 'package:city17_seller/source/features/home/models/display_loaction_model
 import 'package:flutter/material.dart';
 
 class DisplayTabs extends StatefulWidget {
-  const DisplayTabs({super.key, required this.locationModel});
+  const DisplayTabs({super.key, required this.locationModel, required this.controller});
   final DisplayLocationModel locationModel;
+  final TabController controller;
 
   @override
   State<DisplayTabs> createState() => _DisplayTabsState();
 }
 
 class _DisplayTabsState extends State<DisplayTabs>
-    with TickerProviderStateMixin {
-  late TabController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TabController(length: 4, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
+ {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: context.width,
-      child: CustomTabWidget(
-        unselectedLabelColor: Colors.grey,
-        controller: _controller,
-        indicatorAnimation: TabIndicatorAnimation.linear,
-        labelColor: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        child: CustomTabWidget(
+          unselectedLabelColor: Colors.grey,
+          controller:widget
+          . controller,
+          indicatorAnimation: TabIndicatorAnimation.linear,
+          labelColor: Colors.white,
+          labelStyle: context.textTheme.bodySmall?.copyWith(fontSize: 9),
 
-        indicatorDecoration: UnderlineTabIndicator(
-          borderSide: BorderSide(width: 1.5, color: Colors.white),
+          indicatorDecoration: UnderlineTabIndicator(
+            borderSide: BorderSide(width: 1.5, color: Colors.white),
+          ),
+          tabs: [
+            Tab(text: '${widget.locationModel.totalDisplays} All Displays'),
+            Tab(text: '${widget.locationModel.onlineDisplays} Online'),
+            Tab(text: '${widget.locationModel.offlineDisplays} offline'),
+            Tab(text: '${widget.locationModel.draftDisplays} Draft'),
+          ],
         ),
-        tabs: [
-          Tab(text: '${widget.locationModel.totalDisplays} All Displays'),
-          Tab(text: '${widget.locationModel.onlineDisplays} Online'),
-          Tab(text: '${widget.locationModel.offlineDisplays} offline'),
-          Tab(text: '${widget.locationModel.draftDisplays} Draft'),
-        ],
       ),
     );
   }
@@ -83,13 +75,12 @@ class DisplayStatusContainer extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.circle, color: borderColor, size: 22),
-              SizedBox(width: 10),
+              Icon(Icons.circle, color: borderColor, size: 16),
+              SizedBox(width: 4),
               Text(
                 status,
-                style: context.textTheme.bodyLarge?.copyWith(
+                style: context.textTheme.bodyMedium?.copyWith(
                   color: textColor ?? Colors.white,
-                  fontSize: 20,
                 ),
               ),
             ],

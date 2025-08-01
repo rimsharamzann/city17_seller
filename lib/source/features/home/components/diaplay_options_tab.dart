@@ -43,7 +43,6 @@ class _DisplayOptionsTabState extends State<DisplayOptionsTab> {
                 iconColor: Colors.grey,
               ),
             ),
-            //play my own ads
             SizedBox(height: 10),
             CustomContainer(
               child: Column(
@@ -54,12 +53,23 @@ class _DisplayOptionsTabState extends State<DisplayOptionsTab> {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 14),
-                  DisplayTile(
-                    tileColor: MyColors.backgroundColor,
-                    text: StringData.playMyOwnAds,
-                    child1: SwitchWidget(value: true, onChanged: (value) {}),
-                    child: SizedBox(),
+                  SizedBox(height: 10),
+                  CustomContainer(
+                    margin: EdgeInsets.all(0),
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    color: MyColors.backgroundColor,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          StringData.playMyOwnAds,
+                          style: context.textTheme.bodySmall?.copyWith(
+                            color: Colors.white,
+                          ),
+                        ),
+                        SwitchWidget(value: true, onChanged: (value) {}),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -196,6 +206,19 @@ class _SpecificHoursDataState extends State<SpecificHoursData> {
             ],
           ),
           TimeSlotGrid(),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: CustomElevatedButtonWidget(
+              height: 35, 
+              onPressed: () {},
+              buttonText: 'Save',
+              color: MyColors.primaryColor,
+              textColor: Colors.white,
+              prefix: null,
+              suffix: Icons.check_circle_outline_outlined,
+              iconColor: Colors.white,
+            ),
+          ),
           // _hoursGrid(),
         ],
       ),
@@ -206,10 +229,10 @@ class _SpecificHoursDataState extends State<SpecificHoursData> {
     return Row(
       children: [
         CustomCheckBox(isChecked: value),
-        const SizedBox(width: 6),
+
         Text(
           title,
-          style: context.textTheme.bodyMedium?.copyWith(color: Colors.white),
+          style: context.textTheme.bodySmall?.copyWith(color: Colors.white),
         ),
       ],
     );

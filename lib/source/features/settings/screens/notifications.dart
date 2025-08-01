@@ -1,5 +1,6 @@
 import 'package:city17_seller/source/constants/string_data.dart';
 import 'package:city17_seller/source/core/components/custom_tab_widget.dart';
+import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:city17_seller/source/features/settings/components/all_notifications.dart';
 import 'package:city17_seller/source/features/settings/components/notification_tabs_data.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,7 @@ class _NotificationsScreenState extends State<NotificationsScreen>
         child: Column(
           children: [
             CustomTabWidget(
+              labelStyle: context.textTheme.bodySmall,
               controller: _controller,
               indicatorColor: Colors.transparent,
               tabs: [

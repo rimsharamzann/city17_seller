@@ -10,6 +10,9 @@ class CustomTextFeild extends StatelessWidget {
     this.suffixIcon,
     this.prefixIcon,
     this.iconColor,
+    this.fillColor,
+    this.height,
+    this.smallText,
   });
   final TextEditingController controller;
   final int? maxLines;
@@ -17,19 +20,29 @@ class CustomTextFeild extends StatelessWidget {
   final IconData? suffixIcon;
   final IconData? prefixIcon;
   final Color? iconColor;
+  final double? height;
+  final Color? fillColor;
+  final bool? smallText;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      maxLines: maxLines,
-      decoration: Constants.textFieldInputDecoration(
-        hintText: hintText ?? '',
+    return SizedBox(
+      height: height ?? 35,
+      child: TextField(
+        controller: controller,
+        maxLines: maxLines,
+        decoration: Constants.textFieldInputDecoration(
+          hintText: hintText ?? '',
+          showLabel: true,
 
-        color: Colors.white60,
-        context: context,
-        // prefixIcon: Icon(prefixIcon, color: iconColor),
-        suffixIcon: Icon(suffixIcon, color: iconColor),
+          fillColor: fillColor,
+
+          color: Colors.white60,
+          context: context,
+          smallText: smallText ?? true,
+          // prefixIcon: Icon(prefixIcon, color: iconColor),
+          suffixIcon: Icon(suffixIcon, color: iconColor),
+        ),
       ),
     );
   }
