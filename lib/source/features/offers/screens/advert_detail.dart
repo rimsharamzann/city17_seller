@@ -5,9 +5,11 @@ import 'package:city17_seller/source/core/components/custom_container.dart';
 import 'package:city17_seller/source/core/components/information_text.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:city17_seller/source/features/home/components/display_intallation_components.dart';
+import 'package:city17_seller/source/features/home/enums/drop_down_enum.dart';
 import 'package:city17_seller/source/features/offers/components/active_offer_components/fixed_time_slots.dart';
 import 'package:city17_seller/source/features/offers/components/hotel_address.dart';
 import 'package:city17_seller/source/features/offers/components/pending_offer_components/fixed_card.dart';
+import 'package:city17_seller/source/features/offers/screens/advert_payment.dart';
 import 'package:flutter/material.dart';
 
 class AdvertDetailScreen extends StatefulWidget {
@@ -18,7 +20,7 @@ class AdvertDetailScreen extends StatefulWidget {
 }
 
 class _AdvertDetailScreenState extends State<AdvertDetailScreen> {
-  bool _isSelected = false;
+  ScheduleType? scheduleType;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,16 +96,16 @@ class _AdvertDetailScreenState extends State<AdvertDetailScreen> {
               ),
               SizedBox(height: 10),
               CustomContainer(
-                child: RadioButtonsWithTitle(
-                  icon: Icons.edit_square,
+                child: RadioButtonsWithTitle<ScheduleType>(
                   title:
                       'Select how often you want to receive payments from the buyer.',
+                  options: ScheduleType.values,
+                  getTitle: (type) => type.title,
                   onChanged: (value) {
                     setState(() {
-                      _isSelected = !_isSelected;
+                      scheduleType = value;
                     });
                   },
-                  options: ['Daily', 'Weekly', 'Monthly'],
                 ),
               ),
 
@@ -115,7 +117,7 @@ class _AdvertDetailScreenState extends State<AdvertDetailScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => AdvertDetailScreen(),
+                        builder: (context) => AdvertPaymentScreen(),
                       ),
                     );
                   },

@@ -17,7 +17,7 @@ class PaymentMethods extends StatefulWidget {
 }
 
 class _PaymentMethodsState extends State<PaymentMethods> {
-  bool value = false;
+  bool isSwitched = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,10 +29,10 @@ class _PaymentMethodsState extends State<PaymentMethods> {
             image: AssetString.cash,
             title: StringData.cash,
             child: SwitchWidget(
-              value: value,
+              value: isSwitched,
               onChanged: (value) {
                 setState(() {
-                  value = true;
+                  isSwitched = true;
                 });
               },
             ),
@@ -79,7 +79,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
   }
 
   bool isExpanded = false;
-  bool value = false;
+  bool isSwiched = false;
   @override
   Widget build(BuildContext context) {
     return PaymentCard(
@@ -98,7 +98,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                 'Add a custom payment option to your profile.This will allow your clients to pay using this custom payment option.',
             icon: Icons.info_outline,
           ),
-          // TODO : decoration of expension tile
+
           SizedBox(height: 10),
           CustomContainer(
             padding: EdgeInsets.all(0),
@@ -126,29 +126,42 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                   });
                 },
                 children: [
-                  CustomTextFeild(
-                    controller: _accountTitleController,
-                    hintText: 'Enter your title here',
-                  ),
-
-                  SizedBox(height: 12),
-                  CustomTextFeild(
-                    controller: _instructionCOntroller,
-                    hintText: 'Enter your instructions here',
-                  ),
-                  SizedBox(height: 12),
-                  CustomTextFeild(
-                    controller: _linkCOntroller,
-                    hintText: 'Enter the link here',
-                  ),
-                  SizedBox(height: 20),
-                  CustomElevatedButtonWidget(
-                    width: context.width,
-                    onPressed: () {},
-                    buttonText: 'Save',
-                    color: MyColors.primaryColor,
-                    textColor: Colors.white,
-                    prefix: null,
+                  AnimatedCrossFade(
+                    firstChild: SizedBox.shrink(),
+                    secondChild: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Column(
+                        children: [
+                          CustomTextFeild(
+                            controller: _accountTitleController,
+                            hintText: 'Enter your title here',
+                          ),
+                          SizedBox(height: 12),
+                          CustomTextFeild(
+                            controller: _instructionCOntroller,
+                            hintText: 'Enter your instructions here',
+                          ),
+                          SizedBox(height: 12),
+                          CustomTextFeild(
+                            controller: _linkCOntroller,
+                            hintText: 'Enter the link here',
+                          ),
+                          SizedBox(height: 20),
+                          CustomElevatedButtonWidget(
+                            width: context.width,
+                            onPressed: () {},
+                            buttonText: 'Save',
+                            color: MyColors.primaryColor,
+                            textColor: Colors.white,
+                            prefix: null,
+                          ),
+                        ],
+                      ),
+                    ),
+                    crossFadeState: isExpanded
+                        ? CrossFadeState.showSecond
+                        : CrossFadeState.showFirst,
+                    duration: Duration(milliseconds: 300),
                   ),
                 ],
               ),
@@ -157,10 +170,10 @@ class _PaymentOptionsState extends State<PaymentOptions> {
         ],
       ),
       child: SwitchWidget(
-        value: value,
+        value: isSwiched,
         onChanged: (value) {
           setState(() {
-            value = true;
+            isSwiched = true;
           });
         },
       ),
@@ -198,7 +211,7 @@ class _BankDataState extends State<BankData> {
     super.dispose();
   }
 
-  bool value = false;
+  bool isSwitched = false;
 
   @override
   Widget build(BuildContext context) {
@@ -230,10 +243,10 @@ class _BankDataState extends State<BankData> {
         ],
       ),
       child: SwitchWidget(
-        value: value,
+        value: isSwitched,
         onChanged: (value) {
           setState(() {
-            value = true;
+            isSwitched = true;
           });
         },
       ),

@@ -31,8 +31,11 @@ class CustomTextFeild extends StatelessWidget {
       child: TextField(
         controller: controller,
         maxLines: maxLines,
+        cursorColor: Colors.white70,
+        cursorHeight: 20,
         decoration: Constants.textFieldInputDecoration(
           hintText: hintText ?? '',
+          contentPadding: EdgeInsets.symmetric(horizontal: 6),
           showLabel: true,
 
           fillColor: fillColor,

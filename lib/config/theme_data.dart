@@ -15,7 +15,7 @@ mixin MainThemeData {
       titleLarge: GoogleFonts.varelaRound(
         fontWeight: FontWeight.w900,
         fontSize: ResponsiveWidget.isSmallScreen(context)
-            ? 19
+            ? 12
             : ResponsiveWidget.isMediumScreen(context)
             ? 24
             : 28,
@@ -121,7 +121,7 @@ mixin MainThemeData {
       ),
     ),
     progressIndicatorTheme: const ProgressIndicatorThemeData(
-      color: MyColors.primaryColor,
+      color: MyColors.backgroundColor,
     ),
     cupertinoOverrideTheme: const CupertinoThemeData(
       brightness: Brightness.light,
@@ -156,7 +156,7 @@ mixin MainThemeData {
         Colors.grey.withValues(alpha: 0.2),
       ),
 
-      thickness: WidgetStateProperty.all(8),
+      thickness: WidgetStateProperty.all(4),
       radius: const Radius.circular(4),
       crossAxisMargin: 4,
       mainAxisMargin: 8,

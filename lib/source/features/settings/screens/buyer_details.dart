@@ -71,12 +71,7 @@ class _BuyerDetailScreenState extends State<BuyerDetailScreen> {
                   color: Colors.white,
                 ),
               ),
-              // TODO : yahan p tabs any hny ...
-
-              // SizedBox(
-              //   height: context.height / 2,
-              //   child: BuyerPaymentHistory(),
-              // ),
+              
               SizedBox(height: 10),
               BuyerHistoryDetails(title: 'Pending', color: Colors.redAccent),
               SizedBox(height: 10),

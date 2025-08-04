@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:city17_seller/source/constants/asset_string.dart';
 import 'package:city17_seller/source/constants/my_colors.dart';
 import 'package:city17_seller/source/core/components/buttons.dart';
@@ -5,7 +7,9 @@ import 'package:city17_seller/source/core/components/custom_container.dart';
 import 'package:city17_seller/source/core/components/information_text.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
 
 class DisplayDataTab extends StatelessWidget {
   const DisplayDataTab({super.key});
@@ -16,17 +20,15 @@ class DisplayDataTab extends StatelessWidget {
       padding: EdgeInsets.all(16),
       child: Column(
         children: [
-         DisplayDataInfo(), Expanded(child: SizedBox()),
+          DisplayDataInfo(),
+          Expanded(child: SizedBox()),
         ],
       ),
     );
   }
-
- 
-
 }
 
- class DisplayDataInfo extends StatefulWidget {
+class DisplayDataInfo extends StatefulWidget {
   const DisplayDataInfo({super.key});
 
   @override
@@ -36,32 +38,37 @@ class DisplayDataTab extends StatelessWidget {
 class _DisplayDataInfoState extends State<DisplayDataInfo> {
   @override
   Widget build(BuildContext context) {
-    return   CustomContainer(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _dataWidget('Brand', 'TCL', context),
-                SizedBox(height: 10),
-                _dataWidget('Model', 'Android TV', context),
-                SizedBox(height: 10),
-                _dataWidget('Resolution', '1920x1080', context),
-                SizedBox(height: 14),
-                CustomElevatedButtonWidget(
-                  width: context.width,
-                  color: MyColors.backgroundColor,
-                  onPressed: () {},
-                  buttonText: 'Scan QR Code',
-                  textColor: Colors.white,
-                  prefix: AssetString.qrcode,
-                  iconColor: Colors.white,
-                ),
-              ],
-            ),
-          )
-        ;
+    return CustomContainer(
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _dataWidget('Brand', 'TCL', context),
+          SizedBox(height: 10),
+          _dataWidget('Model', 'Android TV', context),
+          SizedBox(height: 10),
+          _dataWidget('Resolution', '1920x1080', context),
+          SizedBox(height: 14),
+          CustomElevatedButtonWidget(
+            width: context.width,
+            color: MyColors.backgroundColor,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ScanQrCodeWidget()),
+              );
+            },
+            buttonText: 'Scan QR Code',
+            textColor: Colors.white,
+            prefix: AssetString.qrcode,
+            iconColor: Colors.white,
+          ),
+        ],
+      ),
+    );
   }
-    Widget _dataWidget(String title, String value, BuildContext context) {
+
+  Widget _dataWidget(String title, String value, BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -73,7 +80,6 @@ class _DisplayDataInfoState extends State<DisplayDataInfo> {
       ],
     );
   }
-
 }
 
 class ScanQR extends StatefulWidget {
@@ -137,5 +143,70 @@ class _ScanQRState extends State<ScanQR> {
         ),
       ],
     );
+  }
+}
+
+class ScanQrCodeWidget extends StatefulWidget {
+  const ScanQrCodeWidget({super.key});
+
+  @override
+  State<ScanQrCodeWidget> createState() => _ScanQrCodeWidgetState();
+}
+
+class _ScanQrCodeWidgetState extends State<ScanQrCodeWidget> {
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+  QRViewController? controller;
+  Barcode? result;
+
+  @override
+  void reassemble() {
+    super.reassemble();
+    if (Platform.isAndroid) {
+      controller?.pauseCamera();
+    } else if (Platform.isIOS) {
+      controller?.resumeCamera();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Scan QR Code')),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            flex: 5,
+            child: QRView(key: qrKey, onQRViewCreated: _onQRViewCreated),
+          ),
+          Expanded(
+            flex: 1,
+            child: Center(
+              child: result != null
+                  ? Text(
+                      // ignore: deprecated_member_use
+                      'Barcode Type: ${describeEnum(result!.format)}\nData: ${result!.code}',
+                    )
+                  : const Text('Scan a code'),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _onQRViewCreated(QRViewController controller) {
+    this.controller = controller;
+    controller.scannedDataStream.listen((scanData) {
+      setState(() {
+        result = scanData;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    // ignore: deprecated_member_use
+    controller?.dispose();
+    super.dispose();
   }
 }

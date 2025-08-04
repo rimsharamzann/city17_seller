@@ -15,25 +15,20 @@ class BiddingCard extends StatelessWidget {
         2,
         (index) => CustomContainer(
           padding: EdgeInsets.all(4),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(8),
-                  bottomLeft: Radius.circular(8),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: constraints.maxWidth),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(width: 60, child: TimeLineWidget()),
+
+                    Flexible(fit: FlexFit.loose, child: BiddingAdInfoCard()),
+                  ],
                 ),
-                child: SizedBox(
-                  // height: 460,
-                  width: 80,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: VerticalLinearProgress(),
-                  ),
-                ),
-              ),
-              Expanded(child: BiddingAdInfoCard()),
-            ],
+              );
+            },
           ),
         ),
       ),

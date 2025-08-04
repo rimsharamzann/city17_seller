@@ -1,10 +1,9 @@
 import 'dart:ui';
 
 import 'package:city17_seller/source/constants/my_colors.dart';
-import 'package:city17_seller/source/core/components/buttons.dart';
 import 'package:city17_seller/source/core/components/information_text.dart';
-import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:city17_seller/source/features/finance/components/approve_payment_modal.dart';
+import 'package:city17_seller/source/features/finance/components/payment_components.dart';
 import 'package:city17_seller/source/features/finance/components/payment_date.dart';
 import 'package:city17_seller/source/features/offers/components/weekly_calendar.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +30,7 @@ class _PaymentApprovalState extends State<PaymentApproval> {
           textColor: MyColors.textColor,
         ),
         SizedBox(height: 10),
-         WeeklyCalendar(),
+        WeeklyCalendar(),
 
         // Row(
         //   spacing: 6,
@@ -48,50 +47,23 @@ class _PaymentApprovalState extends State<PaymentApproval> {
               childern: List.generate(3, (index) => CampaignData()),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Row(
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          'Total Amount',
-                          style: context.textTheme.bodySmall?.copyWith(
-                            fontSize: 9,
-                          ),
-                        ),
-                        Text(
-                          '\$1575',
-                          style: context.textTheme.bodyMedium?.copyWith(
-                            color: Colors.white,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Spacer(),
-                    CustomElevatedButtonWidget(
-                      height: 35,
-                      width: context.width / 2.1,
-                      textColor: Colors.white70,
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          backgroundColor: Colors.transparent,
-                          builder: (context) => BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
-                            child: const ApprovePaymentModal(),
-                          ),
-                        );
-                      },
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
+                child: TotalAmountWidget(
+                  buttonText: 'Approve all Payments',
+                  backgroundColor: MyColors.primaryColor,
+                  textColor: Colors.white70,
 
-                      buttonText: 'Approve all PAyments',
-                      color: MyColors.primaryColor,
-                      prefix: null,
-                      prefixIcon: null,
-                    ),
-                  ],
+                  amount: '\$1575',
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      builder: (context) => BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+                        child: const ApprovePaymentModal(),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

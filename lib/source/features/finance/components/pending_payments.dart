@@ -27,6 +27,7 @@ class PendingPayments extends StatelessWidget {
             SizedBox(height: 14),
             Text('Due Payments'),
             SizedBox(height: 6),
+            
             WeeklyCalendar(),
 
             // Row(

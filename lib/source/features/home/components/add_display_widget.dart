@@ -110,7 +110,7 @@ Future<void> _addBusinessLocation(
           //       color: Color(0xFF1E1E2C),
           //       borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
           //     ),
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.all(14),
           child: Column(
             spacing: 8,
             mainAxisSize: MainAxisSize.min,

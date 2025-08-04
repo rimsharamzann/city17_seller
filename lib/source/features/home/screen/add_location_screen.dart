@@ -7,6 +7,7 @@ import 'package:city17_seller/source/core/components/textfeild_with_title.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:city17_seller/source/features/home/components/ad_pricing_widget.dart';
 import 'package:city17_seller/source/features/home/components/location_card.dart';
+import 'package:city17_seller/source/features/home/enums/display_enum.dart';
 import 'package:flutter/material.dart';
 
 class AddLocationScreen extends StatefulWidget {
@@ -76,12 +77,15 @@ class _LocationDataContainerState extends State<LocationDataContainer> {
   late TextEditingController _nameCOntroller;
   late TextEditingController _addressController;
   late TextEditingController _categoryController;
+  LocationType? _selectedLocation;
   @override
   void initState() {
     super.initState();
     _addressController = TextEditingController();
     _nameCOntroller = TextEditingController();
     _categoryController = TextEditingController();
+    _selectedLocation = LocationType.restaurant;
+    _categoryController.text = _selectedLocation!.title;
   }
 
   @override
@@ -110,22 +114,58 @@ class _LocationDataContainerState extends State<LocationDataContainer> {
 
             controller: _addressController,
             title: 'Address',
-            hintText: 'Hilton 488 George St, Sydney NSW 2000',
+            hintText: 'Enter address',
             suffixIcon: Icons.location_on_sharp,
           ),
           SizedBox(height: 8),
-          TextfeildWithTitle(
-            fillColor: MyColors.containerColor.withValues(alpha: 0.25),
-
-            controller: _nameCOntroller,
-            title: 'Category',
-            hintText: 'Restaurent',
-            iconSize: 28,
-            suffixIcon: Icons.arrow_drop_down_outlined,
+          GestureDetector(
+            onTap: _showDropdown,
+            child: AbsorbPointer(
+              child: TextfeildWithTitle(
+                iconSize: 40,
+                controller: _categoryController,
+                title: 'Category',
+                hintText: 'Select category',
+                suffixIcon: Icons.arrow_drop_down_rounded,
+                fillColor: MyColors.containerColor.withAlpha(64),
+              ),
+            ),
           ),
+
           SizedBox(height: 8),
         ],
       ),
     );
+  }
+
+  void _showDropdown() async {
+    final selected = await showModalBottomSheet<LocationType>(
+      context: context,
+      backgroundColor: MyColors.containerBg,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return ListView(
+          shrinkWrap: true,
+          children: LocationType.values.map((location) {
+            return ListTile(
+              title: Text(
+                location.title,
+                style: const TextStyle(color: Colors.white),
+              ),
+              onTap: () => Navigator.pop(context, location),
+            );
+          }).toList(),
+        );
+      },
+    );
+
+    if (selected != null) {
+      setState(() {
+        _selectedLocation = selected;
+        _categoryController.text = selected.title;
+      });
+    }
   }
 }

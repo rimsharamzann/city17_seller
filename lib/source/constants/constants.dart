@@ -18,56 +18,42 @@ mixin Constants {
     borderRadius: BorderRadius.circular(myBorderRadius),
     borderSide: const BorderSide(color: Colors.red, width: 1.5),
   );
-
   static InputDecoration textFieldInputDecoration({
     required BuildContext context,
     required String hintText,
     bool filled = true,
     Widget? suffixIcon,
-    String? prefixImage,
-    Function()? prefixOnTap,
-    bool showLabel = false,
-    bool smallText = false,
+    bool showLabel = true,
+    bool smallText = true,
     Widget? prefixIcon,
-    bool alignLabelWithHint = false,
-    EdgeInsetsGeometry? contentPadding,
     Color? color,
     Color? fillColor,
+    EdgeInsetsGeometry? contentPadding,
   }) => InputDecoration(
     labelText: showLabel ? hintText : null,
     hintText: !showLabel ? hintText : null,
-    counterText: '',
+    filled: filled,
+    fillColor: fillColor ?? MyColors.containerColor.withValues(alpha: 0.3),
+    suffixIcon: suffixIcon,
+    prefixIcon: prefixIcon,
+    contentPadding:
+        contentPadding ??
+        const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
     hintStyle: TextStyle(
       fontSize: smallText ? 10 : 14,
-      fontWeight: FontWeight.normal,
-      color: color,
+      color: color ?? Colors.grey,
+      fontWeight: FontWeight.w300,
     ),
     labelStyle: TextStyle(
       fontSize: smallText ? 10 : 14,
-      fontWeight: FontWeight.normal,
-      color: color,
+      color: color ?? Colors.grey,
     ),
-    filled: filled,
-
-    fillColor: fillColor ?? MyColors.containerColor.withValues(alpha: 0.3),
-    suffixIcon: suffixIcon,
-    contentPadding:
-        contentPadding ??
-        (ResponsiveWidget.isSmallScreen(context)
-            ? const EdgeInsets.symmetric(
-                horizontal: myPadding / 1.3,
-                vertical: myPadding / 1.3,
-              )
-            : const EdgeInsets.symmetric(
-                vertical: 20,
-                horizontal: myPadding / 1.5,
-              )),
-    prefixIcon: prefixIcon,
     border: Constants.outlineInputBorder,
     disabledBorder: Constants.outlineInputBorder,
     focusedBorder: Constants.enabledInputBorder,
     enabledBorder: Constants.outlineInputBorder,
     errorBorder: Constants.errorInputBorder,
+    counterText: '',
   );
 
   // static InputDecoration textFieldInputDecoration({

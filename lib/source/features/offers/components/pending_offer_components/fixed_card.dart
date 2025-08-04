@@ -55,7 +55,7 @@ class FixedAdInfoCard extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 3),
           child: HotelAddress(),
         ),
-        AutoApproveAds(isBidding: false),
+        AutoApproveAds(isBidding: false,),
         AcceptRejectButtons(isBidding: false),
       ],
     );

@@ -18,6 +18,11 @@ dependencies:
   image_picker: ^1.1.2
   responsive_grid_list: ^1.4.0
   intl_phone_number_input_v2: ^0.0.9
+  table_calendar: ^3.2.0
+  intl_phone_field: ^3.2.0
+  timelines_plus: ^1.0.7
+  qr_code_scanner_plus: ^2.0.10+1
+  cached_network_image: ^3.4.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -29,3 +34,4 @@ flutter:
     - assets/images/
     - assets/svg/
     - assets/icons/  
+    # - packages/intl_phone_field/assets/flags/

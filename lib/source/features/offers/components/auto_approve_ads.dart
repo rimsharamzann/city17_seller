@@ -3,9 +3,8 @@ import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
 class AutoApproveAds extends StatefulWidget {
-  final bool isBidding;
-
   const AutoApproveAds({super.key, required this.isBidding});
+  final bool isBidding;
 
   @override
   State<AutoApproveAds> createState() => _AutoApproveAdsState();
@@ -37,7 +36,7 @@ class _AutoApproveAdsState extends State<AutoApproveAds> {
             value: isSwitched,
             onChanged: (value) {
               setState(() {
-                isSwitched = value;
+                isSwitched = true;
               });
             },
           ),

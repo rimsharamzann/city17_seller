@@ -1,7 +1,7 @@
 import 'package:city17_seller/source/constants/my_colors.dart';
-import 'package:city17_seller/source/constants/string_data.dart';
 import 'package:city17_seller/source/core/components/custom_container.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
+import 'package:city17_seller/source/features/home/enums/display_enum.dart';
 import 'package:flutter/material.dart';
 
 class DisplayInstallationComponents extends StatefulWidget {
@@ -14,38 +14,44 @@ class DisplayInstallationComponents extends StatefulWidget {
 
 class _DisplayInstallationComponentsState
     extends State<DisplayInstallationComponents> {
-  bool _isSelected = false;
+  ScreenType? screenType;
+  LocationType? locationType;
+  Placement? placement;
+
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
       child: Column(
         children: [
-          RadioButtonsWithTitle(
+          RadioButtonsWithTitle<ScreenType>(
             title: 'Is this screen Fixed or Mobile?',
+            options: ScreenType.values,
+            getTitle: (type) => type.title,
             onChanged: (value) {
               setState(() {
-                _isSelected = !_isSelected;
+                screenType = value;
               });
             },
-            options: ['Mobile', 'Fixed'],
           ),
-          RadioButtonsWithTitle(
+          RadioButtonsWithTitle<LocationType>(
             title: 'Where is the screen installed?',
+            options: LocationType.values,
+            getTitle: (type) => type.title,
             onChanged: (value) {
               setState(() {
-                _isSelected = !_isSelected;
+                locationType = value;
               });
             },
-            options: ['Shop', 'Restaurent', 'vehicle', 'other'],
           ),
-          RadioButtonsWithTitle(
+          RadioButtonsWithTitle<Placement>(
             title: 'Screen Placements',
+            options: Placement.values,
+            getTitle: (type) => type.title,
             onChanged: (value) {
               setState(() {
-                _isSelected = !_isSelected;
+                placement = value;
               });
             },
-            options: [StringData.facingOutside, StringData.insideTheProperty],
           ),
         ],
       ),
@@ -53,40 +59,42 @@ class _DisplayInstallationComponentsState
   }
 }
 
-class RadioButtonsWithTitle extends StatefulWidget {
+class RadioButtonsWithTitle<T> extends StatefulWidget {
   const RadioButtonsWithTitle({
     super.key,
     required this.title,
     required this.options,
     required this.onChanged,
+    required this.getTitle,
     this.child,
     this.icon,
   });
 
   final String title;
-  final List<String> options;
-  final Function(String) onChanged;
+  final List<T> options;
+  final Function(T) onChanged;
+  final String Function(T) getTitle;
   final Widget? child;
   final IconData? icon;
 
   @override
-  State<RadioButtonsWithTitle> createState() => _RadioButtonsWithTitleState();
+  State<RadioButtonsWithTitle<T>> createState() =>
+      _RadioButtonsWithTitleState<T>();
 }
 
-class _RadioButtonsWithTitleState extends State<RadioButtonsWithTitle> {
-  String? selectedOption;
+class _RadioButtonsWithTitleState<T> extends State<RadioButtonsWithTitle<T>> {
+  T? selectedOption;
 
   @override
   Widget build(BuildContext context) {
-    List<Row> buildRows(List<String> options, int itemsPerRow) {
+    List<Row> buildRows(List<T> options, int itemsPerRow) {
       List<Row> rows = [];
       for (int i = 0; i < options.length; i += itemsPerRow) {
         rows.add(
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: List.generate(itemsPerRow, (j) {
               if (i + j >= options.length) return const SizedBox();
-              String option = options[i + j];
+              T option = options[i + j];
               final isSelected = selectedOption == option;
               return GestureDetector(
                 onTap: () {
@@ -103,7 +111,7 @@ class _RadioButtonsWithTitleState extends State<RadioButtonsWithTitle> {
                   child: Row(
                     children: [
                       Text(
-                        option,
+                        widget.getTitle(option),
                         style: TextStyle(
                           color: isSelected
                               ? Colors.white
@@ -112,7 +120,6 @@ class _RadioButtonsWithTitleState extends State<RadioButtonsWithTitle> {
                         ),
                       ),
                       const SizedBox(width: 6),
-
                       Container(
                         width: 16,
                         height: 16,
@@ -135,7 +142,7 @@ class _RadioButtonsWithTitleState extends State<RadioButtonsWithTitle> {
                               )
                             : null,
                       ),
-                      SizedBox(width: 16),
+                      const SizedBox(width: 16),
                     ],
                   ),
                 ),
@@ -146,11 +153,12 @@ class _RadioButtonsWithTitleState extends State<RadioButtonsWithTitle> {
       }
       return rows;
     }
+    //TODO: fix  null error 
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 6),
+        const SizedBox(height: 6),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -158,15 +166,18 @@ class _RadioButtonsWithTitleState extends State<RadioButtonsWithTitle> {
               child: Text(
                 widget.title,
                 style: context.textTheme.bodyMedium?.copyWith(
-                  color: Colors.white.withValues(alpha: 0.95),
+                  color: Colors.white.withAlpha(240),
                 ),
               ),
             ),
-            SizedBox(child: Icon(widget.icon, color: Colors.white, size: 18)),
+            if (widget.icon != null)
+              Icon(widget.icon, color: Colors.white, size: 18)
+            else
+              Text(''),
           ],
         ),
         const SizedBox(height: 4),
-        SizedBox(child: widget.child),
+        if (widget.child != null) widget.child!,
         Container(
           margin: const EdgeInsets.symmetric(vertical: 8),
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),

@@ -1,4 +1,5 @@
 import 'package:city17_seller/source/constants/my_colors.dart';
+import 'package:city17_seller/source/constants/string_data.dart';
 import 'package:city17_seller/source/core/components/custom_container.dart';
 import 'package:city17_seller/source/core/components/custom_tile_widget.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
@@ -67,31 +68,45 @@ class _PaymentCardsState extends State<PaymentCards> {
                       CampaignData(dataColor: widget.dataColor ?? Colors.red),
                 ),
           ),
-          widget.child ??
-              Padding(
+          widget.child ?? TotalAmount(amount:   '\$1050',)
+             
+                
+        ],
+      ),
+    );
+  }
+}
+
+
+ class TotalAmount extends StatelessWidget {
+  const TotalAmount({super.key, this.title, required this.amount});
+   final String? title;
+    final String amount ;
+
+  @override
+  Widget build(BuildContext context) {
+    return       Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Total Amount',
+                     title?? StringData.totalAmount,
                       style: context.textTheme.bodySmall?.copyWith(
                         fontSize: 10 ,
                       ),
                     ),
                     Spacer(),
                     Text(
-                      '\$1050',
+                    amount,
                       style: context.textTheme.bodyMedium?.copyWith(
                         color: Colors.white,
                       ),
                     ),
                   ],
                 ),
-              ),
-        ],
-      ),
-    );
+              )
+     ;
   }
 }
 

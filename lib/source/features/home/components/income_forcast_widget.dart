@@ -2,6 +2,7 @@ import 'package:city17_seller/source/constants/my_colors.dart';
 import 'package:city17_seller/source/constants/string_data.dart';
 import 'package:city17_seller/source/core/components/custom_tab_widget.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
+import 'package:city17_seller/source/features/home/enums/drop_down_enum.dart';
 import 'package:flutter/material.dart';
 
 class IncomeForecastWidget extends StatefulWidget {
@@ -82,8 +83,15 @@ class _IncomeForecastWidgetState extends State<IncomeForecastWidget>
   }
 }
 
-class IncomeForcastList extends StatelessWidget {
+class IncomeForcastList extends StatefulWidget {
   const IncomeForcastList({super.key});
+
+  @override
+  State<IncomeForcastList> createState() => _IncomeForcastListState();
+}
+
+class _IncomeForcastListState extends State<IncomeForcastList> {
+  DisplayDropDown _selectedDropDown = DisplayDropDown.textual;
 
   @override
   Widget build(BuildContext context) {
@@ -93,24 +101,40 @@ class IncomeForcastList extends StatelessWidget {
         Text(
           StringData.incomeForcast,
           style: context.textTheme.bodyLarge?.copyWith(
-            color: Colors.white.withValues(alpha: 0.95),
+            color: Colors.white.withAlpha(240),
             fontSize: 15,
           ),
         ),
-        Spacer(),
-        Text(
-          'Textual',
-          style: context.textTheme.bodySmall?.copyWith(
-            color: Colors.white,
-            height: 2,
-            decorationColor: Colors.white,
-            decoration: TextDecoration.underline,
+        const Spacer(),
+        DropdownButtonHideUnderline(
+          child: DropdownButton<DisplayDropDown>(
+            value: _selectedDropDown,
+            dropdownColor: Colors.transparent.withAlpha(50),
+            style: context.textTheme.bodySmall?.copyWith(
+              color: Colors.white,
+              height: 2,
+              decorationColor: Colors.white,
+              decoration: TextDecoration.underline,
+            ),
+            icon: Icon(
+              Icons.arrow_drop_down_rounded,
+              color: Colors.white.withAlpha(230),
+              size: 30,
+            ),
+            items: DisplayDropDown.values.map((DisplayDropDown value) {
+              return DropdownMenuItem<DisplayDropDown>(
+                value: value,
+                child: Text(value.title),
+              );
+            }).toList(),
+            onChanged: (value) {
+              if (value != null) {
+                setState(() {
+                  _selectedDropDown = value;
+                });
+              }
+            },
           ),
-        ),
-        Icon(
-          Icons.arrow_drop_down_rounded,
-          color: Colors.white.withValues(alpha: 0.9),
-          size: 30,
         ),
       ],
     );

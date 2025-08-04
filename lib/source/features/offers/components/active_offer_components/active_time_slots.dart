@@ -27,7 +27,7 @@ class _ActiveTimeSlotsState extends State<ActiveTimeSlots> {
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         color: MyColors.lightBackground,
-        borderRadius: BorderRadius.circular(2),
+        borderRadius: BorderRadius.circular(6),
       ),
       child: Column(
         children: [

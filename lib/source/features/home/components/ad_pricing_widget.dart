@@ -4,12 +4,17 @@ import 'package:city17_seller/source/core/components/custom_container.dart';
 import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
-class AdPricingWidget extends StatelessWidget {
+class AdPricingWidget extends StatefulWidget {
   const AdPricingWidget({super.key});
 
   @override
+  State<AdPricingWidget> createState() => _AdPricingWidgetState();
+}
+
+class _AdPricingWidgetState extends State<AdPricingWidget> {
+  @override
   Widget build(BuildContext context) {
-    bool value = false;
+    bool isSwiched = false;
     return CustomContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +45,12 @@ class AdPricingWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SwitchWidget(value: value, onChanged: (value) {}),
+                SwitchWidget(
+                  value: isSwiched,
+                  onChanged: (value) {
+                    isSwiched = true;
+                  },
+                ),
               ],
             ),
           ),
