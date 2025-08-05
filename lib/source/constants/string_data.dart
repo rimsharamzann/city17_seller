@@ -14,6 +14,9 @@ mixin StringData {
   static const advertizer = 'Advertizer';
   static const add = 'Add';
   static const weeks = 'Weeks';
+  static const daily = 'Daily';
+  static const weekly = 'Weekly';
+  static const monthly = 'Monthly';
   static const upcomingPayment = 'upcomingPayment';
   static const paymentOverdue = 'Payments Overdue';
   static const paymnetDetails = 'Payment Details';
@@ -23,6 +26,10 @@ mixin StringData {
   static const textual = 'Textual';
   static const graphical = 'Graphical';
   static const bank = 'Bank';
+  static const paid = 'Paid';
+  static const cancelled = 'Cancelled';
+  static const failed = 'Failed';
+  static const refund = 'Refund';
   static const totalAmount = 'Total Amount';
   static const searchBusinessCategory = 'Search Business Category';
   static const bidding = 'bidding';

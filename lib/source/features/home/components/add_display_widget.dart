@@ -89,8 +89,10 @@ Future<void> _addBusinessLocation(
   final TextEditingController categoryController,
 ) async {
   await showModalBottomSheet(
+    elevation: 200,
     context: context,
 
+    useSafeArea: true,
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
     builder: (BuildContext context) {
@@ -100,17 +102,7 @@ Future<void> _addBusinessLocation(
           color: Color(0xFF1E1E2C),
           borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
 
-          //   expand: false,
-
-          //   initialChildSize: 0.5,
-          //   maxChildSize: 0.8,
-          //   minChildSize: 0.3,
-          //   builder: (_, controller) => Container(
-          //     decoration: const BoxDecoration(
-          //       color: Color(0xFF1E1E2C),
-          //       borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
-          //     ),
-          padding: EdgeInsets.all(14),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Column(
             spacing: 8,
             mainAxisSize: MainAxisSize.min,
@@ -127,18 +119,21 @@ Future<void> _addBusinessLocation(
               ),
               const SizedBox(),
               CustomTextFeild(
+                height: 40,
                 fillColor: MyColors.containerBg,
                 controller: businessNameController,
                 hintText: StringData.addBusinessName,
               ),
 
               CustomTextFeild(
+                height: 40,
                 fillColor: MyColors.containerBg,
                 controller: businessAddressController,
                 hintText: StringData.addBusinessAddress,
               ),
 
               CustomTextFeild(
+                height: 40,
                 fillColor: MyColors.containerBg,
                 controller: categoryController,
                 hintText: StringData.selectBusinessCategory,

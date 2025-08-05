@@ -67,7 +67,7 @@ class _IncomeForecastWidgetState extends State<IncomeForecastWidget>
                   backgroundCOlor: Colors.white10.withValues(alpha: 0.05),
                   controller: _controller,
                   tabs: [
-                    Tab(text: StringData.days),
+                    Tab(text: StringData.days, ),
                     Tab(text: StringData.weeks),
                     Tab(text: StringData.months),
                   ],

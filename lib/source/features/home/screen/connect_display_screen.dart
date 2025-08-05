@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:city17_seller/config/route_names.dart';
 import 'package:city17_seller/source/constants/my_colors.dart';
 import 'package:city17_seller/source/core/components/buttons.dart';
@@ -9,7 +11,7 @@ import 'package:city17_seller/source/core/extensions/context_extension.dart';
 import 'package:city17_seller/source/features/home/components/customize_screen_widget.dart';
 import 'package:city17_seller/source/features/home/components/display_intallation_components.dart';
 import 'package:city17_seller/source/features/home/components/disply_data_tab.dart';
-import 'package:city17_seller/source/features/home/components/scan_qr_code.dart';
+import 'package:city17_seller/source/features/home/models/display_model.dart';
 import 'package:flutter/material.dart';
 
 class ConnectDisplayScreen extends StatefulWidget {
@@ -23,9 +25,24 @@ class _ConnectDisplayScreenState extends State<ConnectDisplayScreen>
     with TickerProviderStateMixin {
   late TabController _controller;
 
+  late TextEditingController _nameController;
+  late TextEditingController _sizeController;
+  late TextEditingController _descriptionController;
+
+  String brand = 'TCL';
+  String model = 'Android TV';
+  String resolution = '1920x1080';
+
+  // Step  data
+  String imageUrl = '';
+  DisplayQR? displayQR;
+
   @override
   void initState() {
     _controller = TabController(length: 3, vsync: this);
+    _nameController = TextEditingController();
+    _sizeController = TextEditingController();
+    _descriptionController = TextEditingController();
     _controller.addListener(() {
       if (mounted) setState(() {});
     });
@@ -35,6 +52,9 @@ class _ConnectDisplayScreenState extends State<ConnectDisplayScreen>
   @override
   void dispose() {
     _controller.dispose();
+    _nameController.dispose();
+    _sizeController.dispose();
+    _descriptionController.dispose();
     super.dispose();
   }
 
@@ -68,7 +88,26 @@ class _ConnectDisplayScreenState extends State<ConnectDisplayScreen>
           Expanded(
             child: TabBarView(
               controller: _controller,
-              children: [Step1Data(), DisplayDataTab(), ScanQrCode()],
+              children: [
+                Step1Data(
+                  nameController: _nameController,
+                  sizeController: _sizeController,
+                  descriptionController: _descriptionController,
+                ),
+                DisplayDataTab(),
+                ScanQR(
+                  onImagePicked: (path) {
+                    setState(() {
+                      imageUrl = path;
+                    });
+                  },
+                  onQRScanned: (qr) {
+                    setState(() {
+                      displayQR = qr as DisplayQR?;
+                    });
+                  },
+                ),
+              ],
             ),
           ),
           _saveData(),
@@ -103,6 +142,10 @@ class _ConnectDisplayScreenState extends State<ConnectDisplayScreen>
                 if (!isLastStep) {
                   _controller.animateTo(_controller.index + 1);
                 } else {
+                  if (imageUrl.isNotEmpty) {
+                    Image.file(File(imageUrl), width: 150, height: 150);
+                  }
+
                   Navigator.pushNamed(context, RouteNames.displaySetting);
                 }
               },
@@ -114,110 +157,25 @@ class _ConnectDisplayScreenState extends State<ConnectDisplayScreen>
       ),
     );
   }
-
-  //  Future<void> saveAsDraft(Map<String, dynamic> displayData) async {
-  //   try {
-  //     await FirebaseFirestore.instance.collection('display_drafts').add(displayData);
-
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(content: Text('Display saved as draft')),
-  //     );
-  //   } catch (e) {
-  //     debugPrint('Error saving draft: $e');
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(content: Text('Failed to save draft')),
-  //     );
-  //   }
-  // }
-
-  // Future<void> saveCurrentStepData(Map<String, dynamic> stepData) async {
-  //   // Example: Save step data locally or in-memory (you could use Provider, Riverpod, or a class)
-  //   try {
-  //     // Cache it, or add to state model
-  //     debugPrint('Step saved: $stepData');
-
-  //     // Optionally go to next tab
-  //     controller.animateTo(controller.index + 1);
-  //   } catch (e) {
-  //     debugPrint('Error saving step data: $e');
-  //   }
-  // }
-  //  CustomElevatedButtonWidget(
-  //   onPressed: () {
-  // final stepData = {
-  //   'orientation': selectedOrientation,
-  //   'type': selectedType,
-  //   // add other form values
-  // };
-
-  //     if (isLastStep) {
-  //       completeDisplaySetup(stepData);
-  //     } else {
-  //       saveCurrentStepData(stepData);
-  //     }
-  //   },
-  //   buttonText: isLastStep ? 'Complete Display Setup' : 'Next',
-  // ),
-
-  //  Future<void> completeDisplaySetup(Map<String, dynamic> fullDisplayData) async {
-  //   try {
-  //     // Optional: validate required fields
-  //     if (!fullDisplayData.containsKey('name') || fullDisplayData['name'].isEmpty) {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         const SnackBar(content: Text('Please provide all required display information')),
-  //       );
-  //       return;
-  //     }
-
-  //     // Save the complete setup
-  //     await FirebaseFirestore.instance.collection('displays').add(fullDisplayData);
-
-  //     // Optionally delete any existing draft if you saved one
-  //     // await FirebaseFirestore.instance.collection('display_drafts').doc(draftId).delete();
-
-  //     // Notify user
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(content: Text('Display setup completed successfully')),
-  //     );
-
-  //     // Navigate away or reset
-  //     Navigator.pop(context);
-  //   } catch (e) {
-  //     debugPrint('Error completing setup: $e');
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(content: Text('Failed to complete display setup')),
-  //     );
-  //   }
-  // }
 }
 
 class Step1Data extends StatefulWidget {
-  const Step1Data({super.key});
+  final TextEditingController nameController;
+  final TextEditingController sizeController;
+  final TextEditingController descriptionController;
+
+  const Step1Data({
+    super.key,
+    required this.nameController,
+    required this.sizeController,
+    required this.descriptionController,
+  });
 
   @override
   State<Step1Data> createState() => _Step1DataState();
 }
 
 class _Step1DataState extends State<Step1Data> {
-  late TextEditingController _nameController;
-  late TextEditingController _sizeCOntroller;
-  late TextEditingController _descriptionCOntroller;
-  @override
-  void initState() {
-    super.initState();
-    _nameController = TextEditingController();
-    _sizeCOntroller = TextEditingController();
-    _descriptionCOntroller = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _descriptionCOntroller.dispose();
-    _sizeCOntroller.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -231,13 +189,13 @@ class _Step1DataState extends State<Step1Data> {
           _title('Customize Screen'),
           const CustomizeScreenWidget(),
           const SizedBox(height: 12),
-          _tileData('Name', 'Enter Name ', '', _nameController),
-          _tileData('Size', 'In Inches', 'Inches', _sizeCOntroller),
+          _tileData('Name', 'Enter Name ', '', widget.nameController),
+          _tileData('Size', 'In Inches', 'Inches', widget.sizeController),
           _tileData(
             'Add Description',
             'Description',
             '',
-            _descriptionCOntroller,
+            widget.descriptionController,
           ),
           const SizedBox(height: 12),
           InformationText(

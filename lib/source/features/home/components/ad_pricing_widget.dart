@@ -101,7 +101,11 @@ class BidOffer extends StatelessWidget {
                   text,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: context.textTheme.bodySmall,
+                  style: context.textTheme.bodySmall?.copyWith(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w400,
+                    color: MyColors.textColor,
+                  ),
                 ),
               ),
             ],

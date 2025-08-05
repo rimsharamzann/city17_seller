@@ -21,21 +21,28 @@ class _CustomLayoutScreenState extends State<CustomLayoutScreen> {
     RouteNames.settings,
   ];
 
-  late int _currentIndex;
+  // late int _currentIndex;
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   final current = ModalRoute.of(context)?.settings.name ?? _routes.first;
+  //   _currentIndex = _routes.indexOf(current).clamp(0, _routes.length - 1);
+  // }
+
+  // void _onTap(int index) {
+  //   if (index == _currentIndex) return;
+  //   Navigator.pushNamed(context, _routes[index]);
+  // }
+
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final current = ModalRoute.of(context)?.settings.name ?? _routes.first;
-    _currentIndex = _routes.indexOf(current).clamp(0, _routes.length - 1);
-  }
-
-  void _onTap(int index) {
-    if (index == _currentIndex) return;
-    Navigator.pushNamed(context, _routes[index]);
-  }
-
   @override
   Widget build(BuildContext context) {
+    final currentRouteName = ModalRoute.of(context)?.settings.name;
+    var currentIndex = _routes.indexOf(currentRouteName ?? RouteNames.home);
+    if (currentIndex == -1) {
+      currentIndex = 0;
+    }
+
     return Scaffold(
       backgroundColor: MyColors.backgroundColor,
       appBar: AppBar(
@@ -58,15 +65,12 @@ class _CustomLayoutScreenState extends State<CustomLayoutScreen> {
             ),
           ],
         ),
-
         actions: [
           GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, RouteNames.notifications);
-            },
-            child: Icon(Icons.notifications, color: Colors.white),
+            onTap: () => Navigator.pushNamed(context, RouteNames.notifications),
+            child: const Icon(Icons.notifications, color: Colors.white),
           ),
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
         ],
       ),
       body: Padding(
@@ -82,8 +86,16 @@ class _CustomLayoutScreenState extends State<CustomLayoutScreen> {
           ),
         ),
         child: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: _onTap,
+          currentIndex: currentIndex,
+          onTap: (index) {
+            final targetRoute = _routes[index];
+            if (targetRoute != currentRouteName) {
+              Navigator.pushReplacementNamed(
+                context,
+                targetRoute,
+              ); // 👈 use replacement
+            }
+          },
           selectedLabelStyle: const TextStyle(
             fontWeight: FontWeight.w600,
             decoration: null,
@@ -94,7 +106,7 @@ class _CustomLayoutScreenState extends State<CustomLayoutScreen> {
           showUnselectedLabels: true,
           type: BottomNavigationBarType.fixed,
           items: List.generate(_routes.length, (index) {
-            final isSelected = _currentIndex == index;
+            final isSelected = currentIndex == index;
             final label = [
               StringData.home,
               StringData.offers,
@@ -106,7 +118,7 @@ class _CustomLayoutScreenState extends State<CustomLayoutScreen> {
               icon: MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: Container(
-                  margin: EdgeInsets.only(top: 10),
+                  margin: const EdgeInsets.only(top: 10),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 10,
                     vertical: 10,

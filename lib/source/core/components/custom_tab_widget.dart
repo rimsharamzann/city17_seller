@@ -37,7 +37,7 @@ class CustomTabWidget extends StatelessWidget {
       child: TabBar(
         controller: controller,
         tabs: tabs,
-        labelStyle: labelStyle ?? context.textTheme.bodyMedium,
+        labelStyle: labelStyle ?? context.textTheme.bodyMedium?.copyWith(),
         indicator:
             indicatorDecoration ??
             BoxDecoration(
@@ -47,8 +47,12 @@ class CustomTabWidget extends StatelessWidget {
         unselectedLabelColor: unselectedLabelColor ?? Colors.white70,
         labelColor: labelColor ?? Colors.white,
         indicatorColor: indicatorColor ?? MyColors.primaryColor,
-        dividerColor: MyColors.containerBg,
+        dividerColor: Colors.transparent,
         splashBorderRadius: BorderRadius.circular(8),
+        indicatorPadding: EdgeInsetsGeometry.all(0),
+        labelPadding: EdgeInsets.all(0),
+
+        indicatorSize: TabBarIndicatorSize.tab,
         indicatorAnimation: indicatorAnimation ?? TabIndicatorAnimation.linear,
       ),
     );

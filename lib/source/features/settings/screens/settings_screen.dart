@@ -38,9 +38,7 @@ class _SettingsScreenState extends State<SettingsScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomTabWidget(
-            labelStyle: context.textTheme.bodySmall?.copyWith(
-              fontWeight: FontWeight.w600,
-            ),
+            labelStyle: context.textTheme.bodySmall?.copyWith(fontSize: 10),
             controller: _controller,
             tabs: const [
               Tab(text: StringData.pendingPayments),

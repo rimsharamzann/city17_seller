@@ -54,7 +54,7 @@ class _ProfileOptionsState extends State<ProfileOptions> {
               controller: _nameController,
               title: StringData.name,
               color: Colors.white,
-              hintText: 'Ellie',
+              hintText: 'Name',
             ),
             SizedBox(height: 10),
 
@@ -80,7 +80,6 @@ class _ProfileOptionsState extends State<ProfileOptions> {
                   invalidNumberMessage: '',
                   style: TextStyle(color: Colors.white),
                   decoration: Constants.textFieldInputDecoration(
-                    
                     context: context,
                     hintText: '123449202',
 
@@ -101,7 +100,7 @@ class _ProfileOptionsState extends State<ProfileOptions> {
               titleColor: MyColors.textColor,
               controller: _emailController,
               title: StringData.email,
-              hintText: 'EllieDisplays@gmail.com',
+              hintText: 'yourgmail@gmail.com',
             ),
             SizedBox(height: 20),
 

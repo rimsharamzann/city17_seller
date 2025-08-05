@@ -15,6 +15,7 @@ class DisplayModel {
   final ScreenOrientation orientation;
   final String brand;
   final String model;
+  final DisplayQR qrCode;
   final String resolution;
   final String imageUrl;
   final bool? isDraft;
@@ -23,6 +24,7 @@ class DisplayModel {
     required this.id,
     required this.name,
     required this.size,
+    required this.qrCode,
     required this.description,
     required this.screenType,
     required this.locationType,
@@ -50,12 +52,14 @@ class DisplayModel {
     String? resolution,
     String? imageUrl,
     bool? isDraft,
+    DisplayQR? qrCode,
     DateTime? createdAt,
   }) {
     return DisplayModel(
       id: id ?? this.id,
       name: name ?? this.name,
       size: size ?? this.size,
+      qrCode: qrCode ?? this.qrCode,
       description: description ?? this.description,
       screenType: screenType ?? this.screenType,
       locationType: locationType ?? this.locationType,
@@ -81,6 +85,7 @@ class DisplayModel {
       'placement': enumToString(placement),
       'orientation': enumToString(orientation),
       'brand': brand,
+      'qrCode': qrCode.toMap(),
       'model': model,
       'resolution': resolution,
       'imageUrl': imageUrl,
@@ -111,6 +116,8 @@ class DisplayModel {
       model: map['model'] as String,
       resolution: map['resolution'] as String,
       imageUrl: map['imageUrl'] as String,
+      qrCode: DisplayQR.fromMap(map['qrCode'] as Map<String, dynamic>),
+
       isDraft: map['isDraft'] != null ? map['isDraft'] as bool : null,
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
     );
@@ -120,4 +127,27 @@ class DisplayModel {
 
   factory DisplayModel.fromJson(String source) =>
       DisplayModel.fromMap(json.decode(source) as Map<String, dynamic>);
+}
+
+class DisplayQR {
+  final String id;
+  final String name;
+  DisplayQR({required this.id, required this.name});
+
+  DisplayQR copyWith({String? id, String? name}) {
+    return DisplayQR(id: id ?? this.id, name: name ?? this.name);
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{'id': id, 'name': name};
+  }
+
+  factory DisplayQR.fromMap(Map<String, dynamic> map) {
+    return DisplayQR(id: map['id'] as String, name: map['name'] as String);
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory DisplayQR.fromJson(String source) =>
+      DisplayQR.fromMap(json.decode(source) as Map<String, dynamic>);
 }

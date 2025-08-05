@@ -153,7 +153,6 @@ class _RadioButtonsWithTitleState<T> extends State<RadioButtonsWithTitle<T>> {
       }
       return rows;
     }
-    //TODO: fix  null error 
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

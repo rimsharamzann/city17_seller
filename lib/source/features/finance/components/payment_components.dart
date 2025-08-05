@@ -28,7 +28,10 @@ class TotalAmountWidget extends StatelessWidget {
           children: [
             Text(
               title ?? 'Total Amount',
-              style: context.textTheme.bodySmall?.copyWith(fontSize: 9),
+              style: context.textTheme.bodySmall?.copyWith(
+                fontSize: 9,
+                color: MyColors.textColor,
+              ),
             ),
             Text(
               amount,

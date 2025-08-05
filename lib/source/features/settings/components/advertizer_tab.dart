@@ -107,14 +107,20 @@ class _AdvertizerDataCardsState extends State<AdvertizerDataCards> {
   Widget _advertTile(String title, String data) {
     return Column(
       children: [
-        Text(title, style: context.textTheme.bodySmall?.copyWith(fontSize: 7)),
+        Text(
+          title,
+          style: context.textTheme.bodySmall?.copyWith(
+            fontSize: 8,
+            color: MyColors.textColor,
+          ),
+        ),
         SizedBox(height: 8),
         Text(
           data,
           style: context.textTheme.bodyMedium?.copyWith(
             color: Colors.white,
             fontSize: 12,
-            fontWeight: FontWeight.w200,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ],

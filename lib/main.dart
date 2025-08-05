@@ -1,14 +1,9 @@
 import 'package:city17_seller/config/on_generate_route.dart';
+import 'package:city17_seller/config/route_names.dart';
 import 'package:city17_seller/config/theme_data.dart';
 import 'package:flutter/material.dart';
-import 'package:url_strategy/url_strategy.dart';
 
 void main() {
-  setPathUrlStrategy();
-
-  WidgetsFlutterBinding.ensureInitialized();
-
-  RouterFluro.initRoutes();
   runApp(const MyApp());
 }
 
@@ -18,11 +13,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'City17 Seller',
       debugShowCheckedModeBanner: false,
+      initialRoute: RouteNames.splash,
+      onGenerateRoute: RouteGenerator.onGenerateRoute,
       themeMode: ThemeMode.dark,
       theme: MainThemeData.darkThemeData(context),
 
-      onGenerateRoute: RouterFluro.fluroRouter.generator,
+      darkTheme: ThemeData.dark(),
     );
   }
 }

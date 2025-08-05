@@ -47,7 +47,7 @@ mixin MainThemeData {
       displaySmall: GoogleFonts.varelaRound(
         fontWeight: FontWeight.w700,
         fontSize: ResponsiveWidget.isSmallScreen(context) ? 20 : 28,
-        color: Colors.black87,
+        color: Colors.grey,
       ),
       displayMedium: GoogleFonts.varelaRound(
         fontWeight: FontWeight.w700,
@@ -64,10 +64,10 @@ mixin MainThemeData {
         color: Colors.white.withValues(alpha: 0.8),
         fontSize: ResponsiveWidget.isSmallScreen(context) ? 14.5 : 16,
       ),
-      bodySmall: GoogleFonts.varelaRound(
-        fontWeight: FontWeight.w500,
-        color: Colors.black87,
+      bodySmall: GoogleFonts.dmSans(
+        color: MyColors.textColor,
         fontSize: 14,
+        fontWeight: FontWeight.w400,
       ),
       headlineSmall: GoogleFonts.varelaRound(
         fontWeight: FontWeight.w700,

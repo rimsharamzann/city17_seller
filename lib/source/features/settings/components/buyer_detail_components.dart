@@ -1,3 +1,4 @@
+import 'package:city17_seller/source/constants/my_colors.dart';
 import 'package:city17_seller/source/constants/string_data.dart';
 import 'package:city17_seller/source/core/components/custom_container.dart';
 import 'package:city17_seller/source/core/components/custom_tile_widget.dart';
@@ -59,8 +60,9 @@ class ContactTile extends StatelessWidget {
         SizedBox(height: 6),
 
         CustomContainer(
+          height: 40,
           padding: EdgeInsets.all(8),
-          // color: MyColors.darkThemeBG.withValues(alpha: 0.3),
+          color: MyColors.backgroundColor,
           child: Row(
             children: [
               child ?? Icon(icon, size: 20, color: Colors.white),

@@ -68,45 +68,40 @@ class _PaymentCardsState extends State<PaymentCards> {
                       CampaignData(dataColor: widget.dataColor ?? Colors.red),
                 ),
           ),
-          widget.child ?? TotalAmount(amount:   '\$1050',)
-             
-                
+          widget.child ?? TotalAmount(amount: '\$1050'),
         ],
       ),
     );
   }
 }
 
-
- class TotalAmount extends StatelessWidget {
+class TotalAmount extends StatelessWidget {
   const TotalAmount({super.key, this.title, required this.amount});
-   final String? title;
-    final String amount ;
+  final String? title;
+  final String amount;
 
   @override
   Widget build(BuildContext context) {
-    return       Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                     title?? StringData.totalAmount,
-                      style: context.textTheme.bodySmall?.copyWith(
-                        fontSize: 10 ,
-                      ),
-                    ),
-                    Spacer(),
-                    Text(
-                    amount,
-                      style: context.textTheme.bodyMedium?.copyWith(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-     ;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title ?? StringData.totalAmount,
+            style: context.textTheme.bodySmall?.copyWith(
+              fontSize: 10,
+              color: MyColors.textColor,
+            ),
+          ),
+          Spacer(),
+          Text(
+            amount,
+            style: context.textTheme.bodyMedium?.copyWith(color: Colors.white),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -140,14 +135,20 @@ class _CampaignDataState extends State<CampaignData> {
   Widget _campaignTile(String title, String data, Color? dataCOlor) {
     return Column(
       children: [
-        Text(title, style: context.textTheme.bodySmall?.copyWith(fontSize: 7)),
+        Text(
+          title,
+          style: context.textTheme.bodySmall?.copyWith(
+            fontSize: 7,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
         SizedBox(height: 4),
         Text(
           data,
           style: context.textTheme.bodyMedium?.copyWith(
             color: dataCOlor ?? Colors.white,
-            fontSize: 9,
-            fontWeight: FontWeight.w200,
+            fontSize: 10,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ],

@@ -18,7 +18,6 @@ class AllNotifications extends StatelessWidget {
               'A \$10/hr ad from XYZ Co. is pending your approval on the Hilton screen',
           time: '2h ago',
           buttonText: 'View ads',
-          iconColor: Colors.transparent,
           image: AssetString.adOutined,
         ),
         // screen Sttaus alert setting

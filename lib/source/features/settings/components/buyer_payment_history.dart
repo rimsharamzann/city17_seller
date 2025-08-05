@@ -110,7 +110,10 @@ class _BuyerHistoryDetailsState extends State<BuyerHistoryDetails> {
               children: [
                 Text(
                   'Total Amount',
-                  style: context.textTheme.bodySmall?.copyWith(fontSize: 10),
+                  style: context.textTheme.bodySmall?.copyWith(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w300,
+                  ),
                 ),
                 Spacer(),
                 Text(
@@ -138,7 +141,7 @@ class _BuyerHistoryDetailsState extends State<BuyerHistoryDetails> {
           style: context.textTheme.bodyMedium?.copyWith(
             color: Colors.white,
             fontSize: 10,
-            fontWeight: FontWeight.w200,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ],

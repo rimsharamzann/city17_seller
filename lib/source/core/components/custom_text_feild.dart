@@ -35,14 +35,12 @@ class CustomTextFeild extends StatelessWidget {
         cursorHeight: 20,
         decoration: Constants.textFieldInputDecoration(
           hintText: hintText ?? '',
-          contentPadding: EdgeInsets.symmetric(horizontal: 6),
-          showLabel: true,
+          contentPadding: EdgeInsets.symmetric(horizontal: 16),
 
           fillColor: fillColor,
 
           color: Colors.white60,
           context: context,
-          smallText: smallText ?? true,
           // prefixIcon: Icon(prefixIcon, color: iconColor),
           suffixIcon: Icon(suffixIcon, color: iconColor),
         ),

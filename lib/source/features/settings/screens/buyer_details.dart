@@ -19,6 +19,7 @@ class _BuyerDetailScreenState extends State<BuyerDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyColors.darkThemeBG,
       appBar: AppBar(
         title: Text(
           StringData.buyerDetails,
@@ -71,7 +72,7 @@ class _BuyerDetailScreenState extends State<BuyerDetailScreen> {
                   color: Colors.white,
                 ),
               ),
-              
+
               SizedBox(height: 10),
               BuyerHistoryDetails(title: 'Pending', color: Colors.redAccent),
               SizedBox(height: 10),

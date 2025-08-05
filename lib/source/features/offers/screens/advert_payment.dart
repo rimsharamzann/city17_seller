@@ -41,7 +41,7 @@ class _AdvertPaymentScreenState extends State<AdvertPaymentScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-       StringData.advertPayment,
+          StringData.advertPayment,
           style: context.textTheme.bodyLarge?.copyWith(color: Colors.white),
         ),
       ),
@@ -270,10 +270,8 @@ class PaymentDetaiils extends StatelessWidget {
             children: [
               PaymentData(dataColor: color ?? MyColors.primaryColor),
               SizedBox(height: 6),
-            
-                
-                 TotalAmount(amount:   '\$1050',),
-               
+
+              TotalAmount(amount: '\$1050'),
             ],
           ),
         ),
@@ -321,8 +319,8 @@ class _PaymentDataState extends State<PaymentData> {
           data,
           style: context.textTheme.bodyMedium?.copyWith(
             color: dataCOlor ?? Colors.white,
-            fontSize: 9,
-            fontWeight: FontWeight.w200,
+            fontSize: 10,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ],

@@ -32,8 +32,8 @@ class PendingBiddingScreen extends StatelessWidget {
             text:
                 'Biddings allow multiple offers per hour — the highest bid wins.Earnings vary per hour based on accepted bids.',
             icon: Icons.warning_rounded,
-            fontSize: 9,
-            fontWeight: FontWeight.w200,
+            fontWeight: FontWeight.w400,
+            fontSize: 10 ,
             iconColor: MyColors.primaryColor,
             textColor: MyColors.textColor,
           ),

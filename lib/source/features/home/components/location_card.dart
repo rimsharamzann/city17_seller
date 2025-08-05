@@ -75,7 +75,8 @@ class _LocationCardState extends State<LocationCard>
                       widget.locationModel.address,
                       style: _isDisplayConnected
                           ? context.textTheme.bodySmall?.copyWith(
-                              color: Colors.white,
+                              color: Colors.white70,
+                              fontSize: 10,
                             )
                           : context.textTheme.bodySmall,
                     ),
@@ -258,9 +259,15 @@ class _LocationCardState extends State<LocationCard>
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(Icons.circle, color: color, size: 4),
+        Icon(Icons.circle, color: color, size: 6),
         SizedBox(width: 6),
-        Text(value, style: context.textTheme.bodySmall?.copyWith(color: color)),
+        Text(
+          value,
+          style: context.textTheme.bodySmall?.copyWith(
+            color: color,
+            fontSize: 10,
+          ),
+        ),
       ],
     );
   }

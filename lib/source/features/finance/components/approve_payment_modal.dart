@@ -80,7 +80,12 @@ class _ApprovePaymentModalState extends State<ApprovePaymentModal> {
                 profilePic: null,
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 8),
-                  child: Text('Buyer'),
+                  child: Text(
+                    'Buyer',
+                    style: context.textTheme.bodyMedium?.copyWith(
+                      color: MyColors.textColor,
+                    ),
+                  ),
                 ),
               ),
               SizedBox(child: widget.child),
@@ -106,6 +111,7 @@ class _ApprovePaymentModalState extends State<ApprovePaymentModal> {
                         text: widget.paymentDate ?? 'Paid on: ',
                         style: context.textTheme.bodySmall?.copyWith(
                           fontSize: 9,
+                          color: MyColors.textColor,
                         ),
                       ),
                       TextSpan(text: ' '),

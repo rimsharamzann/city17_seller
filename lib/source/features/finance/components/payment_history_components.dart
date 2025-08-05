@@ -39,7 +39,12 @@ class _HistoryCardsState extends State<HistoryCards> {
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Text('Payment Details'),
+                child: Text(
+                  'Payment Details',
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    color: MyColors.textColor,
+                  ),
+                ),
               ),
             ),
           ),
@@ -108,7 +113,10 @@ class _HistoryCardsState extends State<HistoryCards> {
               alignment: Alignment.bottomRight,
               child: Text(
                 '02 April 2025 01:15 PM',
-                style: context.textTheme.bodySmall?.copyWith(fontSize: 10),
+                style: context.textTheme.bodySmall?.copyWith(
+                  fontSize: 10,
+                  color: MyColors.textColor,
+                ),
               ),
             ),
           ],
@@ -120,7 +128,13 @@ class _HistoryCardsState extends State<HistoryCards> {
   Widget _historyTile(String title, String data, Color? dataCOlor) {
     return Column(
       children: [
-        Text(title, style: context.textTheme.bodySmall?.copyWith(fontSize: 9)),
+        Text(
+          title,
+          style: context.textTheme.bodySmall?.copyWith(
+            fontSize: 9,
+            color: MyColors.textColor,
+          ),
+        ),
         SizedBox(height: 8),
         Text(
           data,
