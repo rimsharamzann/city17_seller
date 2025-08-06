@@ -10,7 +10,7 @@ class APIService {
 
   String get baseUrl {
     if (kDebugMode) {
-      return 'http://city17-seller/api/v1';
+      return 'http://192.168.1.18:5000/api/v1';
     }
 
     return '';
@@ -19,7 +19,7 @@ class APIService {
   Future<Response> request(
     String endpoint,
     DioMethod method, {
-    Map<String, dynamic>? param,
+    Map<String, dynamic>? bodyParams,
     String? contentType,
     formData,
   }) async {
@@ -36,13 +36,13 @@ class APIService {
 
       switch (method) {
         case DioMethod.post:
-          return dio.post(endpoint, data: param ?? formData);
+          return dio.post(endpoint, data: bodyParams ?? formData);
         case DioMethod.get:
-          return dio.get(endpoint, queryParameters: param);
+          return dio.get(endpoint, queryParameters: bodyParams);
         case DioMethod.put:
-          return dio.put(endpoint, data: param ?? formData);
+          return dio.put(endpoint, data: bodyParams ?? formData);
         case DioMethod.delete:
-          return dio.delete(endpoint, data: param ?? formData);
+          return dio.delete(endpoint, data: bodyParams ?? formData);
       }
     } catch (e) {
       if (kDebugMode) {

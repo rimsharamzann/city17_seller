@@ -1,6 +1,6 @@
-part of 'display_cubit.dart';
+// part of 'display_cubit.dart';
 
-@immutable
-sealed class DisplayState {}
+// @immutable
+// sealed class DisplayState {}
 
-final class DisplayInitial extends DisplayState {}
+// final class DisplayInitial extends DisplayState {}

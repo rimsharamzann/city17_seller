@@ -5,6 +5,7 @@ mixin AssetString {
   static const addView = 'assets/images/add-view.png';
   static const adImage = 'assets/images/ads.png';
   static const userIcon = 'assets/images/user.png';
+  static const googleIcon = 'assets/images/google.png';
   static const street = 'assets/images/ads.jpg';
 
   // ------------------ svgs

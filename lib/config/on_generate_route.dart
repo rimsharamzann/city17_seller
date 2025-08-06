@@ -1,6 +1,7 @@
 import 'package:city17_seller/config/route_names.dart';
 import 'package:city17_seller/source/features/auth/screen/login_screen.dart';
 import 'package:city17_seller/source/features/auth/screen/sign_in_screen.dart';
+import 'package:city17_seller/source/features/auth/screen/splash_screen.dart';
 import 'package:city17_seller/source/features/finance/screens/finance_screen.dart';
 import 'package:city17_seller/source/features/home/screen/add_location_screen.dart';
 import 'package:city17_seller/source/features/home/screen/connect_display_screen.dart';
@@ -18,15 +19,17 @@ class RouteGenerator {
     Widget page;
 
     switch (settings.name) {
-      case '/':
       case RouteNames.home:
         page = const HomeScreen();
         break;
+      case RouteNames.splash:
+        page = const SplashScreen();
+        break;
       case RouteNames.signIn:
-        page = const SignInScreen();
+        page = const SignUpScreen();
         break;
       case RouteNames.login:
-        page = const LoginScreen();
+        page = LoginScreen();
         break;
       case RouteNames.displayLocation:
         page = const DisplayLocationScreen();
@@ -78,9 +81,7 @@ class RouteGenerator {
 
     return MaterialPageRoute(
       builder: (_) => page,
-      settings: RouteSettings(
-        name: settings.name,
-      ),
+      settings: RouteSettings(name: settings.name),
     );
   }
 }
